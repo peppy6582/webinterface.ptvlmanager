@@ -1,8 +1,12 @@
 'use strict';
 
-ptvlKodi.controller('movieListCtrl', ['$scope', 'movieList', function($scope, movieList) {
+ptvlKodi.controller('moviesListCtrl', ['$scope', 'moviesList', function($scope, moviesList) {
 
-    $scope.movies = movieList.async();
-    console.log($scope.movies);
+    moviesList.async().then(function(d) {
+        $scope.movies = d;
+        console.log($scope.movies);
+    });
+
+    
 
 }]);
