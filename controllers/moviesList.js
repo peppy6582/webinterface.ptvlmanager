@@ -7,6 +7,4 @@ ptvlKodi.controller('moviesListCtrl', ['$scope', 'moviesList', function($scope, 
         console.log($scope.movies);
     });
 
-    
-
 }]);

@@ -1,0 +1,13 @@
+<div class="bootcards-list" ng-controller="moviesListCtrl">
+    <div class="panel panel-default">
+        <div class="list-group">
+            <a class="list-group-item" href="#" ng-repeat="movie in movies">
+                <h4 class="list-group-item-heading">{{movie.label}}</h4>
+                <p class="list-group-item-text">{{movie.movieid}}</p>
+            </a>
+        </div>
+    </div>
+</div>
+<div ui-view></div>
+
+

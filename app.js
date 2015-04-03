@@ -1,6 +1,6 @@
 'use strict';
 
-var ptvlKodi = angular.module('ptvlKodi', ['ui.bootstrap', 'ui.router', 'loadOnDemand']);
+var ptvlKodi = angular.module('ptvlKodi', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngSanitize']);
 
 
 ptvlKodi
@@ -10,24 +10,9 @@ ptvlKodi
 
         $stateProvider
 
-            .state('home', {
-                url: '/home',
-                templateUrl: 'view/partial/home.html'
+            .state('movies', {
+                url: '/movies',
+                templateUrl: 'view/partial/movies-list.html'
             })
 
-    }])
-
-    .config(['$loadOnDemandProvider', function ($loadOnDemandProvider) {
-        var modules = [
-            {
-                name: 'moviesListCtrl',     // name of module
-                script: 'controllers/moviesList.js' // path to javascript file
-            },
-            {
-                name: 'movieList',     // name of module
-                script: 'services/moviesList.js' // path to javascript file
-            }
-        ];
-        $loadOnDemandProvider.config(modules);
-        console.log(modules);
     }]);
