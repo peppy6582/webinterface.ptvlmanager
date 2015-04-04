@@ -12,7 +12,20 @@ ptvlKodi
 
             .state('movies', {
                 url: '/movies',
-                templateUrl: 'view/partial/movies-list.html'
+                templateUrl: 'view/movies/movies.html'
             })
 
+            .state('moviesdetails', {
+                url: '/movies-details',
+                templateUrl: 'view/movies/movies-details.html'
+            })
+
+    }])
+    .config(['$sceDelegateProvider', function($sceDelegateProvider) {
+        $sceDelegateProvider.resourceUrlWhitelist([
+            'self',
+            '*://www.youtube.com/**'
+        ]);
     }]);
+
+

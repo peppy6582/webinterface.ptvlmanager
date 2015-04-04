@@ -1,8 +1,12 @@
 'use strict';
 
-ptvlKodi.factory('moviesList', ['$http',function($http) {
+ptvlKodi.factory('moviesList', ['$http', '$location', function($http, $location) {
 
-    var url = 'http://localhost:9000/jsonrpc?request=';
+    var ip = $location.host();
+
+    var port = 9000;
+
+    var url = 'http://'+ip+':'+port+'/jsonrpc?request=';
 
     var movieListReq = JSON.stringify({
         "jsonrpc":"2.0",
