@@ -11,7 +11,7 @@ ptvlKodi.controller('moviesListCtrl', ['$scope', 'moviesList', 'moviesDetails', 
 
         var modalInstance = $modal.open({
             templateUrl: 'view/movies/movies-details.html',
-            controller: function ($scope, $modalInstance, movieid) {
+            controller: function ($scope, $state, $modalInstance, movieid) {
 
                 $scope.oneAtATime = true;
                 $scope.members = true;
@@ -25,9 +25,7 @@ ptvlKodi.controller('moviesListCtrl', ['$scope', 'moviesList', 'moviesDetails', 
                     //This take the movie poster url, and converts it to something that can be opened in an img tag
                     var movieThumb = $scope.details.thumbnail.replace("image://http://image.tmdb.org/t/p/original/", "");
                     $scope.movieThumb = movieThumb;
-
-
-
+                    
                     $scope.getTrailer = function(trailer) {
                         var videoId = trailer.replace("plugin://plugin.video.youtube/?action=play_video&videoid=", "");
                         return 'https://www.youtube.com/embed/' + videoId;
@@ -56,7 +54,7 @@ ptvlKodi.controller('moviesListCtrl', ['$scope', 'moviesList', 'moviesDetails', 
             size: size,
             resolve: {
                 movieid: function () {
-
+                    $state.go('movies.details');
                     return selectedMovieid;
                 }
             }

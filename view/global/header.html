@@ -5,11 +5,11 @@
     <div ng-controller="DropdownCtrl">
     <!-- Single button -->
         <div class="btn-group navbar-btn" dropdown is-open="status.isopen">
-            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-click="">
                 Movies <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#/movies">List</a></li>
+                <li><a ui-sref="/movies" ng-click="">List</a></li>
                 <li><a href="#">Another action</a></li>
                 <li><a href="#">Something else here</a></li>
                 <li class="divider"></li>

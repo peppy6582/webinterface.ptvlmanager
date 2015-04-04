@@ -1,6 +1,6 @@
 'use strict';
 
-var ptvlKodi = angular.module('ptvlKodi', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngSanitize']);
+var ptvlKodi = angular.module('ptvlKodi', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ngTouch']);
 
 
 ptvlKodi
@@ -15,8 +15,9 @@ ptvlKodi
                 templateUrl: 'view/movies/movies.html'
             })
 
-            .state('moviesdetails', {
-                url: '/movies-details',
+            .state('movies.details', {
+                url: '/details',
+                parent: 'movies',
                 templateUrl: 'view/movies/movies-details.html'
             })
 
