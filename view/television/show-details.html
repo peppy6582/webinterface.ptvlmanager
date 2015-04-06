@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h2 class="modal-title"><b>{{details.label}}</b></h2>
+    <h3 class="modal-title">Title: {{details.label}}</h3>
 </div>
 <div class="modal-body">
     <form name="updateCustomerForm">
@@ -15,7 +15,7 @@
                 <div class="col-sm-6 movie-thumbnail">
                     <img id="moviethumb" ng-src="{{movieThumb}}" />
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-6">
                     <div class="form-group">
                         <accordion close-others="oneAtATime">
                             <accordion-group is-open="plot.open">
@@ -46,14 +46,17 @@
                                     {{genre}}
                                 </li>
                             </accordion-group>
-                            <accordion-group is-open="trailer.open" class="trailer-group">
+                            <accordion-group is-open="trailer.open">
                                 <accordion-heading>
                                     Trailer <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': trailer.open, 'glyphicon-chevron-right': !trailer.open}"></i>
                                 </accordion-heading>
                                 <iframe id="trailer" ng-src="{{getTrailer(details.trailer)}}" frameborder="0" allowfullscreen></iframe>
                             </accordion-group>
                         </accordion>
-
+                        <label class="checkbox">
+                             <input type="checkbox" ng-model="oneAtATime">
+                             Open only one at a time
+                        </label>
                     </div>
                 </div>
             </div>
@@ -66,15 +69,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                           <div class="col-sm-6">
                     <button class="btn btn-success" ng-click="customerUpCtrl.update(customer); ok()" ng-disabled="updateCustomerForm.$invalid">Update & Close</button>
                     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-                    <label class="checkbox">
-                        <input type="checkbox" ng-model="oneAtATime">
-                        Open only one at a time
-                    </label>
                 </div>
             </div>
         </fieldset>
     </form>
 </div>
+
+
+<div ui-view></div>
