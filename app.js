@@ -1,6 +1,6 @@
 'use strict';
 
-var ptvlKodi = angular.module('ptvlKodi', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ngTouch', 'ngWebsocket']);
+var ptvlKodi = angular.module('ptvlKodi', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ngTouch']);
 
 
 ptvlKodi
@@ -22,6 +22,7 @@ ptvlKodi
             })
 
     }])
+
     .config(['$sceDelegateProvider', function($sceDelegateProvider) {
         $sceDelegateProvider.resourceUrlWhitelist([
             'self',

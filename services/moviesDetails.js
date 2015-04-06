@@ -10,7 +10,7 @@ ptvlKodi.factory('moviesDetails', ['$http', '$location', function($http, $locati
 
     var moviesDetails = {
         async: function(movieid) {
-            console.log(movieid);
+
             var movieDetailsReq = JSON.stringify({"jsonrpc":"2.0",
                 "method":"VideoLibrary.GetMovieDetails",
                 "id":1,
