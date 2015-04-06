@@ -1,6 +1,6 @@
 'use strict';
 
-var ptvlKodi = angular.module('ptvlKodi', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ngTouch']);
+var ptvlKodi = angular.module('ptvlKodi', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ngTouch', 'ngWebsocket']);
 
 
 ptvlKodi

@@ -23,9 +23,19 @@ ptvlKodi.controller('moviesListCtrl', ['$scope', 'moviesList', 'moviesDetails', 
                     $scope.details = d;
 
                     //This take the movie poster url, and converts it to something that can be opened in an img tag
-                    var movieThumb = $scope.details.thumbnail.replace("image://http://image.tmdb.org/t/p/original/", "");
-                    $scope.movieThumb = movieThumb;
-                    
+                    var movieThumb = "";
+
+                    //If the image is a tmdb.org image, fix the url to pull from there
+                    if($scope.details.thumbnail.includes('image.tmdb.org')) {
+                        movieThumb = $scope.details.thumbnail.replace("image://http://image.tmdb.org/t/p/original/", "");
+                        $scope.movieThumb = "http://image.tmdb.org/t/p/original"+movieThumb;
+
+                    //If the image is local, fix the url to pull from the local folder
+                    } else {
+                        movieThumb = '/image/image%3A%2F%2F' + encodeURI($scope.details.thumbnail.replace("image://", ""));
+                        $scope.movieThumb = movieThumb;
+                    }
+
                     $scope.getTrailer = function(trailer) {
                         var videoId = trailer.replace("plugin://plugin.video.youtube/?action=play_video&videoid=", "");
                         return 'https://www.youtube.com/embed/' + videoId;

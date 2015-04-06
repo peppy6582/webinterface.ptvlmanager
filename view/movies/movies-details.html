@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h3 class="modal-title">Title: {{details.label}}</h3>
+    <h2 class="modal-title"><b>{{details.label}}</b></h2>
 </div>
 <div class="modal-body">
     <form name="updateCustomerForm">
@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6 movie-thumbnail">
-                    <img id="moviethumb" ng-src="http://image.tmdb.org/t/p/original{{movieThumb}}" />
+                    <img id="moviethumb" ng-src="{{movieThumb}}" />
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
@@ -77,6 +77,3 @@
         </fieldset>
     </form>
 </div>
-
-
-<div ui-view></div>
