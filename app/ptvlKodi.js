@@ -10,7 +10,9 @@ define([
     './components/movies/services/index',
     './components/television/services/index',
     './components/movies/controllers/index',
-    './components/television/controllers/index'
+    './components/television/controllers/index',
+    './components/ptvl/services/settingsXml',
+    './components/ptvl/controllers/settingsXml'
 
 ], function (ng) {
     'use strict';
@@ -20,6 +22,8 @@ define([
         'ptvlKodi.moviesControllers',
         'ptvlKodi.televisionServices',
         'ptvlKodi.televisionControllers',
+        'ptvlKodi.ptvlServices',
+        'ptvlKodi.ptvlControllers',
         'ui.router',
         'ui.bootstrap',
         'ngAria',

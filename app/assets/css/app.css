@@ -47,3 +47,9 @@
     max-width: 100%;
     max-height: 100%;
 }
+
+.ptvl {
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
