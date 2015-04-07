@@ -1,7 +1,21 @@
 <div class="ptvl">
     <div class="row">
         <div class="col-sm-6">
-
+            <accordion>
+                <accordion-group>
+                    <accordion-heading>
+                        Load Channels
+                    </accordion-heading>
+                    <input type="file" on-read-file="showContent($fileContent)" name="files[]" multiple />
+                    <output id="list"></output>
+                </accordion-group>
+                <accordion-group>
+                    <accordion-heading >
+                        Channels
+                    </accordion-heading>
+                    {{content}}
+                </accordion-group>
+            </accordion>
         </div>
         <div class="col-sm-6">
             <accordion>

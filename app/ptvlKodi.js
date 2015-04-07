@@ -11,7 +11,9 @@ define([
     './components/television/services/index',
     './components/movies/controllers/index',
     './components/television/controllers/index',
+    './components/ptvl/directives/fileListBind',
     './components/ptvl/services/settingsXml',
+    './components/ptvl/services/channels',
     './components/ptvl/controllers/settingsXml'
 
 ], function (ng) {
@@ -22,6 +24,7 @@ define([
         'ptvlKodi.moviesControllers',
         'ptvlKodi.televisionServices',
         'ptvlKodi.televisionControllers',
+        'ptvlKodi.ptvlDirectives',
         'ptvlKodi.ptvlServices',
         'ptvlKodi.ptvlControllers',
         'ui.router',

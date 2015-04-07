@@ -9,7 +9,8 @@ require.config({
         "ngAria": "../bower_components/angular-aria/angular-aria.min",
         "ngAnimate": "../bower_components/angular-animate/angular-animate.min",
         "ngSanitize": "../bower_components/angular-sanitize/angular-sanitize.min",
-        "ngTouch": "../bower_components/angular-touch/angular-touch.min"
+        "ngTouch": "../bower_components/angular-touch/angular-touch.min",
+        "x2js": "../bower_components/x2js/xml2json.min"
     },
 
     /**
@@ -40,7 +41,11 @@ require.config({
         },
         'ngTouch':{
             deps: ['angular']
+        },
+        'x2js':{
+            deps: ['angular']
         }
+
 
     },
 
