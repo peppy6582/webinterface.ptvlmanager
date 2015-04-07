@@ -14,7 +14,6 @@ define([
     './components/television/controllers/index',
     './components/ptvl/directives/onReadFile',
     './components/ptvl/services/settingsXml',
-    './components/ptvl/services/channels',
     './components/ptvl/controllers/settingsXml'
 
 ], function (ng) {

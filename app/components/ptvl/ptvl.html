@@ -13,7 +13,12 @@
                     <accordion-heading >
                         Channels
                     </accordion-heading>
-                    {{content}}
+                    <accordion-group ng-repeat="channel in channels.settings.setting">
+                        <accordion-heading >
+                            {{channel._id}}
+                        </accordion-heading>
+                        {{channels}}
+                    </accordion-group>
                 </accordion-group>
             </accordion>
         </div>
