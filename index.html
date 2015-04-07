@@ -10,7 +10,7 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 
-    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="app/assets/css/app.css" />
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
@@ -22,19 +22,23 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="bower_components/angular-touch/angular-touch.min.js"></script>
     <script src="app.js"></script>
-    <script src="directives/touch-links.js"></script>
-    <script src="controllers/navbar.js"></script>
-    <script src="services/moviesList.js"></script>
-    <script src="services/moviesDetails.js"></script>
-    <script src="controllers/moviesList.js"></script>
-    <script src="controllers/moviesDetails.js"></script>
+    <script src="app/global/directives/touch-links.js"></script>
+    <script src="app/global/navbar/navbar.js"></script>
+    <script src="app/components/movies/services/moviesList.js"></script>
+    <script src="app/components/movies/services/moviesDetails.js"></script>
+    <script src="app/components/movies/controllers/moviesList.js"></script>
+    <script src="app/components/movies/controllers/moviesDetails.js"></script>
+    <script src="app/components/television/services/showList.js"></script>
+    <script src="app/components/television/services/showDetails.js"></script>
+    <script src="app/components/television/controllers/showList.js"></script>
+    <script src="app/components/television/controllers/showDetails.js"></script>
 
 </head>
 <body ng-app="ptvlKodi">
 
 <!-- HEADER AND NAVBAR -->
 <header>
-    <nav ng-include="'view/global/header.html'"></nav>
+    <nav ng-include="'app/global/navbar/navbar.html'"></nav>
 </header>
 
 <!-- MAIN CONTENT AND INJECTED VIEWS -->

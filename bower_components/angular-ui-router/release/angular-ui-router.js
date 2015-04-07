@@ -2618,7 +2618,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
    * <pre>views: {
    *     header: {
    *       controller: "headerCtrl",
-   *       templateUrl: "header.html"
+   *       templateUrl: "navbar.html"
    *     }, body: {
    *       controller: "bodyCtrl",
    *       templateUrl: "body.html"

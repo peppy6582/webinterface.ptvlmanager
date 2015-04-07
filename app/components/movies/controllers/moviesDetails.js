@@ -6,7 +6,7 @@ ptvlKodi.controller('moviesDetailsCtrl', ['$scope', '$modal', '$state', '$log', 
     this.modalDetails = function (size, selectedMovieid) {
 
         var modalInstance = $modal.open({
-            templateUrl: 'view/movies/movies-details.html',
+            templateUrl: 'app/components/movies/movies-details.html',
             controller: function ($scope, $state, $modalInstance, movieid) {
 
                 $scope.oneAtATime = true;

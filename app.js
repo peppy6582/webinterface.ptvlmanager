@@ -12,13 +12,29 @@ ptvlKodi
 
             .state('movies', {
                 url: '/movies',
-                templateUrl: 'view/movies/movies.html'
+                templateUrl: 'app/components/movies/movies.html'
             })
 
             .state('movies.details', {
-                url: '/details',
+                url: '/movie-details',
                 parent: 'movies',
-                templateUrl: 'view/movies/movies-details.html'
+                templateUrl: 'app/components/movies/movies-details.html'
+            })
+
+            .state('shows', {
+                url: '/shows',
+                templateUrl: 'app/components/television/shows.html'
+            })
+
+            .state('shows.details', {
+                url: '/show-details',
+                parent: 'shows',
+                templateUrl: 'app/components/television/show-details.html'
+            })
+
+            .state('ptvl', {
+                url: '/ptvl',
+                templateUrl: 'app/components/ptvl/ptvl.html'
             })
 
     }])
