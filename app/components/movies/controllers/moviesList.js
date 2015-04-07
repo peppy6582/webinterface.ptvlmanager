@@ -1,10 +1,12 @@
-'use strict';
+define(['./movies'], function (moviesControllers) {
+    'use strict';
 
-ptvlKodi.controller('moviesListCtrl', ['$scope', 'moviesList', function($scope, moviesList) {
+    moviesControllers.controller('moviesListCtrl', ['$scope', 'moviesList', function ($scope, moviesList) {
 
-    moviesList.async().then(function(d) {
-        $scope.movies = d;
-    });
+        moviesList.async().then(function (d) {
+            $scope.movies = d;
+        });
 
 
-}]);
+    }]);
+});

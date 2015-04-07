@@ -1,0 +1,4 @@
+define([
+    './moviesList',
+    './moviesDetails'
+], function () {});

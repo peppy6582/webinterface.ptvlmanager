@@ -12,29 +12,10 @@
 
     <link rel="stylesheet" href="app/assets/css/app.css" />
 
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-    <script src="bower_components/angular-material/angular-material.min.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.min.js"></script>
-    <script src="app.js"></script>
-    <script src="app/global/directives/touch-links.js"></script>
-    <script src="app/global/navbar/navbar.js"></script>
-    <script src="app/components/movies/services/moviesList.js"></script>
-    <script src="app/components/movies/services/moviesDetails.js"></script>
-    <script src="app/components/movies/controllers/moviesList.js"></script>
-    <script src="app/components/movies/controllers/moviesDetails.js"></script>
-    <script src="app/components/television/services/showList.js"></script>
-    <script src="app/components/television/services/showDetails.js"></script>
-    <script src="app/components/television/controllers/showList.js"></script>
-    <script src="app/components/television/controllers/showDetails.js"></script>
+    <script src="bower_components/requirejs/require.js" data-main="app/main.js"></script>
 
 </head>
-<body ng-app="ptvlKodi">
+<body>
 
 <!-- HEADER AND NAVBAR -->
 <header>
@@ -47,6 +28,7 @@
    <div ui-view></div>
 
 </div>
+
 
 
 </body>

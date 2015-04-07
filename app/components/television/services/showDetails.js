@@ -1,42 +1,45 @@
-'use strict';
+define(['./television'], function (televisionServices) {
+    'use strict';
 
-ptvlKodi.factory('showDetails', ['$http', '$location', function($http, $location) {
+    televisionServices.factory('showDetails', ['$http', '$location', function ($http, $location) {
 
-    var ip = $location.host();
+        var ip = $location.host();
 
-    var port = 9000;
+        var port = 9000;
 
-    var url = 'http://'+ip+':'+port+'/jsonrpc?request=';
+        var url = 'http://' + ip + ':' + port + '/jsonrpc?request=';
 
-    var showDetails = {
-        async: function(tvshowid) {
+        var showDetails = {
+            async: function (tvshowid) {
 
-            var showDetailsReq = JSON.stringify({"jsonrpc":"2.0",
-                "method":"VideoLibrary.GetTVShowDetails",
-                "id":1,
-                "params":[
-                    tvshowid,
-                    [
-                        "title",
-                        "genre",
-                        "year",
-                        "thumbnail",
-                        "plot",
-                        "cast",
-                        "art"
+                var showDetailsReq = JSON.stringify({
+                    "jsonrpc": "2.0",
+                    "method": "VideoLibrary.GetTVShowDetails",
+                    "id": 1,
+                    "params": [
+                        tvshowid,
+                        [
+                            "title",
+                            "genre",
+                            "year",
+                            "thumbnail",
+                            "plot",
+                            "cast",
+                            "art"
+                        ]
                     ]
-                ]
-            });
+                });
 
-            // $http returns a promise, which has a then function, which also returns a promise
-            var promise = $http.get(url + showDetailsReq).then(function (response) {
-                console.log(response.data.result.tvshowdetails);
-                // The return value gets picked up by the then in the controller.
-                return response.data.result.tvshowdetails;
-            });
-            // Return the promise to the controller
-            return promise;
-        }
-    };
-    return showDetails;
-}]);
+                // $http returns a promise, which has a then function, which also returns a promise
+                var promise = $http.get(url + showDetailsReq).then(function (response) {
+                    console.log(response.data.result.tvshowdetails);
+                    // The return value gets picked up by the then in the controller.
+                    return response.data.result.tvshowdetails;
+                });
+                // Return the promise to the controller
+                return promise;
+            }
+        };
+        return showDetails;
+    }]);
+});

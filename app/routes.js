@@ -1,10 +1,6 @@
-'use strict';
-
-var ptvlKodi = angular.module('ptvlKodi', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ngTouch']);
-
-
-ptvlKodi
-    .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+define(['./ptvlKodi'], function(ptvlKodi) {
+    'use strict';
+    return ptvlKodi.config(['$stateProvider', '$urlRouterProvider','$sceDelegateProvider',function($stateProvider, $urlRouterProvider, $sceDelegateProvider){
 
         $urlRouterProvider.otherwise('index.html');
 
@@ -12,38 +8,40 @@ ptvlKodi
 
             .state('movies', {
                 url: '/movies',
-                templateUrl: 'app/components/movies/movies.html'
+                templateUrl: 'app/components/movies/movies.html',
+                controller: 'moviesListCtrl'
             })
 
             .state('movies.details', {
                 url: '/movie-details',
                 parent: 'movies',
-                templateUrl: 'app/components/movies/movies-details.html'
+                templateUrl: 'app/components/movies/movies-details.html',
+                controller: 'moviesDetailsCtrl'
             })
 
             .state('shows', {
                 url: '/shows',
-                templateUrl: 'app/components/television/shows.html'
+                templateUrl: 'app/components/television/shows.html',
+                controller: 'showListCtrl'
             })
 
             .state('shows.details', {
                 url: '/show-details',
                 parent: 'shows',
-                templateUrl: 'app/components/television/show-details.html'
+                templateUrl: 'app/components/television/show-details.html',
+                controller: 'showDetailsCtrl'
             })
 
             .state('ptvl', {
                 url: '/ptvl',
                 templateUrl: 'app/components/ptvl/ptvl.html'
-            })
+            });
 
-    }])
 
-    .config(['$sceDelegateProvider', function($sceDelegateProvider) {
         $sceDelegateProvider.resourceUrlWhitelist([
             'self',
             '*://www.youtube.com/**'
         ]);
+
     }]);
-
-
+});
