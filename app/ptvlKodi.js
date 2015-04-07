@@ -7,11 +7,12 @@ define([
     'ngAnimate',
     'ngSanitize',
     'ngTouch',
+    'x2js',
     './components/movies/services/index',
     './components/television/services/index',
     './components/movies/controllers/index',
     './components/television/controllers/index',
-    './components/ptvl/directives/fileListBind',
+    './components/ptvl/directives/onReadFile',
     './components/ptvl/services/settingsXml',
     './components/ptvl/services/channels',
     './components/ptvl/controllers/settingsXml'

@@ -1,3 +1,3 @@
 define([
-    './fileListBind'
+    './onReadFile'
 ], function () {});

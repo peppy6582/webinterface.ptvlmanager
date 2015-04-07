@@ -19,6 +19,11 @@ define(['./ptvl'], function (ptvlControllers) {
             $scope.content = $fileContent;
         };
 
+        $scope.channels = $scope.showContent(function($fileContent){
+            return $fileContent;
+        });
+
+        console.log($scope.channels);
 
 
     }]);
