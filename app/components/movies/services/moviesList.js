@@ -25,7 +25,7 @@ define(['./movies'], function (moviesServices) {
                     "method": "sorttitle"
                 }
             },
-            "id": "WIMM"
+            "id": "PTVLM"
         });
 
 
