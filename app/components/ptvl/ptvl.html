@@ -3,27 +3,41 @@
         <div class="col-sm-6">
             <accordion>
                 <accordion-group>
-                    <accordion-heading>
+                    <accordion-heading ng-click="readPtvl = !readPtvl">
                         Load Channels
                     </accordion-heading>
                     <input type="file" on-read-file="showContent($fileContent)" name="files[]" multiple />
                     <output id="list"></output>
-                </accordion-group>
-                <accordion-group>
-                    <accordion-heading >
-                        Channels
-                    </accordion-heading>
-                    <accordion-group ng-repeat="channel in channels.settings.setting">
-                        <accordion-heading >
-                            {{channel._id}}
-                        </accordion-heading>
-                        {{channels}}
-                    </accordion-group>
+                    <accordion>
+                        <accordion-group is-open="channelDetails.open">
+                            <accordion-heading>
+                                Channels
+                            </accordion-heading>
+                            <accordion>
+                                <accordion-group ng-repeat="channel in newChannels | orderBy: channel.Channel" ng-show="channel.Channel > 0" ng-click="getSettings(channel)">
+                                    <accordion-heading>
+                                        Channel: {{channel.Channel}}
+                                    </accordion-heading>
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    Channel Type: {{channelType}}
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    Channel Path:
+                                                    <input type="text" name="channelPath" placeholder="{{channelPath}}">
+                                                </div>
+                                            </div>
+                                        </form>
+                                </accordion-group>
+                            </accordion>
+                        </accordion-group>
+                    </accordion>
                 </accordion-group>
             </accordion>
         </div>
-        <div class="col-sm-6">
-            <accordion>
+        <div class="col-sm-6" >
+            <accordion ng-hide="readPtvl">
                 <accordion-group is-open="ptvlDetails.open">
                     <accordion-heading>
                         {{settings.name}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': ptvlDetails.open, 'glyphicon-chevron-right': !ptvlDetails.open}"></i>
