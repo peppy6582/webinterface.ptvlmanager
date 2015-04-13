@@ -59,8 +59,11 @@ define(['./television'], function (televisionControllers) {
 
                         } else {
                             console.log(thumbnail);
+                            thumbnail = '/image/image%3A%2F%2F' + encodeURI(thumbnail.replace("image://", ""));
+                            $scope.actorThumb = thumbnail;
+
                         }
-                        
+
                     };
 
 
