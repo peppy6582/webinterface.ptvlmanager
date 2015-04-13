@@ -1,6 +1,8 @@
 define(['./television'], function (televisionControllers) {
     'use strict';
 
+    String.prototype.contains = function(str) { return this.indexOf(str) != -1; };
+
     televisionControllers.controller('showDetailsCtrl', ['$scope', '$modal', '$state', '$log', 'showDetails', function ($scope, $modal, $state, $log, showDetails) {
 
         // Opens Movie Details Modal Window
@@ -25,11 +27,12 @@ define(['./television'], function (televisionControllers) {
 
                         //If the image is a tmdb.org image, fix the url to pull from there
 
-                        String.prototype.contains = function(str) { return this.indexOf(str) != -1; };
-
                         if ($scope.details.thumbnail.contains('image.tmdb.org')) {
-                            tvshowThumb = $scope.details.thumbnail.replace("image://http://image.tmdb.org/t/p/original/", "");
-                            $scope.tvshowThumb = "http://image.tmdb.org/t/p/original" + tvshowThumb;
+                            tvshowThumb = decodeURIComponent($scope.details.thumbnail);
+
+                            tvshowThumb = tvshowThumb.replace("image://", "");
+
+                            $scope.tvshowThumb = tvshowThumb;
 
                             //If the image is local, fix the url to pull from the local folder
                         } else {
@@ -46,10 +49,18 @@ define(['./television'], function (televisionControllers) {
                     //This takes the actors thumbnail urls, and converts it to an array of things that can be opened in an img tag,
                     //and adds the actors order number.
                     $scope.actorThumb = function (order, thumbnail) {
-                        var actorThumb = thumbnail.replace("image://http%3a%2f%2fthetvdb.com%2fbanners%2factors%2f", "");
-                        actorThumb = actorThumb.substring(0, actorThumb.length - 1);
-                        $scope.actorThumb[order] = actorThumb;
-                        console.log($scope.actorThumb[order]);
+
+                        if (thumbnail.contains("thetvdb.com")) {
+
+                            var actorThumb = thumbnail.replace("image://http%3a%2f%2fthetvdb.com%2fbanners%2factors%2f", "");
+                            actorThumb = actorThumb.substring(0, actorThumb.length - 1);
+                            $scope.actorThumb[order] = actorThumb;
+                            console.log($scope.actorThumb[order]);
+
+                        } else {
+                            console.log(thumbnail);
+                        }
+                        
                     };
 
 
