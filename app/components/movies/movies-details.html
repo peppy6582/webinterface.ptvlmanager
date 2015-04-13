@@ -34,7 +34,7 @@
                                             {{cast.name}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': member.open, 'glyphicon-chevron-right': !member.open}"></i>
                                         </accordion-heading>
                                         <h6>Role: {{cast.role}}</h6>
-                                        <img ng-src="http://image.tmdb.org/t/p/original{{actorThumb[cast.order]}}" height="300" width="196" />
+                                        <img ng-src="{{actorThumb[cast.order]}}" height="300" width="196" />
                                     </accordion-group>
                                 </accordion>
                             </accordion-group>

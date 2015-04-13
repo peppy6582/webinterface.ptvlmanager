@@ -22,7 +22,11 @@ define(['./television'], function (televisionControllers) {
 
                         //This take the show poster url, and converts it to something that can be opened in an img tag
                         var tvshowThumb = "";
+
                         //If the image is a tmdb.org image, fix the url to pull from there
+
+                        String.prototype.contains = function(str) { return this.indexOf(str) != -1; };
+
                         if ($scope.details.thumbnail.contains('image.tmdb.org')) {
                             tvshowThumb = $scope.details.thumbnail.replace("image://http://image.tmdb.org/t/p/original/", "");
                             $scope.tvshowThumb = "http://image.tmdb.org/t/p/original" + tvshowThumb;

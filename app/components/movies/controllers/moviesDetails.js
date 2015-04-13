@@ -24,9 +24,14 @@ define(['./movies'], function (moviesControllers) {
                         var movieThumb = "";
 
                         //If the image is a tmdb.org image, fix the url to pull from there
+                        String.prototype.contains = function(str) { return this.indexOf(str) != -1; };
+
                         if ($scope.details.thumbnail.contains('image.tmdb.org')) {
-                            movieThumb = $scope.details.thumbnail.replace("image://http://image.tmdb.org/t/p/original/", "");
-                            $scope.movieThumb = "http://image.tmdb.org/t/p/original" + movieThumb;
+                            movieThumb = decodeURIComponent($scope.details.thumbnail);
+
+                            movieThumb = movieThumb.replace("image://", "");
+
+                            $scope.movieThumb = movieThumb;
 
                             //If the image is local, fix the url to pull from the local folder
                         } else {
@@ -43,7 +48,12 @@ define(['./movies'], function (moviesControllers) {
                     //This takes the actors thumbnail urls, and converts it to an array of things that can be opened in an img tag,
                     //and adds the actors order number.
                     $scope.actorThumb = function (order, thumbnail) {
-                        var actorThumb = thumbnail.replace("image://http://image.tmdb.org/t/p/original/", "");
+
+                        var actorThumb = decodeURIComponent(thumbnail);
+
+                        console.log(actorThumb);
+
+                        actorThumb = actorThumb.replace("image://", "");
                         $scope.actorThumb[order] = actorThumb;
                     };
 
