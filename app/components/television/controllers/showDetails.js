@@ -54,13 +54,52 @@ define(['./television'], function (televisionControllers) {
 
                             var actorThumb = thumbnail.replace("image://http%3a%2f%2fthetvdb.com%2fbanners%2factors%2f", "");
                             actorThumb = actorThumb.substring(0, actorThumb.length - 1);
-                            $scope.actorThumb[order] = actorThumb;
-                            console.log($scope.actorThumb[order]);
+                            $scope.actorThumb[order] = "http://thetvdb.com/banners/actors/" + actorThumb;
+
 
                         } else {
-                            console.log(thumbnail);
-                            thumbnail = '/image/image%3A%2F%2F' + encodeURI(thumbnail.replace("image://", ""));
-                            $scope.actorThumb = thumbnail;
+                            thumbnail = '/image/image%3A%2F%2F' + encodeURI(thumbnail.replace("image://", ""))
+
+                            $scope.actorThumb[order] = thumbnail;
+
+                        }
+
+                    };
+
+                    $scope.getArtwork = function (banner, fanart) {
+
+                        if (banner.contains("thetvdb.com")) {
+
+                            banner = banner.replace("image://http%3a%2f%2fthetvdb.com%2fbanners%2factors%2f", "");
+                            banner = banner.substring(0, actorThumb.length - 1);
+                            $scope.banner = "http://thetvdb.com/banners/actors/" + banner;
+                            console.log('This is remote url');
+                            console.log(banner);
+
+                        } else {
+                            banner= '/image/image%3A%2F%2F' + encodeURI(banner.replace("image://", ""))
+
+                            console.log('This is local');
+                            console.log(banner);
+                            $scope.banner = banner;
+
+                        }
+
+
+                        if (fanart.contains("thetvdb.com")) {
+
+                            fanart = fanart.replace("image://http%3a%2f%2fthetvdb.com%2fbanners%2factors%2f", "");
+                            fanart = fanart.substring(0, actorThumb.length - 1);
+                            $scope.fanart = "http://thetvdb.com/banners/actors/" + fanart;
+                            console.log('This is remote url');
+                            console.log(fanart);
+
+                        } else {
+                            fanart = '/image/image%3A%2F%2F' + encodeURI(fanart.replace("image://", ""))
+
+                            console.log('This is local');
+                            console.log(fanart);
+                            $scope.fanart = fanart;
 
                         }
 

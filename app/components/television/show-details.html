@@ -1,5 +1,6 @@
 <div class="modal-header">
     <h3 class="modal-title">Title: {{details.label}}</h3>
+
 </div>
 <div class="modal-body">
     <form name="updateCustomerForm">
@@ -34,7 +35,7 @@
                                             {{cast.name}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': member.open, 'glyphicon-chevron-right': !member.open}"></i>
                                         </accordion-heading>
                                         <h6>Role: {{cast.role}}</h6>
-                                        <img ng-src="http://thetvdb.com/banners/actors/{{actorThumb[cast.order]}}" height="300" width="196" />
+                                        <img ng-src="{{actorThumb[cast.order]}}" height="300" width="196" />
                                     </accordion-group>
                                 </accordion>
                             </accordion-group>
@@ -45,6 +46,13 @@
                                 <li ng-repeat="genre in details.genre">
                                     {{genre}}
                                 </li>
+                            </accordion-group>
+                            <accordion-group is-open="artwork.open" ng-click="getArtwork(details.art.banner, details.art.fanart)">
+                                <accordion-heading>
+                                    Artwork <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': artwork.open, 'glyphicon-chevron-right': !artwork.open}"></i>
+                                </accordion-heading>
+                                    Banner:  <img ng-src="{{banner}}" height="60" width="296" />
+                                    Fanart:  <img ng-src="{{fanart}}" height="270" width="390" />
                             </accordion-group>
                         </accordion>
                         <label class="checkbox">
