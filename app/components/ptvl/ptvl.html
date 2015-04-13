@@ -63,4 +63,20 @@
             </accordion>
         </div>
     </div>
+    <div>
+        &lt;settings&gt;
+        <div ng-repeat="channel in newChannels" ng-show="channel.Channel > 0">
+            &lt;setting id=&quot;Channel_{{channel.Channel}}_type&quot; value=&quot;{{channel.Settings[0]._value}}&quot; &#x2F;&gt;
+            <br>
+            &lt;setting id=&quot;Channel_{{channel.Channel}}_1&quot; value=&quot;{{channel.Settings[1]._value}}&quot; &#x2F;&gt;
+            <br>
+            &lt;setting id=&quot;Channel_{{channel.Channel}}_rulecount&quot; value=&quot;{{channel.Settings[2]._value}}&quot; &#x2F;&gt;
+            <br>
+            &lt;setting id=&quot;Channel_{{channel.Channel}}_rule_1_id&quot; value=&quot;{{channel.Settings[3]._value}}&quot; &#x2F;&gt;
+            <br>
+            &lt;setting id=&quot;Channel_{{channel.Channel}}_rule_1_opt_1&quot; value=&quot;{{channel.Settings[4]._value}}&quot; &#x2F;&gt;
+        </div>
+        &lt;&#x2F;settings&gt;
+    </div>
+
 </div>

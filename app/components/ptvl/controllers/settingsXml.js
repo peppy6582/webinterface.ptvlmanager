@@ -1,6 +1,8 @@
 define(['./ptvl'], function (ptvlControllers) {
     'use strict';
 
+    String.prototype.contains = function(str) { return this.indexOf(str) != -1; };
+
     ptvlControllers.controller('ptvlSettingsCtrl', ['$scope', 'settingsList', function($scope, settingsList) {
 
         $scope.OneAtATime = false;
@@ -45,7 +47,7 @@ define(['./ptvl'], function (ptvlControllers) {
 
                         var channelNum = 0;
 
-                        var channel =
+                        var settings =
                             {
                                 '_id': id,
                                 '_value': value
@@ -57,33 +59,58 @@ define(['./ptvl'], function (ptvlControllers) {
                                     'Channel': channelNum
                                 }
                             ;
-                            $scope.newChannels[channelNum].settings = [];
+                            $scope.newChannels[channelNum].Settings = [];
                         };
-                        $scope.newChannels[channelNum].settings.push(channel);
+                        $scope.newChannels[channelNum].Settings.push(settings);
 
                     } else {
+
                         var channelNum = parseInt(id.split('_')[1]);
 
-                        var channel =
+                        var settings =
                             {
                                 '_id': id,
                                 '_value': value
                             };
 
                         if(typeof $scope.newChannels[channelNum] === 'undefined') {
+
+
+
                             $scope.newChannels[channelNum] =
                                 {
                                     'Channel': channelNum
                                 }
                             ;
-                            $scope.newChannels[channelNum].settings = [];
+                            $scope.newChannels[channelNum].Settings = [];
+                            $scope.newChannels[channelNum].Rules = [];
+
+
                         };
-                        $scope.newChannels[channelNum].settings.push( channel );
+                        $scope.newChannels[channelNum].Settings.push(settings);
+
+                        if(id.contains('rule_')) {
+                            var ruleId = id.split('_');
+                            console.log(ruleId, value);
+
+                            var rules =
+                            {
+                                '_ruleNo': ruleId[3],
+                                '_ruleType': value
+                            };
+
+                            $scope.newChannels[channelNum].Rules.push(rules);
+
+                        };
+
+
                     };
                     i = i + 1;
                 });
             };
         };
+
+        console.log($scope.newChannels);
 
         $scope.getSettings = function(channel){
             console.log(channel);
@@ -104,12 +131,11 @@ define(['./ptvl'], function (ptvlControllers) {
                  13: 'Music Videos'
             };
 
-            var type = channel.settings[0]._value;
+            var type = channel.Settings[0]._value;
 
             $scope.channelType = types[type];
-            console.log($scope.channelType);
 
-            $scope.channelPath = channel.settings[1]._value;
+            $scope.channelPath = channel.Settings[1]._value;
         };
 
     }]);
