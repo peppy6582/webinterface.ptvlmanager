@@ -9,7 +9,7 @@
                     <input type="file" on-read-file="showContent($fileContent)" name="files[]" multiple />
                     <output id="list"></output>
                     <accordion>
-                        <accordion-group is-open="channelDetails.open">
+                        <accordion-group is-open="channelDetails.isOpen">
                             <accordion-heading>
                                 Channels
                             </accordion-heading>
@@ -50,22 +50,4 @@
             </accordion>
         </div>
     </div>
-    <div id="xml">
-        &lt;settings&gt;
-        <div ng-repeat="channel in sortedChannels" ng-show="channel.Channel > 0">
-            &lt;setting id=&quot;Channel_{{channel.Channel}}_type&quot; value=&quot;{{channel.Type}}&quot; &#x2F;&gt;
-            <br>
-            <div ng-repeat="mainRules in channel.MainRules track by $index" ng-show="mainRules.id > 0">
-                &lt;setting id=&quot;Channel_{{channel.Channel}}_{{mainRules.id}}&quot; value=&quot;{{mainRules.value}}&quot; &#x2F;&gt;
-            </div>
-            &lt;setting id=&quot;Channel_{{channel.Channel}}_rulecount&quot; value=&quot;{{channel.RuleCount}}&quot; &#x2F;&gt;
-            <div ng-repeat="subRules in channel.SubRules track by $index" ng-show="subRules.ruleNo > 0">
-                &lt;setting id=&quot;Channel_{{channel.Channel}}_rule_{{subRules.ruleNo}}_id&quot; value=&quot;{{subRules.ruleNo}}&quot; &#x2F;&gt;
-                <br>
-                &lt;setting id=&quot;Channel_{{channel.Channel}}_rule_{{subRules.ruleNo}}_opt_1&quot; value=&quot;{{subRules.value}}&quot; &#x2F;&gt;
-            </div>
-        </div>
-        &lt;&#x2F;settings&gt;
-    </div>
-
 </div>

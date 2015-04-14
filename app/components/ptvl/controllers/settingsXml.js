@@ -5,6 +5,11 @@ define(['./ptvl'], function (ptvlControllers) {
 
     ptvlControllers.controller('ptvlSettingsCtrl', ['$scope', 'settingsList', function($scope, settingsList) {
 
+        $scope.channelDetails =
+        {
+            isOpen: false
+        };
+
         function channelCount(obj) {
             var result = 0;
             for(var prop in obj) {
@@ -150,6 +155,7 @@ define(['./ptvl'], function (ptvlControllers) {
                 });
             };
             console.log($scope.sortedChannels);
+            $scope.channelDetails = { isOpen: true };
         };
 
         $scope.selectedType = {};
