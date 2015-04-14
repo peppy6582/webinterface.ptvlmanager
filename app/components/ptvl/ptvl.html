@@ -1,9 +1,9 @@
 <div class="ptvl">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <accordion>
                 <accordion-group>
-                    <accordion-heading ng-click="readPtvl = !readPtvl">
+                    <accordion-heading>
                         Load Channels
                     </accordion-heading>
                     <input type="file" on-read-file="showContent($fileContent)" name="files[]" multiple />
@@ -14,18 +14,30 @@
                                 Channels
                             </accordion-heading>
                             <accordion>
-                                <accordion-group ng-repeat="channel in newChannels | orderBy: channel.Channel" ng-show="channel.Channel > 0" ng-click="getSettings(channel)">
+                                <accordion-group ng-repeat="channel in sortedChannels | orderBy: channel.Channel" ng-show="channel.Channel > 0" ng-click="getSettings(channel)">
                                     <accordion-heading>
-                                        Channel: {{channel.Channel}}
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                Channel: {{channel.Channel}}
+                                            </div>
+                                            <div class="col-sm-6">
+                                                Name: {{channel.SubRules[1].value}}
+                                            </div>
+                                        </div>
                                     </accordion-heading>
                                         <form>
                                             <div class="row">
                                                 <div class="col-sm-6">
-                                                    Channel Type: {{channelType}}
+                                                    Channel Type: <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 210px;">
+                                                        <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
+                                                        <ui-select-choices repeat="type in types">
+                                                            <div ng-bind-html="type.type" ng-click="changeType(selectedType)"></div>
+                                                        </ui-select-choices>
+                                                    </ui-select>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     Channel Path:
-                                                    <input type="text" name="channelPath" placeholder="{{channelPath}}">
+                                                    <input type="text" name="channelPath" placeholder="{{channel.MainRules[1].value}}" style="width: 300px">
                                                 </div>
                                             </div>
                                         </form>
@@ -34,47 +46,24 @@
                         </accordion-group>
                     </accordion>
                 </accordion-group>
-            </accordion>
-        </div>
-        <div class="col-sm-6" >
-            <accordion ng-hide="readPtvl">
-                <accordion-group is-open="ptvlDetails.open">
-                    <accordion-heading>
-                        {{settings.name}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': ptvlDetails.open, 'glyphicon-chevron-right': !ptvlDetails.open}"></i>
-                    </accordion-heading>
-                    <h4>{{settings.description}}</h4>
-                    <div class="col-sm-2">
-                        <h5>Author: {{settings.author}}</h5>
-                        <h5>Version: {{settings.version}}</h5>
-                    </div>
-                    <div class="col-sm-10">
-                        <accordion>
-                            <accordion-group>
-                                <accordion-heading>
-                                    Dependencies
-                                </accordion-heading>
-                                <li ng-repeat="dependency in settings.dependencies">
-                                    {{dependency.addonid}} is required: {{dependency.required}} @ version {{dependency.version}}
-                                </li>
-                            </accordion-group>
-                        </accordion>
-                    </div>
-                </accordion-group>
+                <button ng-click="CreateXMLDoc()">Save Changes</button>
             </accordion>
         </div>
     </div>
-    <div>
+    <div id="xml">
         &lt;settings&gt;
-        <div ng-repeat="channel in newChannels" ng-show="channel.Channel > 0">
-            &lt;setting id=&quot;Channel_{{channel.Channel}}_type&quot; value=&quot;{{channel.Settings[0]._value}}&quot; &#x2F;&gt;
+        <div ng-repeat="channel in sortedChannels" ng-show="channel.Channel > 0">
+            &lt;setting id=&quot;Channel_{{channel.Channel}}_type&quot; value=&quot;{{channel.Type}}&quot; &#x2F;&gt;
             <br>
-            &lt;setting id=&quot;Channel_{{channel.Channel}}_1&quot; value=&quot;{{channel.Settings[1]._value}}&quot; &#x2F;&gt;
-            <br>
-            &lt;setting id=&quot;Channel_{{channel.Channel}}_rulecount&quot; value=&quot;{{channel.Settings[2]._value}}&quot; &#x2F;&gt;
-            <br>
-            &lt;setting id=&quot;Channel_{{channel.Channel}}_rule_1_id&quot; value=&quot;{{channel.Settings[3]._value}}&quot; &#x2F;&gt;
-            <br>
-            &lt;setting id=&quot;Channel_{{channel.Channel}}_rule_1_opt_1&quot; value=&quot;{{channel.Settings[4]._value}}&quot; &#x2F;&gt;
+            <div ng-repeat="mainRules in channel.MainRules track by $index" ng-show="mainRules.id > 0">
+                &lt;setting id=&quot;Channel_{{channel.Channel}}_{{mainRules.id}}&quot; value=&quot;{{mainRules.value}}&quot; &#x2F;&gt;
+            </div>
+            &lt;setting id=&quot;Channel_{{channel.Channel}}_rulecount&quot; value=&quot;{{channel.RuleCount}}&quot; &#x2F;&gt;
+            <div ng-repeat="subRules in channel.SubRules track by $index" ng-show="subRules.ruleNo > 0">
+                &lt;setting id=&quot;Channel_{{channel.Channel}}_rule_{{subRules.ruleNo}}_id&quot; value=&quot;{{subRules.ruleNo}}&quot; &#x2F;&gt;
+                <br>
+                &lt;setting id=&quot;Channel_{{channel.Channel}}_rule_{{subRules.ruleNo}}_opt_1&quot; value=&quot;{{subRules.value}}&quot; &#x2F;&gt;
+            </div>
         </div>
         &lt;&#x2F;settings&gt;
     </div>

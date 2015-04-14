@@ -5,6 +5,21 @@ define(['./ptvl'], function (ptvlControllers) {
 
     ptvlControllers.controller('ptvlSettingsCtrl', ['$scope', 'settingsList', function($scope, settingsList) {
 
+        function channelCount(obj) {
+            var result = 0;
+            for(var prop in obj) {
+                if (obj.hasOwnProperty(prop)) {
+                    // or Object.prototype.hasOwnProperty.call(obj, prop)
+                    result++;
+                }
+            }
+            return result;
+        }
+
+        Array.max = function ( array ) {
+            return Math.max.apply( Math, array );
+        };
+
         $scope.OneAtATime = false;
 
         settingsList.async().then(function (d) {
@@ -12,24 +27,22 @@ define(['./ptvl'], function (ptvlControllers) {
 
         });
 
-        $scope.newChannels = {};
+        $scope.sortedChannels = {};
 
         $scope.showContent = function($fileContent){
 
-            $scope.settingsFile = $fileContent;
+            var replaceSpecial = function (file) {
+                var find = '&';
+                var re = new RegExp(find, 'g');
+                file = file.replace(re, '&amp;');
+                return file;
+            };
+
+            $scope.settingsFile = replaceSpecial($fileContent);
             var x2js = new X2JS();
             $scope.channels = x2js.xml_str2json($scope.settingsFile);
 
-            function channelCount(obj) {
-                var result = 0;
-                for(var prop in obj) {
-                    if (obj.hasOwnProperty(prop)) {
-                        // or Object.prototype.hasOwnProperty.call(obj, prop)
-                        result++;
-                    }
-                }
-                return result;
-            }
+            console.log($scope.channels);
 
             var i = 0;
 
@@ -40,67 +53,95 @@ define(['./ptvl'], function (ptvlControllers) {
             while (i <= q) {
                 angular.forEach($scope.channels.settings.setting[i], function() {
 
+                    $scope.channelNumbers = [];
+
+
                     var id = $scope.channels.settings.setting[i]._id;
                     var value = $scope.channels.settings.setting[i]._value;
 
-                    if(isNaN(id.split('_')[1])) {
+                    var idNo = parseInt(id.split('_')[2]);
 
-                        var channelNum = 0;
+                    $scope.channelNumbers.push(id.split('_')[1]);
+
+                    if(isNaN(id.split('_')[1])) {
 
                         var settings =
                             {
-                                '_id': id,
-                                '_value': value
+                                'id': id,
+                                'value': value
                             };
 
-                        if(typeof $scope.newChannels[channelNum] === 'undefined') {
-                            $scope.newChannels[channelNum] =
+                        if(typeof $scope.sortedChannels[0] === 'undefined') {
+                            $scope.sortedChannels[0] =
                                 {
-                                    'Channel': channelNum
+                                    'Channel': 0
                                 }
                             ;
-                            $scope.newChannels[channelNum].Settings = [];
+                            $scope.sortedChannels[0].Settings = [];
                         };
-                        $scope.newChannels[channelNum].Settings.push(settings);
+                        $scope.sortedChannels[0].Settings.push(settings);
 
-                    } else {
+                    }
+                    else
+                    {
 
                         var channelNum = parseInt(id.split('_')[1]);
 
-                        var settings =
+                        if(typeof $scope.sortedChannels[channelNum] === 'undefined') {
+
+                            $scope.sortedChannels[channelNum] =
                             {
-                                '_id': id,
-                                '_value': value
+                                'Channel': channelNum
+                            };
+                            $scope.sortedChannels[channelNum].Settings = [];
+                            $scope.sortedChannels[channelNum].MainRules = [];
+                        }
+
+                        if(id.contains('rulecount')) {
+                            $scope.sortedChannels[channelNum].RuleCount = parseInt(value);
+                        }
+                        else if(id.contains('rule_')&& id.contains('id')) {
+
+                        }
+                        else if(idNo === parseInt(idNo, 10)) {
+
+                            $scope.sortedChannels[channelNum].MainRules[idNo] =
+                            {
+                                'id': idNo,
+                                'value': value
                             };
 
-                        if(typeof $scope.newChannels[channelNum] === 'undefined') {
-
-
-
-                            $scope.newChannels[channelNum] =
-                                {
-                                    'Channel': channelNum
-                                }
-                            ;
-                            $scope.newChannels[channelNum].Settings = [];
-                            $scope.newChannels[channelNum].Rules = [];
-
-
-                        };
-                        $scope.newChannels[channelNum].Settings.push(settings);
-
-                        if(id.contains('rule_')) {
-                            var ruleId = id.split('_');
-                            console.log(ruleId, value);
-
-                            var rules =
+                        }
+                        else if(id.contains('type')) {
+                            $scope.sortedChannels[channelNum].Type = value;
+                        }
+                        else if(id.contains('time')) {
+                            $scope.sortedChannels[channelNum].Time = value;
+                        }
+                        else if(id.contains('changed')) {
+                            $scope.sortedChannels[channelNum].Changed = value;
+                        }
+                        else if(id.contains('SetResetTime')) {
+                            $scope.sortedChannels[channelNum].SetResetTime= value;
+                        }
+                        else if(id.contains('opt')){
+                            $scope.sortedChannels[channelNum].SubRules = [];
+                            $scope.sortedChannels[channelNum].SubRules[id.split('_')[3]] =
                             {
-                                '_ruleNo': ruleId[3],
-                                '_ruleType': value
+                                'ruleNo': id.split('_')[3],
+                                'value': value
+                            };
+                        }
+                        else
+                        {
+
+                            var settings =
+                            {
+                                'id': id,
+                                'value': value
                             };
 
-                            $scope.newChannels[channelNum].Rules.push(rules);
-
+                            $scope.sortedChannels[channelNum].Settings.push(settings);
                         };
 
 
@@ -108,34 +149,116 @@ define(['./ptvl'], function (ptvlControllers) {
                     i = i + 1;
                 });
             };
+            console.log($scope.sortedChannels);
         };
 
-        console.log($scope.newChannels);
+        $scope.selectedType = {};
 
-        $scope.getSettings = function(channel){
+        $scope.getSettings = function(channel) {
+
             console.log(channel);
-            var types = {
-                 0: 'Playlist',
-                 1: 'TV Network',
-                 2: 'Movie Studio',
-                 3: 'TV Genre',
-                 4: 'Movie Genre',
-                 5: 'Mixed Genre (TV & Movie)',
-                 6: 'TV Show',
-                 7: 'Directory',
-                 8: 'LiveTV',
-                 9: 'InternetTV',
-                 10: 'YouTubeTV',
-                 11: 'RSS',
-                 12: 'Music (WIP)',
-                 13: 'Music Videos'
-            };
 
-            var type = channel.Settings[0]._value;
+            $scope.types =[
+                {   type: 'Playlist',                 value: 0 },
+                {   type: 'TV Network',               value: 1 },
+                {   type: 'Movie Studio',             value: 2 },
+                {   type: 'TV Genre',                 value: 3 },
+                {   type: 'Movie Genre',              value: 4 },
+                {   type: 'Mixed Genre (TV & Movie)', value: 5 },
+                {   type: 'TV Show',                  value: 6 },
+                {   type: 'Directory',                value: 7 },
+                {   type: 'LiveTV',                   value: 8 },
+                {   type: 'InternetTV',               value: 9 },
+                {   type: 'YoutubeTV',                value: 10 },
+                {   type: 'RSS',                      value: 11 },
+                {   type: 'Music',                    value: 12 },
+                {   type: 'Music Videos',             value: 13 },
+                {   type: 'Unknown',                  value: 14 },
+                {   type: 'Plugin',                   value: 15 }
+        ];
 
-            $scope.channelType = types[type];
+            $scope.type = channel.Type;
 
-            $scope.channelPath = channel.Settings[1]._value;
+            $scope.channelType = $scope.types[$scope.type];
+
+        };
+
+        $scope.changeType = function (newType) {
+            console.log(newType);
+        };
+
+        $scope.CreateXMLDoc = function () {
+
+            $scope.newChannels = $scope.sortedChannels;
+
+            console.log($scope.newChannels);
+
+            if (document.implementation.createDocument &&
+                document.implementation.createDocumentType)
+            {
+                var xmlDoc = document.implementation.createDocument ("", "settings");
+
+                var i = 1;
+
+                var q = Array.max( $scope.channelNumbers );
+
+                q = q + 2;
+
+                console.log(q);
+
+                while (i <= q) {
+                    console.log($scope.newChannels[i]);
+                    if(typeof $scope.newChannels[i] != 'undefined') {
+                        var typeNode = xmlDoc.createElement("setting");
+                        typeNode.setAttribute("id", "Channel_"+$scope.newChannels[i].Channel+"_type");
+                        typeNode.setAttribute("value", $scope.newChannels[i].Type);
+                        xmlDoc.documentElement.appendChild(typeNode);
+                        if(typeof $scope.newChannels[i].MainRules != 'undefined') {
+                            var oneNode = xmlDoc.createElement("setting");
+                            oneNode.setAttribute("id", "Channel_"+$scope.newChannels[i].Channel+"_1");
+                            oneNode.setAttribute("value", $scope.newChannels[i].MainRules[1].value);
+                            xmlDoc.documentElement.appendChild(oneNode);
+                            if (typeof $scope.newChannels[i].MainRules[2] != 'undefined') {
+                                var twoNode = xmlDoc.createElement("setting");
+                                twoNode.setAttribute("id", "Channel_"+$scope.newChannels[i].Channel+"_2");
+                                twoNode.setAttribute("value", $scope.newChannels[i].MainRules[2].value);
+                                xmlDoc.documentElement.appendChild(twoNode);
+                            };
+                            if (typeof $scope.newChannels[i].MainRules[3] != 'undefined') {
+                                var threeNode = xmlDoc.createElement("setting");
+                                threeNode.setAttribute("id", "Channel_" + $scope.newChannels[i].Channel + "_3");
+                                threeNode.setAttribute("value", $scope.newChannels[i].MainRules[3].value);
+                                xmlDoc.documentElement.appendChild(threeNode);
+                            };
+                            if (typeof $scope.newChannels[i].MainRules[4] != 'undefined') {
+                                var fourNode = xmlDoc.createElement("setting");
+                                fourNode.setAttribute("id", "Channel_"+$scope.newChannels[i].Channel+"_4");
+                                fourNode.setAttribute("value", $scope.newChannels[i].MainRules[4].value);
+                                xmlDoc.documentElement.appendChild(fourNode);
+                            };
+                        };
+                        if(typeof $scope.newChannels[i].RuleCount != 'undefined') {
+                            var ruleCountNode = xmlDoc.createElement("setting");
+                            ruleCountNode.setAttribute("id", "Channel_"+$scope.newChannels[i].Channel+"_rulecount");
+                            ruleCountNode.setAttribute("value", $scope.newChannels[i].RuleCount);
+                            xmlDoc.documentElement.appendChild(ruleCountNode);
+                        }
+                    };
+
+                    i = i + 1;
+                };
+
+                var serializer = new XMLSerializer();
+                alert (serializer.serializeToString (xmlDoc));
+                console.log(xmlDoc);
+
+                var blob = new Blob([serializer.serializeToString (xmlDoc)], {type: "text/xml"});
+                saveAs(blob, "settings2.xml")
+
+            }
+            else {
+                alert ("Your browser does not support this example");
+            }
         };
 
     }]);
