@@ -34,7 +34,7 @@
                                                     <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
                                                         <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
                                                         <ui-select-choices repeat="type in types">
-                                                            <div ng-bind-html="type.type" ng-click="changeType(type)"></div>
+                                                            <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
                                                         </ui-select-choices>
                                                     </ui-select>
                                                 </div>
@@ -51,7 +51,7 @@
                                                     <ui-select ng-model="selectedYtType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 176px;">
                                                         <ui-select-match placeholder="{{channelYtType.type}}">{{$select.selected.type}}</ui-select-match>
                                                         <ui-select-choices repeat="ytType in ytTypes">
-                                                            <div ng-bind-html="ytType.type" ng-click="changeYtType(ytType)"></div>
+                                                            <div ng-bind-html="ytType.type" ng-click="changeYtType(channel, ytType)"></div>
                                                         </ui-select-choices>
                                                     </ui-select>
                                                 </div>

@@ -215,6 +215,8 @@ define(['./ptvl'], function (ptvlControllers) {
                 {  limit:'1000',                      value: 1000 }
             ];
 
+
+
             $scope.channelType = $scope.types[parseInt(channel.Type)];
 
             if (parseInt(channel.Type) == 10) {
@@ -222,12 +224,16 @@ define(['./ptvl'], function (ptvlControllers) {
             }
         };
 
-        $scope.changeType = function (newType) {
-            console.log(newType);
+        $scope.changeType = function (channel, newType) {
+            channel.Type = newType.value;
+            console.log(channel);
+            return channel;
         };
 
-        $scope.changeYtType = function (newYtType) {
-            console.log(newYtType);
+        $scope.changeYtType = function (channel, newYtType) {
+            channel.newYtType = newYtType;
+            console.log(channel);
+            return channel;
         };
 
         $scope.CreateXMLDoc = function () {
@@ -250,46 +256,61 @@ define(['./ptvl'], function (ptvlControllers) {
                 console.log(q);
 
                 while (i <= q) {
-                    console.log($scope.newChannels[i]);
                     if(typeof $scope.newChannels[i] != 'undefined') {
                         var typeNode = xmlDoc.createElement("setting");
                         typeNode.setAttribute("id", "Channel_"+$scope.newChannels[i].Channel+"_type");
                         typeNode.setAttribute("value", $scope.newChannels[i].Type);
                         xmlDoc.documentElement.appendChild(typeNode);
                         if(typeof $scope.newChannels[i].MainRules != 'undefined') {
-                            var oneNode = xmlDoc.createElement("setting");
-                            oneNode.setAttribute("id", "Channel_"+$scope.newChannels[i].Channel+"_1");
-                            oneNode.setAttribute("value", $scope.newChannels[i].MainRules[1].value);
-                            xmlDoc.documentElement.appendChild(oneNode);
-                            if (typeof $scope.newChannels[i].MainRules[2] != 'undefined') {
-                                var twoNode = xmlDoc.createElement("setting");
-                                twoNode.setAttribute("id", "Channel_"+$scope.newChannels[i].Channel+"_2");
-                                twoNode.setAttribute("value", $scope.newChannels[i].MainRules[2].value);
-                                xmlDoc.documentElement.appendChild(twoNode);
-                            };
-                            if (typeof $scope.newChannels[i].MainRules[3] != 'undefined') {
-                                var threeNode = xmlDoc.createElement("setting");
-                                threeNode.setAttribute("id", "Channel_" + $scope.newChannels[i].Channel + "_3");
-                                threeNode.setAttribute("value", $scope.newChannels[i].MainRules[3].value);
-                                xmlDoc.documentElement.appendChild(threeNode);
-                            };
-                            if (typeof $scope.newChannels[i].MainRules[4] != 'undefined') {
-                                var fourNode = xmlDoc.createElement("setting");
-                                fourNode.setAttribute("id", "Channel_"+$scope.newChannels[i].Channel+"_4");
-                                fourNode.setAttribute("value", $scope.newChannels[i].MainRules[4].value);
-                                xmlDoc.documentElement.appendChild(fourNode);
-                            };
-                        };
+
+                            // mrcst = MainRuleCountStart and mrcstp = MainRuleCountStop
+
+                            var mrcstp = $scope.newChannels[i].MainRules.length -1;
+                            var mrcst = 1;
+                            while (mrcst <= mrcstp) {
+                                console.log("Channel "+$scope.newChannels[i].Channel+" has processed "+mrcst+" Main Rules");
+                                if (typeof $scope.newChannels[i].MainRules[mrcst] != 'undefined') {
+                                    var mainRuleNode = [];
+                                    mainRuleNode[mrcst] = xmlDoc.createElement("setting");
+                                    mainRuleNode[mrcst].setAttribute("id", "Channel_"+$scope.newChannels[i].Channel+"_"+mrcst);
+                                    mainRuleNode[mrcst].setAttribute("value", $scope.newChannels[i].MainRules[mrcst].value);
+                                    xmlDoc.documentElement.appendChild(mainRuleNode[mrcst]);
+                                }
+                                mrcst = mrcst +1;
+                            }
+                        }
                         if(typeof $scope.newChannels[i].RuleCount != 'undefined') {
                             var ruleCountNode = xmlDoc.createElement("setting");
                             ruleCountNode.setAttribute("id", "Channel_"+$scope.newChannels[i].Channel+"_rulecount");
                             ruleCountNode.setAttribute("value", $scope.newChannels[i].RuleCount);
                             xmlDoc.documentElement.appendChild(ruleCountNode);
                         }
-                    };
+                        if(typeof $scope.newChannels[i].SubRules != 'undefined') {
 
+                            // srcst = SubRuleCountStart and srcstp = SubRuleCountStop
+
+                            var srcstp = $scope.newChannels[i].SubRules.length -1;
+                            var srcst = 1;
+                            while (srcst <= srcstp) {
+                                console.log("Channel "+$scope.newChannels[i].Channel+" has processed "+srcst+" Sub Rules");
+                                if (typeof $scope.newChannels[i].SubRules[srcst] != 'undefined') {
+                                    var subRuleNode = [];
+                                    subRuleNode[srcst] = xmlDoc.createElement("setting");
+                                    subRuleNode[srcst].setAttribute("id", "Channel_"+$scope.newChannels[i].Channel+"_rule_"+$scope.newChannels[i].SubRules[srcst].ruleNo+"_id");
+                                    subRuleNode[srcst].setAttribute("value", $scope.newChannels[i].MainRules[srcst].value);
+                                    xmlDoc.documentElement.appendChild(subRuleNode[srcst]);
+                                    var subRuleOptNode = [];
+                                    subRuleOptNode[srcst] = xmlDoc.createElement("setting");
+                                    subRuleOptNode[srcst].setAttribute("id", "Channel_"+$scope.newChannels[i].Channel+"_rule_"+$scope.newChannels[i].SubRules[srcst].ruleNo+"_opt_"+$scope.newChannels[i].SubRules[srcst].ruleNo);
+                                    subRuleOptNode[srcst].setAttribute("value", $scope.newChannels[i].SubRules[srcst].value);
+                                    xmlDoc.documentElement.appendChild(subRuleOptNode[srcst]);
+                                }
+                                srcst = srcst +1;
+                            }
+                        }
+                    }
                     i = i + 1;
-                };
+                }
 
                 var serializer = new XMLSerializer();
                 alert (serializer.serializeToString (xmlDoc));
