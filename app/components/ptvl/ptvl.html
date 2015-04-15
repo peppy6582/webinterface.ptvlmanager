@@ -17,27 +17,43 @@
                                 <accordion-group ng-repeat="channel in sortedChannels | orderBy: channel.Channel" ng-show="channel.Channel > 0" ng-click="getSettings(channel)">
                                     <accordion-heading>
                                         <div class="row">
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-8">
                                                 Channel: {{channel.Channel}}
                                             </div>
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-4">
                                                 Name: {{channel.SubRules[1].value}}
                                             </div>
                                         </div>
                                     </accordion-heading>
                                         <form>
                                             <div class="row">
-                                                <div class="col-sm-6">
-                                                    Channel Type: <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 210px;">
+                                                <div class="col-sm-1 ch-type-label">
+                                                    Type:
+                                                </div>
+                                                <div class="col-sm-3 ch-type-dropdown">
+                                                    <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
                                                         <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
                                                         <ui-select-choices repeat="type in types">
-                                                            <div ng-bind-html="type.type" ng-click="changeType(selectedType)"></div>
+                                                            <div ng-bind-html="type.type" ng-click="changeType(type)"></div>
                                                         </ui-select-choices>
                                                     </ui-select>
                                                 </div>
-                                                <div class="col-sm-6">
-                                                    Channel Path:
-                                                    <input type="text" name="channelPath" placeholder="{{channel.MainRules[1].value}}" style="width: 300px">
+                                                <div class="col-sm-1 ch-path-label">
+                                                    Path:
+                                                </div>
+                                                <div class="col-sm-3 ch-path-input">
+                                                    <input type="text" name="channelPath" placeholder="{{channel.MainRules[1].value}}" style="width: auto;">
+                                                </div>
+                                                <div class="col-sm-1 ch-youtube-type-label" ng-show="channelType.value == 10">
+                                                    YouTube Type:
+                                                </div>
+                                                <div class="col-sm-3 ch-youtube-type-dropdown" ng-show="channelType.value == 10">
+                                                    <ui-select ng-model="selectedYtType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 176px;">
+                                                        <ui-select-match placeholder="{{channelYtType.type}}">{{$select.selected.type}}</ui-select-match>
+                                                        <ui-select-choices repeat="ytType in ytTypes">
+                                                            <div ng-bind-html="ytType.type" ng-click="changeYtType(ytType)"></div>
+                                                        </ui-select-choices>
+                                                    </ui-select>
                                                 </div>
                                             </div>
                                         </form>

@@ -53,3 +53,27 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.ch-type-label {
+    margin: 8px 0 0 10px;
+    width: 58px;
+}
+
+.ch-type-dropdown {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+.ch-path-label {
+    margin: 8px 0 0 10px;
+    width: 58px;
+}
+
+.ch-path-input {
+    padding: 0 0 0 0;
+    margin: 5px 0 0 0;
+}
+
+.youtube-type {
+    margin-top: 10px;
+}

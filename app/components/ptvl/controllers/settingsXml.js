@@ -160,11 +160,13 @@ define(['./ptvl'], function (ptvlControllers) {
 
         $scope.selectedType = {};
 
+        $scope.selectedYtType = {};
+
         $scope.getSettings = function(channel) {
 
             console.log(channel);
 
-            $scope.types =[
+            $scope.types = [
                 {   type: 'Playlist',                 value: 0 },
                 {   type: 'TV Network',               value: 1 },
                 {   type: 'Movie Studio',             value: 2 },
@@ -179,18 +181,53 @@ define(['./ptvl'], function (ptvlControllers) {
                 {   type: 'RSS',                      value: 11 },
                 {   type: 'Music',                    value: 12 },
                 {   type: 'Music Videos',             value: 13 },
-                {   type: 'Unknown',                  value: 14 },
-                {   type: 'Plugin',                   value: 15 }
-        ];
+                {   type: 'Extras',                   value: 14 },
+                {   type: 'Plugin',                   value: 15 },
+                {   type: 'Playon',                   value: 16 }
+            ];
 
-            $scope.type = channel.Type;
+            $scope.ytTypes = [
+                {   type: 'Channel/User',             value: 1},
+                {   type: 'Playlist',                 value: 2},
+                {   type: 'New Subs',                 value: 3},
+                {   type: 'Favorites',                value: 4},
+                {   type: 'Search (Safe)',            value: 5},
+                {   type: 'Blank',                    value: 6},
+                {   type: 'Multi Playlist',           value: 7},
+                {   type: 'Multi Channel',            value: 8},
+                {   type: 'Raw (Gdata)',              value: 9}
+            ];
 
-            $scope.channelType = $scope.types[$scope.type];
+            $scope.sortOrder = [
+                {  order:'Default',                   value: 0 },
+                {  order:'Random',                    value: 1 },
+                {  order:'Reverse',                   value: 2 }
+            ];
 
+            $scope.feedLimit = [
+                {  limit:'25',                        value: 25 },
+                {  limit:'50',                        value: 50 },
+                {  limit:'100',                       value: 100 },
+                {  limit:'150',                       value: 150 },
+                {  limit:'200',                       value: 200 },
+                {  limit:'250',                       value: 250 },
+                {  limit:'500',                       value: 500 },
+                {  limit:'1000',                      value: 1000 }
+            ];
+
+            $scope.channelType = $scope.types[parseInt(channel.Type)];
+
+            if (parseInt(channel.Type) == 10) {
+                $scope.channelYtType = $scope.ytTypes[channel.MainRules[2].value];
+            }
         };
 
         $scope.changeType = function (newType) {
             console.log(newType);
+        };
+
+        $scope.changeYtType = function (newYtType) {
+            console.log(newYtType);
         };
 
         $scope.CreateXMLDoc = function () {
