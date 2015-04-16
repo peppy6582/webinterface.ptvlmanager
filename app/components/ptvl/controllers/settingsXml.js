@@ -3,7 +3,8 @@ define(['./ptvl'], function (ptvlControllers) {
 
     String.prototype.contains = function(str) { return this.indexOf(str) != -1; };
 
-    ptvlControllers.controller('ptvlSettingsCtrl', ['$scope', 'settingsList', function($scope, settingsList) {
+    ptvlControllers.controller('ptvlSettingsCtrl', ['$scope', 'settingsList', 'pluginList', function($scope, settingsList, pluginList) {
+
 
         $scope.channelDetails =
         {
@@ -25,6 +26,7 @@ define(['./ptvl'], function (ptvlControllers) {
             return Math.max.apply( Math, array );
         };
 
+
         $scope.OneAtATime = false;
 
         settingsList.async().then(function (d) {
@@ -35,6 +37,9 @@ define(['./ptvl'], function (ptvlControllers) {
         $scope.sortedChannels = {};
 
         $scope.showContent = function($fileContent){
+
+            $scope.channels = [];
+            $scope.sortedChannels = {};
 
             var replaceSpecial = function (file) {
                 var find = '&';
@@ -83,7 +88,7 @@ define(['./ptvl'], function (ptvlControllers) {
                                 }
                             ;
                             $scope.sortedChannels[0].Settings = [];
-                        };
+                        }
                         $scope.sortedChannels[0].Settings.push(settings);
 
                     }
@@ -147,7 +152,7 @@ define(['./ptvl'], function (ptvlControllers) {
                             };
 
                             $scope.sortedChannels[channelNum].Settings.push(settings);
-                        };
+                        }
 
 
                     };
@@ -161,6 +166,8 @@ define(['./ptvl'], function (ptvlControllers) {
         $scope.selectedType = {};
 
         $scope.selectedYtType = {};
+
+        $scope.selectedPlugin = {};
 
         $scope.getSettings = function(channel) {
 
@@ -222,6 +229,24 @@ define(['./ptvl'], function (ptvlControllers) {
             if (parseInt(channel.Type) == 10) {
                 $scope.channelYtType = $scope.ytTypes[channel.MainRules[2].value];
             }
+            else if (parseInt(channel.Type) == 15) {
+                pluginList.async().then(function (d) {
+                    $scope.plugins = d;
+                });
+
+                var myRegexp = /(plugin.video.*?\/)/g;
+                $scope.channelPlugin = myRegexp.exec(channel.MainRules[1].value);
+                $scope.channelPlugin = $scope.channelPlugin[1].substring(0, $scope.channelPlugin[1].length - 1);
+
+                // Plugin SubFolder Count = cpsf
+                var cpsf =  channel.MainRules[1].value.split("/").length;
+
+                $scope.channelPluginSubFolders = channel.MainRules[1].value.split("/").splice(3, cpsf);
+                $scope.channelPluginSubfolders = $scope.channelPluginSubFolders.join("/");
+                console.log($scope.channelPluginSubFolders);
+                $scope.channelPluginPath = "plugin://" + $scope.channelPlugin + "/" + $scope.channelPluginSubfolders;
+
+            }
         };
 
         $scope.changeType = function (channel, newType) {
@@ -233,6 +258,12 @@ define(['./ptvl'], function (ptvlControllers) {
         $scope.changeYtType = function (channel, newYtType) {
             channel.newYtType = newYtType;
             console.log(channel);
+            return channel;
+        };
+
+        $scope.changePlugin = function (channel, newPlugin) {
+            console.log(channel);
+            console.log(newPlugin);
             return channel;
         };
 

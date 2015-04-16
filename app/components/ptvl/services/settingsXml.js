@@ -12,7 +12,6 @@ define(['./ptvl'], function (ptvlServices) {
         var settingsListReq = JSON.stringify({
             "jsonrpc": "2.0",
             "method": "Addons.GetAddonDetails",
-
             "params": [
                 "script.pseudotv.live",
                 [

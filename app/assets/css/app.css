@@ -65,8 +65,8 @@
 }
 
 .ch-path-label {
-    margin: 8px 0 0 10px;
-    width: 58px;
+    margin: 8px 4px 0 10px;
+    width: 60px;
 }
 
 .ch-path-input {
@@ -76,4 +76,30 @@
 
 .youtube-type {
     margin-top: 10px;
+}
+
+.ch-plugin-type-label {
+    margin: 8px 0 0 10px;
+    width: 58px;
+}
+
+.ch-plugin-type-dropdown {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+#plugin-path-update {
+    margin-top: 2px;
+    padding: 0 0 0 0;
+    height: 30px;
+    text-align: center;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    display: inline-block;
+    padding: 0 0 0 0;
+    cursor: pointer;
 }

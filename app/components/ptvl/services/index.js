@@ -1,3 +1,4 @@
 define([
-    './settingsXml'
+    './settingsXml',
+    './plugins'
 ], function () {});

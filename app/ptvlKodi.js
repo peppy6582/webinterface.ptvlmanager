@@ -17,6 +17,7 @@ define([
     './components/ptvl/filters/propsFilter',
     './components/ptvl/directives/onReadFile',
     './components/ptvl/services/settingsXml',
+    './components/ptvl/services/plugins',
     './components/ptvl/controllers/settingsXml'
 
 ], function (ng) {
