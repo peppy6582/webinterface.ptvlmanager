@@ -234,17 +234,30 @@ define(['./ptvl'], function (ptvlControllers) {
                     $scope.plugins = d;
                 });
 
-                var myRegexp = /(plugin.video.*?\/)/g;
-                $scope.channelPlugin = myRegexp.exec(channel.MainRules[1].value);
-                $scope.channelPlugin = $scope.channelPlugin[1].substring(0, $scope.channelPlugin[1].length - 1);
-
                 // Plugin SubFolder Count = cpsf
                 var cpsf =  channel.MainRules[1].value.split("/").length;
+                console.log("Subfolder count is: " + cpsf);
 
-                $scope.channelPluginSubFolders = channel.MainRules[1].value.split("/").splice(3, cpsf);
-                $scope.channelPluginSubfolders = $scope.channelPluginSubFolders.join("/");
-                console.log($scope.channelPluginSubFolders);
-                $scope.channelPluginPath = "plugin://" + $scope.channelPlugin + "/" + $scope.channelPluginSubfolders;
+                if (cpsf > 3) {
+                    var myRegexp = /(plugin.video.*?\/)/g;
+                    $scope.channelPlugin = myRegexp.exec(channel.MainRules[1].value);
+                    console.log($scope.channelPlugin);
+                    $scope.channelPlugin = $scope.channelPlugin[1].substring(0, $scope.channelPlugin[1].length - 1);
+                    $scope.channelPluginSubFolders = channel.MainRules[1].value.split("/").splice(3, cpsf);
+                    $scope.channelPluginSubfolders = $scope.channelPluginSubFolders.join("/");
+                    console.log($scope.channelPluginSubFolders);
+                    $scope.channelPluginPath = "plugin://" + $scope.channelPlugin + "/" + $scope.channelPluginSubfolders;
+                }
+                else {
+                    var myRegexp = /(plugin.video.*)/g;
+                    $scope.channelPlugin = myRegexp.exec(channel.MainRules[1].value);
+                    console.log($scope.channelPlugin);
+                    $scope.channelPlugin = $scope.channelPlugin[1].substring(0, $scope.channelPlugin[1].length);
+                    $scope.channelPluginPath = "plugin://" + $scope.channelPlugin;
+                }
+
+
+
 
             }
         };
