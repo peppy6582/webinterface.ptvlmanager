@@ -48,8 +48,6 @@ define(['./ptvl'], function (ptvlControllers) {
             $scope.settings = d;
         });
 
-        $scope.sortedChannels = {};
-
         $scope.showContent = function($fileContent){
 
             $scope.channels = [];
