@@ -49,9 +49,13 @@
 }
 
 .ptvl {
-    max-width: 80%;
+    max-width: 90%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.panel-default {
+    border-color: #0E0AB2;
 }
 
 .ch-type-label {
@@ -103,3 +107,53 @@ input[type="file"] {
     padding: 0 0 0 0;
     cursor: pointer;
 }
+
+body > div > div > div > div > div > accordion > div > div > div.panel-collapse.collapse.in > div > div > div:nth-child(1) > label > i {
+    height: 100%;
+    text-align: justify;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+#home-movies-btn {
+    margin: 0 0 15px 0;
+    height: 56px;
+    width: 100%;
+    font-size: 30px;
+    text-align: center;
+    vertical-align: middle;
+ }
+
+#home-television-btn {
+    margin: 0 0 15px 0;
+    height: 56px;
+    width: 100%;
+    font-size: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#home-ptvl-btn {
+    height: 56px;
+    width: 100%;
+    font-size: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#home-about-btn {
+    height: 56px;
+    width: 100%;
+    font-size: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.panel-default>.panel-heading {
+    background-image: linear-gradient(to bottom,#3073AD 0,#286090 100%);
+}
+
+.panel-default>.panel-heading {
+    color: #ffffff;
+}
+

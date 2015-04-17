@@ -10,7 +10,7 @@ define(['./movies'], function (moviesControllers) {
         this.modalDetails = function (size, selectedMovieid) {
 
             var modalInstance = $modal.open({
-                templateUrl: 'app/components/movies/movies-details.html',
+                templateUrl: '/app/components/movies/movies-details.html',
                 controller: function ($scope, $state, $modalInstance, movieid) {
 
                     $scope.oneAtATime = true;
@@ -72,7 +72,7 @@ define(['./movies'], function (moviesControllers) {
                 size: size,
                 resolve: {
                     movieid: function () {
-                        $state.go('movies.details');
+                        $state.go('.details');
                         return selectedMovieid;
                     }
                 }

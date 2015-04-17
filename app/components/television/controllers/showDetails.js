@@ -9,7 +9,7 @@ define(['./television'], function (televisionControllers) {
         this.modalDetails = function (size, selectedShowid) {
 
             var modalInstance = $modal.open({
-                templateUrl: 'app/components/television/show-details.html',
+                templateUrl: '/app/components/television/show-details.html',
                 controller: function ($scope, $state, $modalInstance, tvshowid) {
 
                     $scope.oneAtATime = true;
@@ -119,7 +119,7 @@ define(['./television'], function (televisionControllers) {
                 size: size,
                 resolve: {
                     tvshowid: function () {
-                        $state.go('shows.details');
+                        $state.go('.details');
                         return selectedShowid;
                     }
                 }

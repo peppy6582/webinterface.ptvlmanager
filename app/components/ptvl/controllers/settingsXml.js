@@ -31,7 +31,6 @@ define(['./ptvl'], function (ptvlControllers) {
 
         settingsList.async().then(function (d) {
             $scope.settings = d;
-
         });
 
         $scope.sortedChannels = {};
@@ -193,18 +192,6 @@ define(['./ptvl'], function (ptvlControllers) {
                 {   type: 'Playon',                   value: 16 }
             ];
 
-            $scope.ytTypes = [
-                {   type: 'Channel/User',             value: 1},
-                {   type: 'Playlist',                 value: 2},
-                {   type: 'New Subs',                 value: 3},
-                {   type: 'Favorites',                value: 4},
-                {   type: 'Search (Safe)',            value: 5},
-                {   type: 'Blank',                    value: 6},
-                {   type: 'Multi Playlist',           value: 7},
-                {   type: 'Multi Channel',            value: 8},
-                {   type: 'Raw (Gdata)',              value: 9}
-            ];
-
             $scope.sortOrder = [
                 {  order:'Default',                   value: 0 },
                 {  order:'Random',                    value: 1 },
@@ -227,6 +214,19 @@ define(['./ptvl'], function (ptvlControllers) {
             $scope.channelType = $scope.types[parseInt(channel.Type)];
 
             if (parseInt(channel.Type) == 10) {
+
+                $scope.ytTypes = [
+                    {   type: 'Channel/User',             value: 1},
+                    {   type: 'Playlist',                 value: 2},
+                    {   type: 'New Subs',                 value: 3},
+                    {   type: 'Favorites',                value: 4},
+                    {   type: 'Search (Safe)',            value: 5},
+                    {   type: 'Blank',                    value: 6},
+                    {   type: 'Multi Playlist',           value: 7},
+                    {   type: 'Multi Channel',            value: 8},
+                    {   type: 'Raw (Gdata)',              value: 9}
+                ];
+
                 $scope.channelYtType = $scope.ytTypes[channel.MainRules[2].value];
             }
             else if (parseInt(channel.Type) == 15) {
@@ -255,10 +255,6 @@ define(['./ptvl'], function (ptvlControllers) {
                     $scope.channelPlugin = $scope.channelPlugin[1].substring(0, $scope.channelPlugin[1].length);
                     $scope.channelPluginPath = "plugin://" + $scope.channelPlugin;
                 }
-
-
-
-
             }
         };
 
@@ -275,8 +271,14 @@ define(['./ptvl'], function (ptvlControllers) {
         };
 
         $scope.changePlugin = function (channel, newPlugin) {
+            channel.MainRules[1].value = newPlugin;
             console.log(channel);
-            console.log(newPlugin);
+            return channel;
+        };
+
+        $scope.changePluginPath = function (channel, newPath) {
+            channel.MainRules[1].value = newPath;
+            console.log(channel);
             return channel;
         };
 

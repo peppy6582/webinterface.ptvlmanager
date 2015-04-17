@@ -1,145 +1,150 @@
 <div class="ptvl">
+    <div class="col-sm-6">
+        <label class="custom-file-upload">
+            <input type="file"  on-read-file="showContent($fileContent)" name="files[]" multiple/>
+            <i class="fa fa-cloud-upload btn btn-primary">Select settings2</i>
+        </label>
+        <output id="list"></output>
+    </div>
+    <div class="col-sm-6">
+        <div class="input-group input-group-lg search-box">
+            <input type="text" ng-model="search" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Go!</button>
+            </span>
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm-12">
-            <accordion>
-                <accordion-group>
+             <accordion class="ptvl-accordion">
+                <accordion-group is-open="channelDetails.isOpen">
                     <accordion-heading>
-                        Load Channels
+                        Channels
                     </accordion-heading>
-                    <label class="custom-file-upload">
-                        <input type="file"  on-read-file="showContent($fileContent)" name="files[]" multiple/>
-                            <i class="fa fa-cloud-upload btn btn-primary">Select settings2</i>
-                    </label>
-                    <output id="list"></output>
                     <accordion>
-                        <accordion-group is-open="channelDetails.isOpen">
+                        <accordion-group ng-repeat="channel in sortedChannels | filter:search" ng-show="channel.Channel > 0" ng-click="getSettings(channel)">
                             <accordion-heading>
-                                Channels
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        Channel: {{channel.Channel}}
+                                    </div>
+                                    <div class="col-sm-4">
+                                        Name: {{channel.SubRules[1].value}}
+                                    </div>
+                                </div>
                             </accordion-heading>
-                            <accordion>
-                                <accordion-group ng-repeat="channel in sortedChannels | orderBy: channel.Channel" ng-show="channel.Channel > 0" ng-click="getSettings(channel)">
-                                    <accordion-heading>
+                                <form>
+                                    <!--Directory ChannelType Div-->
+                                    <div ng-show="channelType.value == 1">
                                         <div class="row">
-                                            <div class="col-sm-8">
-                                                Channel: {{channel.Channel}}
+                                            <div class="col-sm-1 ch-type-label">
+                                                Type:
                                             </div>
-                                            <div class="col-sm-4">
-                                                Name: {{channel.SubRules[1].value}}
+                                            <div class="col-sm-3 ch-type-dropdown">
+                                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
+                                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
+                                                    <ui-select-choices repeat="type in types">
+                                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
                                             </div>
                                         </div>
-                                    </accordion-heading>
-                                        <form>
-                                            <!--Directory ChannelType Div-->
-                                            <div ng-show="channelType.value == 1">
-                                                <div class="row">
-                                                    <div class="col-sm-1 ch-type-label">
-                                                        Type:
-                                                    </div>
-                                                    <div class="col-sm-3 ch-type-dropdown">
-                                                        <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                                            <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                                            <ui-select-choices repeat="type in types">
-                                                                <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                                            </ui-select-choices>
-                                                        </ui-select>
-                                                    </div>
-                                                </div>
+                                    </div>
+                                    <!--RSS Feed-->
+                                    <div ng-show="channelType.value == 11">
+                                        <div class="row">
+                                            <div class="col-sm-1 ch-type-label">
+                                                Type:
                                             </div>
-                                            <!--RSS Feed-->
-                                            <div ng-show="channelType.value == 11">
-                                                <div class="row">
-                                                    <div class="col-sm-1 ch-type-label">
-                                                        Type:
-                                                    </div>
-                                                    <div class="col-sm-3 ch-type-dropdown">
-                                                        <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                                            <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                                            <ui-select-choices repeat="type in types">
-                                                                <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                                            </ui-select-choices>
-                                                        </ui-select>
-                                                    </div>
-                                                </div>
+                                            <div class="col-sm-3 ch-type-dropdown">
+                                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
+                                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
+                                                    <ui-select-choices repeat="type in types">
+                                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
                                             </div>
-                                            <!--Youtube ChannelType 10 Div-->
-                                            <div ng-show="channelType.value == 10">
-                                                <div class="row">
-                                                    <div class="col-sm-1 ch-type-label">
-                                                        Type:
-                                                    </div>
-                                                    <div class="col-sm-3 ch-type-dropdown">
-                                                        <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                                            <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                                            <ui-select-choices repeat="type in types">
-                                                                <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                                            </ui-select-choices>
-                                                        </ui-select>
-                                                    </div>
-                                                    <div class="col-sm-1 ch-path-label">
-                                                        Input:
-                                                    </div>
-                                                    <div class="col-sm-3 ch-path-input">
-                                                        <input type="text" name="channelPath" placeholder="{{channel.MainRules[1].value}}" style="width: auto;">
-                                                    </div>
-                                                    <div class="col-sm-1 ch-youtube-type-label" >
-                                                        YouTube Type:
-                                                    </div>
-                                                    <div class="col-sm-3 ch-youtube-type-dropdown">
-                                                        <ui-select ng-model="selectedYtType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 176px;">
-                                                            <ui-select-match placeholder="{{channelYtType.type}}">{{$select.selected.type}}</ui-select-match>
-                                                            <ui-select-choices repeat="ytType in ytTypes">
-                                                                <div ng-bind-html="ytType.type" ng-click="changeYtType(channel, ytType)"></div>
-                                                            </ui-select-choices>
-                                                        </ui-select>
-                                                    </div>
-                                                </div>
+                                        </div>
+                                    </div>
+                                    <!--Youtube ChannelType 10 Div-->
+                                    <div ng-show="channelType.value == 10">
+                                        <div class="row">
+                                            <div class="col-sm-1 ch-type-label">
+                                                Type:
                                             </div>
-                                            <!--Plugin ChannelType 15 Div-->
-                                            <div ng-show="channelType.value == 15">
-                                                <div class="row">
-                                                    <div class="col-sm-1 ch-type-label">
-                                                        Type:
-                                                    </div>
-                                                    <div class="col-sm-3 ch-type-dropdown">
-                                                        <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                                            <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                                            <ui-select-choices repeat="type in types">
-                                                                <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                                            </ui-select-choices>
-                                                        </ui-select>
-                                                    </div>
-                                                    <div class="col-sm-1 ch-plugin-type-label" >
-                                                        Plugin:
-                                                    </div>
-                                                    <div class="col-sm-3 ch-plugin-type-dropdown">
-                                                        <ui-select ng-model="selectedPlugin.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 250px;">
-                                                            <ui-select-match placeholder="{{channelPlugin}}">{{$select.selected.addonid}}</ui-select-match>
-                                                            <ui-select-choices repeat="plugin in plugins">
-                                                                <div ng-bind-html="plugin.addonid" ng-click="changePlugin(channel, plugin.addonid)"></div>
-                                                            </ui-select-choices>
-                                                        </ui-select>
-                                                    </div>
-                                                </div>
-                                                <div class="row" style="margin-top: 10px">
-                                                    <div class="col-sm-1 ch-path-label">
-                                                        Folder:
-                                                    </div>
-                                                    <div class="col-sm-8 ch-path-input">
-                                                        <input type="text" name="channelPath" ng-model="channelPluginPath" style="width: 100%">
-                                                    </div>
-                                                    <div class="col-sm-3">
-                                                        <button id="plugin-path-update" class="btn btn-primary">Update</button>
-                                                    </div>
-                                                </div>
+                                            <div class="col-sm-3 ch-type-dropdown">
+                                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false">
+                                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
+                                                    <ui-select-choices repeat="type in types">
+                                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
                                             </div>
-                                        </form>
-                                </accordion-group>
-                            </accordion>
-                            <button ng-click="CreateXMLDoc()" class="btn btn-primary">Save Changes</button>
+                                            <div class="col-sm-1 ch-youtube-type-label" >
+                                                YouTube Type:
+                                            </div>
+                                            <div class="col-sm-3 ch-youtube-type-dropdown">
+                                                <ui-select ng-model="selectedYtType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false">
+                                                    <ui-select-match placeholder="{{channelYtType.type}}">{{$select.selected.type}}</ui-select-match>
+                                                    <ui-select-choices repeat="ytType in ytTypes">
+                                                        <div ng-bind-html="ytType.type" ng-click="changeYtType(channel, ytType)"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                            <div class="col-sm-1 ch-path-label">
+                                                Input:
+                                            </div>
+                                            <div class="col-sm-3 ch-path-input">
+                                                <input type="text" name="channelPath" ng-model="channel.MainRules[1].value" style="width: auto;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--Plugin ChannelType 15 Div-->
+                                    <div ng-show="channelType.value == 15">
+                                        <div class="row">
+                                            <div class="col-sm-1 ch-type-label">
+                                                Type:
+                                            </div>
+                                            <div class="col-sm-3 ch-type-dropdown">
+                                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
+                                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
+                                                    <ui-select-choices repeat="type in types">
+                                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                            <div class="col-sm-1 ch-plugin-type-label" >
+                                                Plugin:
+                                            </div>
+                                            <div class="col-sm-3 ch-plugin-type-dropdown">
+                                                <ui-select ng-model="selectedPlugin.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 250px;">
+                                                    <ui-select-match placeholder="{{channelPlugin}}">{{$select.selected.addonid}}</ui-select-match>
+                                                    <ui-select-choices repeat="plugin in plugins">
+                                                        <div ng-bind-html="plugin.addonid" ng-click="changePlugin(channel, plugin.addonid)"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: 10px">
+                                            <div class="col-sm-1 ch-path-label">
+                                                Folder:
+                                            </div>
+                                            <div class="col-sm-8 ch-path-input">
+                                                <input type="text" name="channelPath" ng-model="channelPluginPath" style="width: 100%">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <button id="plugin-path-update" class="btn btn-primary" ng-click="changePluginPath(channel, channelPluginPath)">Update</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                         </accordion-group>
                     </accordion>
+                    <button ng-click="CreateXMLDoc()" class="btn btn-primary">Save Changes</button>
                 </accordion-group>
             </accordion>
         </div>
     </div>
 </div>
+
+
