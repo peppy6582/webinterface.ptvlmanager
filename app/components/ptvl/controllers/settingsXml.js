@@ -53,7 +53,7 @@ define(['./ptvl'], function (ptvlControllers) {
         $scope.showContent = function($fileContent){
 
             $scope.channels = [];
-            $scope.sortedChannels = [];
+            $scope.sortedChannels = {};
 
             var replaceSpecial = function (file) {
                 var find = '&';
@@ -77,7 +77,6 @@ define(['./ptvl'], function (ptvlControllers) {
             $scope.channelNumbers = [];
 
             while (i <= q) {
-                console.log($scope.channels.settings.setting[i]);
 
                 if(typeof $scope.channels.settings.setting[i] != 'undefined') {
 
@@ -179,15 +178,12 @@ define(['./ptvl'], function (ptvlControllers) {
                 i = i + 1;
                 console.log(i);
             };
-            console.log($scope.sortedChannels);
-            $scope.unsortedChannels = [];
-            $scope.unsortedChannels.push($scope.sortedChannels);
             $scope.channelDetails = { isOpen: true };
             $scope.channelsLoaded = true;
         };
 
         $scope.goSearch = function() {
-            console.log($scope.unsortedChannels);
+
         };
 
         $scope.selectedType = {};
