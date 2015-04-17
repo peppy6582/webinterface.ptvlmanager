@@ -106,9 +106,6 @@ input[type="file"] {
     display: inline-block;
     padding: 0 0 0 0;
     cursor: pointer;
-}
-
-body > div > div > div > div > div > accordion > div > div > div.panel-collapse.collapse.in > div > div > div:nth-child(1) > label > i {
     height: 100%;
     text-align: justify;
     vertical-align: middle;
@@ -155,5 +152,14 @@ body > div > div > div > div > div > accordion > div > div > div.panel-collapse.
 
 .panel-default>.panel-heading {
     color: #ffffff;
+}
+
+.btn-primary {
+    background-color: #1772B1;
+}
+
+.btn-primary:hover {
+    background-color: #1772B1;
+    background-position: 0 -15px;
 }
 

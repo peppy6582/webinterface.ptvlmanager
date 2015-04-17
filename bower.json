@@ -28,6 +28,7 @@
     "requirejs-domready": "~2.0.1",
     "x2js": "~1.1.7",
     "angular-ui-select": "~0.11.2",
-    "file-saver": "*"
+    "file-saver": "*",
+    "angular-ui-sortable": "~0.13.3"
   }
 }

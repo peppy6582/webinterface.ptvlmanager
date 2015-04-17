@@ -5,6 +5,21 @@ define(['./ptvl'], function (ptvlControllers) {
 
     ptvlControllers.controller('ptvlSettingsCtrl', ['$scope', 'settingsList', 'pluginList', function($scope, settingsList, pluginList) {
 
+        $scope.oneAtATime = true;
+
+        $scope.sortableOptions = {
+            handle: ' .handle',
+            update: function(e, ui) {
+                if (ui.item.sortable.model == "can't be moved") {
+                    ui.item.sortable.cancel();
+                    alert('You cannot move that one here');
+                }
+            }
+            // items: ' .panel:not(.panel-heading)'
+            // axis: 'y'
+        };
+
+        $scope.sortIndex = [];
 
         $scope.channelDetails =
         {
@@ -38,7 +53,7 @@ define(['./ptvl'], function (ptvlControllers) {
         $scope.showContent = function($fileContent){
 
             $scope.channels = [];
-            $scope.sortedChannels = {};
+            $scope.sortedChannels = [];
 
             var replaceSpecial = function (file) {
                 var find = '&';
@@ -51,97 +66,29 @@ define(['./ptvl'], function (ptvlControllers) {
             var x2js = new X2JS();
             $scope.channels = x2js.xml_str2json($scope.settingsFile);
 
-            console.log($scope.channels);
-
             var i = 0;
 
             var q = channelCount($scope.channels.settings.setting);
 
+            console.log(q);
+
             q = q - 2;
 
+            $scope.channelNumbers = [];
+
             while (i <= q) {
-                angular.forEach($scope.channels.settings.setting[i], function() {
+                console.log($scope.channels.settings.setting[i]);
 
-                    $scope.channelNumbers = [];
+                if(typeof $scope.channels.settings.setting[i] != 'undefined') {
 
+                    angular.forEach($scope.channels.settings.setting[i], function() {
 
-                    var id = $scope.channels.settings.setting[i]._id;
-                    var value = $scope.channels.settings.setting[i]._value;
+                        var id = $scope.channels.settings.setting[i]._id;
+                        var value = $scope.channels.settings.setting[i]._value;
 
-                    var idNo = parseInt(id.split('_')[2]);
+                        var idNo = parseInt(id.split('_')[2]);
 
-                    $scope.channelNumbers.push(id.split('_')[1]);
-
-                    if(isNaN(id.split('_')[1])) {
-
-                        var settings =
-                            {
-                                'id': id,
-                                'value': value
-                            };
-
-                        if(typeof $scope.sortedChannels[0] === 'undefined') {
-                            $scope.sortedChannels[0] =
-                                {
-                                    'Channel': 0
-                                }
-                            ;
-                            $scope.sortedChannels[0].Settings = [];
-                        }
-                        $scope.sortedChannels[0].Settings.push(settings);
-
-                    }
-                    else
-                    {
-
-                        var channelNum = parseInt(id.split('_')[1]);
-
-                        if(typeof $scope.sortedChannels[channelNum] === 'undefined') {
-
-                            $scope.sortedChannels[channelNum] =
-                            {
-                                'Channel': channelNum
-                            };
-                            $scope.sortedChannels[channelNum].Settings = [];
-                            $scope.sortedChannels[channelNum].MainRules = [];
-                        }
-
-                        if(id.contains('rulecount')) {
-                            $scope.sortedChannels[channelNum].RuleCount = parseInt(value);
-                        }
-                        else if(id.contains('rule_')&& id.contains('id')) {
-
-                        }
-                        else if(idNo === parseInt(idNo, 10)) {
-
-                            $scope.sortedChannels[channelNum].MainRules[idNo] =
-                            {
-                                'id': idNo,
-                                'value': value
-                            };
-
-                        }
-                        else if(id.contains('type')) {
-                            $scope.sortedChannels[channelNum].Type = value;
-                        }
-                        else if(id.contains('time')) {
-                            $scope.sortedChannels[channelNum].Time = value;
-                        }
-                        else if(id.contains('changed')) {
-                            $scope.sortedChannels[channelNum].Changed = value;
-                        }
-                        else if(id.contains('SetResetTime')) {
-                            $scope.sortedChannels[channelNum].SetResetTime= value;
-                        }
-                        else if(id.contains('opt')){
-                            $scope.sortedChannels[channelNum].SubRules = [];
-                            $scope.sortedChannels[channelNum].SubRules[id.split('_')[3]] =
-                            {
-                                'ruleNo': id.split('_')[3],
-                                'value': value
-                            };
-                        }
-                        else
+                        if(isNaN(id.split('_')[1]))
                         {
 
                             var settings =
@@ -150,16 +97,97 @@ define(['./ptvl'], function (ptvlControllers) {
                                 'value': value
                             };
 
-                            $scope.sortedChannels[channelNum].Settings.push(settings);
+                            if(typeof $scope.sortedChannels[0] === 'undefined') {
+                                $scope.sortedChannels[0] =
+                                {
+                                    'Channel': 0
+                                }
+                                ;
+                                $scope.sortedChannels[0].Settings = [];
+                            }
+                            $scope.sortedChannels[0].Settings.push(settings);
+
                         }
+                        else
+                        {
+
+                            $scope.channelNumbers.push(id.split('_')[1]);
+
+                            var channelNum = parseInt(id.split('_')[1]);
+
+                            if(typeof $scope.sortedChannels[channelNum] === 'undefined') {
+
+                                $scope.sortedChannels[channelNum] =
+                                {
+                                    'Channel': channelNum
+                                };
+                                $scope.sortedChannels[channelNum].Settings = [];
+                                $scope.sortedChannels[channelNum].MainRules = [];
+                            }
+
+                            if(id.contains('rulecount')) {
+                                $scope.sortedChannels[channelNum].RuleCount = parseInt(value);
+                            }
+                            else if(id.contains('rule_')&& id.contains('id')) {
+
+                            }
+                            else if(idNo === parseInt(idNo, 10)) {
+
+                                $scope.sortedChannels[channelNum].MainRules[idNo] =
+                                {
+                                    'id': idNo,
+                                    'value': value
+                                };
+
+                            }
+                            else if(id.contains('type')) {
+                                $scope.sortedChannels[channelNum].Type = value;
+                            }
+                            else if(id.contains('time')) {
+                                $scope.sortedChannels[channelNum].Time = value;
+                            }
+                            else if(id.contains('changed')) {
+                                $scope.sortedChannels[channelNum].Changed = value;
+                            }
+                            else if(id.contains('SetResetTime')) {
+                                $scope.sortedChannels[channelNum].SetResetTime= value;
+                            }
+                            else if(id.contains('opt')){
+                                $scope.sortedChannels[channelNum].SubRules = [];
+                                $scope.sortedChannels[channelNum].SubRules[id.split('_')[3]] =
+                                {
+                                    'ruleNo': id.split('_')[3],
+                                    'value': value
+                                };
+                            }
+                            else
+                            {
+
+                                var settings =
+                                {
+                                    'id': id,
+                                    'value': value
+                                };
+
+                                $scope.sortedChannels[channelNum].Settings.push(settings);
+                            }
 
 
-                    };
-                    i = i + 1;
-                });
+                        };
+                    });
+                }
+                i = i + 1;
+                console.log(i);
             };
             console.log($scope.sortedChannels);
+            $scope.unsortedChannels = [];
+            $scope.unsortedChannels.push($scope.sortedChannels);
             $scope.channelDetails = { isOpen: true };
+            $scope.channelsLoaded = true;
+        };
+
+        $scope.goSearch = function() {
+            console.log($scope.unsortedChannels);
         };
 
         $scope.selectedType = {};
@@ -280,6 +308,10 @@ define(['./ptvl'], function (ptvlControllers) {
             channel.MainRules[1].value = newPath;
             console.log(channel);
             return channel;
+        };
+
+        $scope.updateSort = function (channelNo) {
+            console.log(channelNo);
         };
 
         $scope.CreateXMLDoc = function () {

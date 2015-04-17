@@ -6,6 +6,7 @@ require.config({
         "uiRouter": "../bower_components/angular-ui-router/release/angular-ui-router",
         "uiBootstrap": "../bower_components/angular-bootstrap/ui-bootstrap.min",
         "uiSelect": "../bower_components/angular-ui-select/dist/select.min",
+        "uiSortable": "../bower_components/angular-ui-sortable/sortable",
         "uiTemplates": "../bower_components/angular-bootstrap/ui-bootstrap-tpls",
         "ngAria": "../bower_components/angular-aria/angular-aria.min",
         "ngAnimate": "../bower_components/angular-animate/angular-animate.min",
@@ -29,11 +30,14 @@ require.config({
         'uiBootstrap':{
             deps: ['angular']
         },
-        'uiSelect':{
-            deps: ['angular']
-        },
         'uiTemplates':{
             deps: ['angular', 'uiBootstrap']
+        },
+        'uiSelect':{
+            deps: ['angular', 'uiBootstrap', 'uiTemplates']
+        },
+        'uiSortable':{
+            deps: ['angular', 'uiBootstrap', 'uiTemplates']
         },
         'ngAria':{
             deps: ['angular']
