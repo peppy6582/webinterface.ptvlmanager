@@ -31,315 +31,72 @@
                 </accordion-heading>
                 <form>
                     <!--Playlist ChannelType 0 Div-->
-                    <div ng-show="channelType.value == 0">
-                        <div class="row">
-                            <div class="col-sm-1 ch-type-label">
-                                Type:
-                            </div>
-                            <div class="col-sm-3 ch-type-dropdown">
-                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                    <ui-select-choices repeat="type in types">
-                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-                        </div>
+                    <div ng-show="channelType.value == 0"
+                         ng-include="'/app/components/ptvl/templates/chType/playlistType.html'">
                     </div>
                     <!-- TV Network ChannelType 1 Div-->
-                    <div ng-show="channelType.value == 1">
-                        <div class="row">
-                            <div class="col-sm-1 ch-type-label">
-                                Type:
-                            </div>
-                            <div class="col-sm-3 ch-type-dropdown">
-                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                    <ui-select-choices repeat="type in types">
-                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-                        </div>
+                    <div ng-show="channelType.value == 1"
+                         ng-include="'app/components/ptvl/templates/chType/tvnetworkType.html'">
                     </div>
                     <!-- Movie Studio ChannelType 2 Div -->
-                    <div ng-show="channelType.value == 2">
-                        <div class="row">
-                            <div class="col-sm-1 ch-type-label">
-                                Type:
-                            </div>
-                            <div class="col-sm-3 ch-type-dropdown">
-                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                    <ui-select-choices repeat="type in types">
-                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-                        </div>
+                    <div ng-show="channelType.value == 2"
+                         ng-include="'app/components/ptvl/templates/chType/movieStudioType.html'">
                     </div>
                     <!-- TV Genre ChannelType 3 Div -->
-                    <div ng-show="channelType.value == 3">
-                        <div class="row">
-                            <div class="col-sm-1 ch-type-label">
-                                Type:
-                            </div>
-                            <div class="col-sm-3 ch-type-dropdown">
-                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                    <ui-select-choices repeat="type in types">
-                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-                        </div>
+                    <div ng-show="channelType.value == 3"
+                         ng-include="'app/components/ptvl/templates/chType/tvGenreType.html'">
                     </div>
                     <!-- Movie Genre ChannelType 4 Div -->
-                    <div ng-show="channelType.value == 4">
-                        <div class="row">
-                            <div class="col-sm-1 ch-type-label">
-                                Type:
-                            </div>
-                            <div class="col-sm-3 ch-type-dropdown">
-                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                    <ui-select-choices repeat="type in types">
-                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-                        </div>
+                    <div ng-show="channelType.value == 4"
+                         ng-include="'app/components/ptvl/templates/chType/movieGenreType.html'">
                     </div>
                     <!-- Mixed Genre (Movie and Tv) ChannelType 5 Div -->
-                    <div ng-show="channelType.value == 5">
-                        <div class="row">
-                            <div class="col-sm-1 ch-type-label">
-                                Type:
-                            </div>
-                            <div class="col-sm-3 ch-type-dropdown">
-                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                    <ui-select-choices repeat="type in types">
-                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-                        </div>
+                    <div ng-show="channelType.value == 5"
+                         ng-include="'app/components/ptvl/templates/chType/mixedgenreType.html'">
                     </div>
                     <!-- TV Show ChannelType 6 Div -->
-                    <div ng-show="channelType.value == 6">
-                        <div class="row">
-                            <div class="col-sm-1 ch-type-label">
-                                Type:
-                            </div>
-                            <div class="col-sm-3 ch-type-dropdown">
-                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                    <ui-select-choices repeat="type in types">
-                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-                        </div>
+                    <div ng-show="channelType.value == 6"
+                         ng-include="'app/components/ptvl/templates/chType/tvShowType.html'">
                     </div>
                     <!-- Directory ChannelType 7 Div -->
-                    <div ng-show="channelType.value == 7">
-                        <div class="row">
-                            <div class="col-sm-1 ch-type-label">
-                                Type:
-                            </div>
-                            <div class="col-sm-3 ch-type-dropdown">
-                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                    <ui-select-choices repeat="type in types">
-                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-                        </div>
+                    <div ng-show="channelType.value == 7"
+                         ng-include="'app/components/ptvl/templates/chType/directoryType.html'">
                     </div>
                     <!-- LiveTv ChannelType 8 Div -->
-                    <div ng-show="channelType.value == 8">
-                        <div class="row">
-                            <div class="col-sm-1 ch-type-label">
-                                Type:
-                            </div>
-                            <div class="col-sm-3 ch-type-dropdown">
-                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                    <ui-select-choices repeat="type in types">
-                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-                        </div>
+                    <div ng-show="channelType.value == 8"
+                         ng-include="'app/components/ptvl/templates/chType/liveTvType.html'">
                     </div>
                     <!-- InternetTv ChannelType 9 Div -->
-                    <div ng-show="channelType.value == 9">
-                        <div class="row">
-                            <div class="col-sm-1 ch-type-label">
-                                Type:
-                            </div>
-                            <div class="col-sm-3 ch-type-dropdown">
-                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                    <ui-select-choices repeat="type in types">
-                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-                        </div>
+                    <div ng-show="channelType.value == 9"
+                         ng-include="'app/components/ptvl/templates/chType/internetTvType.html'">
                     </div>
                     <!-- Youtube ChannelType 10 Div -->
-                    <div ng-show="channelType.value == 10">
-                        <div class="row">
-                            <div class="col-sm-1 ch-type-label">
-                                Type:
-                            </div>
-                            <div class="col-sm-3 ch-type-dropdown">
-                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false">
-                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                    <ui-select-choices repeat="type in types">
-                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-                            <div class="col-sm-1 ch-youtube-type-label" >
-                                YouTube Type:
-                            </div>
-                            <div class="col-sm-3 ch-youtube-type-dropdown">
-                                <ui-select ng-model="selectedYtType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false">
-                                    <ui-select-match placeholder="{{channelYtType.type}}">{{$select.selected.type}}</ui-select-match>
-                                    <ui-select-choices repeat="ytType in ytTypes">
-                                        <div ng-bind-html="ytType.type" ng-click="changeYtType(channel, ytType)"></div>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-                            <div class="col-sm-1 ch-path-label">
-                                Input:
-                            </div>
-                            <div class="col-sm-3 ch-path-input">
-                                <input type="text" name="channelPath" ng-model="channel.MainRules[1].value" style="width: auto;">
-                            </div>
-                        </div>
+                    <div ng-show="channelType.value == 10"
+                         ng-include="'app/components/ptvl/templates/chType/youTubeType.html'">
                     </div>
                     <!-- RSS Feed ChannelType 11 Div -->
-                    <div ng-show="channelType.value == 11">
-                        <div class="row">
-                            <div class="col-sm-1 ch-type-label">
-                                Type:
-                            </div>
-                            <div class="col-sm-3 ch-type-dropdown">
-                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                    <ui-select-choices repeat="type in types">
-                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-                        </div>
+                    <div ng-show="channelType.value == 11"
+                         ng-include="'app/components/ptvl/templates/chType/rssFeedType.html'">
                     </div>
                     <!-- Music ChannelType 12 Div -->
-                    <div ng-show="channelType.value == 12">
-                        <div class="row">
-                            <div class="col-sm-1 ch-type-label">
-                                Type:
-                            </div>
-                            <div class="col-sm-3 ch-type-dropdown">
-                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                    <ui-select-choices repeat="type in types">
-                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-                        </div>
+                    <div ng-show="channelType.value == 12"
+                         ng-include="'app/components/ptvl/templates/chType/musicType.html'">
                     </div>
                     <!-- Music Videos ChannelType 13 Div -->
-                    <div ng-show="channelType.value == 13">
-                        <div class="row">
-                            <div class="col-sm-1 ch-type-label">
-                                Type:
-                            </div>
-                            <div class="col-sm-3 ch-type-dropdown">
-                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                    <ui-select-choices repeat="type in types">
-                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-                        </div>
+                    <div ng-show="channelType.value == 13"
+                         ng-include="'app/components/ptvl/templates/chType/musicVideoType.html'">
                     </div>
                     <!-- Extras ChannelType 14 Div -->
-                    <div ng-show="channelType.value == 14">
-                        <div class="row">
-                            <div class="col-sm-1 ch-type-label">
-                                Type:
-                            </div>
-                            <div class="col-sm-3 ch-type-dropdown">
-                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                    <ui-select-choices repeat="type in types">
-                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-                        </div>
+                    <div ng-show="channelType.value == 14"
+                         ng-include="'app/components/ptvl/templates/chType/extrasType.html'">
                     </div>
                     <!-- Plugin ChannelType 15 Div -->
-                    <div ng-show="channelType.value == 15">
-                        <div class="row">
-                            <div class="col-sm-1 ch-type-label">
-                                Type:
-                            </div>
-                            <div class="col-sm-3 ch-type-dropdown">
-                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                    <ui-select-choices repeat="type in types">
-                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-                            <div class="col-sm-1 ch-plugin-type-label" >
-                                Plugin:
-                            </div>
-                            <div class="col-sm-3 ch-plugin-type-dropdown">
-                                <ui-select ng-model="selectedPlugin.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 250px;">
-                                    <ui-select-match placeholder="{{channelPlugin}}">{{$select.selected.addonid}}</ui-select-match>
-                                    <ui-select-choices repeat="plugin in plugins">
-                                        <div ng-bind-html="plugin.addonid" ng-click="changePlugin(channel, plugin.addonid)"></div>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-top: 10px">
-                            <div class="col-sm-1 ch-path-label">
-                                Folder:
-                            </div>
-                            <div class="col-sm-8 ch-path-input">
-                                <input type="text" name="channelPath" ng-model="channelPluginPath" style="width: 100%">
-                            </div>
-                            <div class="col-sm-2">
-                                <button id="plugin-path-update" class="btn btn-primary" ng-click="changePluginPath(channel, channelPluginPath)">Update</button>
-                            </div>
-                        </div>
+                    <div ng-show="channelType.value == 15"
+                         ng-include="'app/components/ptvl/templates/chType/pluginType.html'">
                     </div>
                     <!-- Playon ChannelType 16 Div -->
-                    <div ng-show="channelType.value == 16">
-                        <div class="row">
-                            <div class="col-sm-1 ch-type-label">
-                                Type:
-                            </div>
-                            <div class="col-sm-3 ch-type-dropdown">
-                                <ui-select ng-model="selectedType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 202px;">
-                                    <ui-select-match placeholder="{{channelType.type}}">{{$select.selected.type}}</ui-select-match>
-                                    <ui-select-choices repeat="type in types">
-                                        <div ng-bind-html="type.type" ng-click="changeType(channel, type)"></div>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-                        </div>
+                    <div ng-show="channelType.value == 16"
+                         ng-include="'app/components/ptvl/templates/chType/playonType.html'">
                     </div>
                 </form>
             </li>
