@@ -54,10 +54,6 @@
     margin-right: auto;
 }
 
-.panel-default {
-    border-color: #0E0AB2;
-}
-
 .ch-type-label {
     margin: 8px 0 0 10px;
     width: 58px;
@@ -163,3 +159,16 @@ input[type="file"] {
     background-position: 0 -15px;
 }
 
+.panel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 24px;
+}
+
+.panel-title:focus {
+    border: 0px;
+    outline: -webkit-focus-ring-color auto 0px;
+    outline-color: unset;
+    outline-style: none;
+    outline-width: 0px;
+}
