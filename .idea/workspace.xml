@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e1d51a2-b20b-4d0d-86d7-dbc5189f8b13" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/ptvl/templates/chType/temp/mixedGenreType.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/ptvl/templates/chType/temp/tvNetworkType.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/ptvl/templates/chType/temp/youTubeType.html" />
+      <change type="DELETED" beforePath="C:\Users\Phillip\AppData\Roaming\Kodi\addons\webinterface.ptvlmanager\app\components\ptvl\templates\chType\mixedGenreType.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Phillip\AppData\Roaming\Kodi\addons\webinterface.ptvlmanager\app\components\ptvl\templates\chType\mixedgenreType.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Phillip\AppData\Roaming\Kodi\addons\webinterface.ptvlmanager\app\components\ptvl\templates\chType\temp\tvNetworkType.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Phillip\AppData\Roaming\Kodi\addons\webinterface.ptvlmanager\app\components\ptvl\templates\chType\tvnetworkType.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Phillip\AppData\Roaming\Kodi\addons\webinterface.ptvlmanager\app\components\ptvl\templates\chType\youTubeType.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Phillip\AppData\Roaming\Kodi\addons\webinterface.ptvlmanager\app\components\ptvl\templates\chType\youtubeType.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="9c102dc6-30b4-489f-98f5-6a0d2ac0e7c3" name="Failed commit: Default" comment="all chTypes have their own template" />
@@ -51,25 +54,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rssFeedType.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="rssFeedType.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/components/ptvl/templates/chType/rssFeedType.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.153846">
+            <state vertical-scroll-proportion="0.62467194">
               <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#ui-select#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="youTubeType.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/components/ptvl/templates/chType/temp/youTubeType.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8346457">
-              <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
-              <folding>
-                <element signature="n#style#0;n#input#0;n#div#5;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -275,40 +266,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webinterface.ptvlmanager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webinterface.ptvlmanager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ptvl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chType" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="temp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -322,8 +279,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Phillip\AppData\Roaming\Kodi\addons\webinterface.ptvlmanager\app\components\ptvl\templates\chType\temp" />
       <recent name="C:\Users\Phillip\AppData\Roaming\Kodi\addons\webinterface.ptvlmanager\app\components\ptvl\templates\chType" />
+      <recent name="C:\Users\Phillip\AppData\Roaming\Kodi\addons\webinterface.ptvlmanager\app\components\ptvl\templates\chType\temp" />
     </key>
   </component>
   <component name="RunManager">
@@ -425,14 +382,20 @@
       <option name="project" value="LOCAL" />
       <updated>1429390410536</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="all chTypes have their own template">
+      <created>1429390848974</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1429390848974</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3204461" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3204461" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33588958" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -553,16 +516,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/ptvl/templates/chType/temp/tvNetworkType.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.8461537">
-          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-          <folding>
-            <element signature="n#style#0;n#ui-select#0;n#div#1;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/ptvl/templates/chType/movieStudioType.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.8461537">
@@ -659,16 +612,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/ptvl/templates/chType/rssFeedType.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.153846">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#ui-select#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/ptvl/templates/chType/test.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.8846154">
@@ -677,12 +620,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/ptvl/templates/chType/temp/youTubeType.html">
+    <entry file="file://$PROJECT_DIR$/app/components/ptvl/templates/chType/rssFeedType.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8346457">
-          <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.62467194">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#input#0;n#div#5;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ui-select#0;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
