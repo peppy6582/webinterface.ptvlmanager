@@ -1,3 +1,4 @@
 define([
-    './settingsXml'
+    './channels',
+    './channelDetails'
 ], function () {});

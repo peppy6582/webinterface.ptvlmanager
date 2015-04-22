@@ -13,6 +13,7 @@ define(['./ptvl'], function (ptvlDirectives) {
 
                     reader.onload = function(onLoadEvent) {
                         scope.$apply(function() {
+
                             fn(scope, {$fileContent:onLoadEvent.target.result});
                         });
                     };

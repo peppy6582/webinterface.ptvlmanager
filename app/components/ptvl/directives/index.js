@@ -1,3 +1,5 @@
 define([
-    './onReadFile'
+    './onReadFile',
+    './chHeader',
+    './channelDetails'
 ], function () {});
