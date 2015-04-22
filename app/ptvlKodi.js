@@ -16,10 +16,14 @@ define([
     './components/movies/controllers/index',
     './components/television/controllers/index',
     './components/ptvl/filters/propsFilter',
+    './components/ptvl/directives/chHeader',
+    './components/ptvl/directives/channelDetails',
     './components/ptvl/directives/onReadFile',
     './components/ptvl/services/settingsXml',
     './components/ptvl/services/plugins',
-    './components/ptvl/controllers/settingsXml'
+    './components/ptvl/controllers/channels',
+    './components/ptvl/controllers/channelDetails'
+
 
 ], function (ng) {
     'use strict';

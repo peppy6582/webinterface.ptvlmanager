@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-sm-2 ch-plugin-type-label" >
+        plugin://
+    </div>
+    <div class="col-sm-3 ch-plugin-type-dropdown">
+        <ui-select ng-model="selectedPlugin.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 100%;">
+            <ui-select-match placeholder="{{channelPlugin}}">{{$select.selected.addonid}}</ui-select-match>
+            <ui-select-choices repeat="plugin in plugins">
+                <div ng-bind-html="plugin.addonid" ng-click="changePlugin(channel, plugin.addonid)"></div>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+    <div class="col-sm-1 ch-path-label">
+        Sub:
+    </div>
+    <div class="col-sm-2 ch-path-input">
+        <input type="text" name="channelSubfolders" ng-model="channelSubfolders" style="width: 100%;">
+    </div>
+</div>
+<div class="row" style="margin-top: 10px">
+    <div class="col-sm-2">
+        <button id="undo" class="btn btn-primary" ng-click="undo()">Undo</button>
+    </div>
+</div>

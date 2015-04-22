@@ -47,7 +47,7 @@ define(['./ptvlKodi'], function(ptvlKodi) {
             .state('ptvl', {
                 url: '/ptvl',
                 templateUrl: 'app/components/ptvl/ptvl.html',
-                controller: 'ptvlSettingsCtrl'
+                controller: 'channelCtrl'
             })
 
             .state('about', {

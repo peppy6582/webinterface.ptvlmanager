@@ -1,0 +1,23 @@
+<div class="row" ng-controller="channelDetailsCtrl">
+    <div class="col-sm-1 ch-type-label">
+        Type:
+    </div>
+    <div class="col-sm-3 ch-type-dropdown">
+        <ui-select ng-model="type.selected" theme="bootstrap" ng-disabled="disabled" style="width: 202px;" on-select="onSelect(channel, type.selected)" reset-search-input="'false'">
+            <ui-select-match placeholder="{{channel.type.type}}">{{$select.selected.type}}</ui-select-match>
+            <ui-select-choices repeat="type in types | filter: $select.search">
+                <span ng-bind-html="type.type| highlight: $select.search"></span>
+                <small ng-bind-html="type.value | highlight: $select.search"></small>
+            </ui-select-choices>
+        </ui-select>
+
+    </div>
+    <div>
+        <channel-details channel="channel"></channel-details>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-sm-2">
+            <button id="undo" class="btn btn-primary" ng-click="undo(channel)">Undo</button>
+        </div>
+    </div>
+</div>

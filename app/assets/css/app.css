@@ -172,3 +172,8 @@ input[type="file"] {
     outline-style: none;
     outline-width: 0px;
 }
+
+.type {
+    padding-bottom: 10px;
+    border-color: black;
+}

@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-sm-1 ch-youtube-type-label" >
+        YouTube Type:
+    </div>
+    <div class="col-sm-3 ch-youtube-type-dropdown">
+        <ui-select ng-model="selectedYtType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false">
+            <ui-select-match placeholder="{{channel.type.yt.type}}">{{$select.selected.type}}</ui-select-match>
+            <ui-select-choices repeat="ytType in ytTypes">
+                <div ng-bind-html="ytType.type" ng-click="changeYtType(channel, ytType)"></div>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+    <div class="col-sm-1 ch-path-label">
+        Input:
+    </div>
+    <div class="col-sm-3 ch-path-input">
+        <input type="text" name="channelPath" ng-model="channel.rules.main[1]" style="width: auto;">
+    </div>
+</div>
