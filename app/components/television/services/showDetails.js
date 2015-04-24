@@ -3,11 +3,10 @@ define(['./television'], function (televisionServices) {
 
     televisionServices.factory('showDetails', ['$http', '$location', function ($http, $location) {
 
-        var ip = $location.host();
+        var protocol = window.location.protocol;
+        var host = window.location.host;
 
-        var port = 9000;
-
-        var url = 'http://' + ip + ':' + port + '/jsonrpc?request=';
+        var url = protocol+ '//' + host + '/jsonrpc?request=';
 
         var showDetails = {
             async: function (tvshowid) {
