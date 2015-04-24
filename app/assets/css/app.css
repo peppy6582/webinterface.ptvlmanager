@@ -48,52 +48,6 @@
     max-height: 100%;
 }
 
-.ptvl {
-    max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.ch-type-label {
-    margin: 8px 0 0 10px;
-    width: 58px;
-}
-
-.ch-type-dropdown {
-    padding: 0 0 0 0;
-    margin: 0 0 0 0;
-}
-
-.ch-path-label {
-    margin: 8px 4px 0 10px;
-    width: 60px;
-}
-
-.ch-path-input {
-    padding: 0 0 0 0;
-    margin: 5px 0 0 0;
-}
-
-.youtube-type {
-    margin-top: 10px;
-}
-
-.ch-plugin-type-label {
-    margin: 8px 0 0 10px;
-    width: 58px;
-}
-
-.ch-plugin-type-dropdown {
-    padding: 0 0 0 0;
-    margin: 0 0 0 0;
-}
-
-#plugin-path-update {
-    margin-top: 2px;
-    padding: 0 0 0 0;
-    height: 30px;
-    text-align: center;
-}
 
 input[type="file"] {
     display: none;
@@ -142,12 +96,14 @@ input[type="file"] {
     vertical-align: middle;
 }
 
+/* PsuedoTV Live */
 .panel-default>.panel-heading {
     background-image: linear-gradient(to bottom,#3073AD 0,#286090 100%);
 }
 
 .panel-default>.panel-heading {
     color: #ffffff;
+    height: 34px;
 }
 
 .btn-primary {
@@ -156,24 +112,133 @@ input[type="file"] {
 
 .btn-primary:hover {
     background-color: #1772B1;
-    background-position: 0 -15px;
 }
 
-.panel-title {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 24px;
-}
-
-.panel-title:focus {
-    border: 0px;
-    outline: -webkit-focus-ring-color auto 0px;
-    outline-color: unset;
-    outline-style: none;
-    outline-width: 0px;
-}
-
+/** Type Div **/
 .type {
-    padding-bottom: 10px;
-    border-color: black;
+    padding-bottom: 18px;
+}
+
+.ch-type-label {
+    padding-top: 6px;
+    padding-right: 0;
+    padding-left: 10px;
+    padding-bottom: 0;
+    margin: 0 0 0 0;
+    width: 5%;
+}
+
+.ch-type-dropdown {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+/** Plugin Type **/
+
+.plugin {
+    padding-bottom: 18px;
+}
+
+.ch-plugin-label {
+    padding-top: 6px;
+    padding-right: 0;
+    padding-left: 10px;
+    padding-bottom: 0;
+    margin: 0 0 0 0;
+    width: 68px;
+}
+
+.ch-plugin-dropdown {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+.ch-plugin-path-label {
+    margin: 8px 4px 0 0;
+    width: 76px;
+}
+
+.ch-plugin-path-input {
+    padding: 0 0 0 0;
+    margin: 5px 0 0 0;
+}
+
+.ch-plugin-sort-label {
+    padding-top: 6px;
+    padding-right: 0;
+    padding-left: 10px;
+    padding-bottom: 0;
+    margin: 0 0 0 0;
+    width: 68px;
+}
+
+.ch-plugin-sort-dropdown {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+.ch-plugin-limit-label {
+    padding-top: 6px;
+    padding-right: 0;
+    padding-left: 18px;
+    padding-bottom: 0;
+    margin: 0 0 0 0;
+    width: 74px;
+}
+
+.ch-plugin-limit-dropdown {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+/** YouTube Type **/
+.youtube {
+    padding-bottom: 18px;
+    width: 100%;
+}
+
+.ch-youtube-type-label {
+    padding-top: 6px;
+    padding-left: 10px;
+    margin: 0 0 0 0;
+    width: 11.33333%;
+}
+
+.ch-youtube-type-dropdown {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+.ch-youtube-path-label {
+    margin-top: 8px;
+    margin-right: 42px;
+    margin-left: 4px;
+    margin-bottom: 0;
+}
+
+.ch-youtube-path-input {
+    padding: 0 0 0 0;
+    margin: 5px 0 0 0;
+}
+
+#youtube-path-input {
+    width: 100%;
+}
+
+.ch-youtube-sort-label {
+    margin-left: 28px;
+    margin-right: 5px;
+}
+
+.ch-youtube-sort-dropdown {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+.ch-youtube-limit-label {
+    margin-left: 30px;
+}
+
+.ch-youtube-path-btn {
+    width: 15.5%;
 }

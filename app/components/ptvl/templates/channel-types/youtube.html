@@ -1,19 +1,56 @@
-<div class="row">
-    <div class="col-sm-1 ch-youtube-type-label" >
-        YouTube Type:
+<div ng-controller="youtubeDetailsCtrl">
+    <div class="row youtube">
+        <div class="col-sm-1 ch-youtube-type-label" >
+            YouTube Type:
+        </div>
+        <div class="col-sm-2 ch-youtube-type-dropdown">
+            <ui-select ng-model="ytType.selected" theme="bootstrap" ng-disabled="disabled" on-select="selectYtType(channel, ytType.selected)" reset-search-input="false">
+                <ui-select-match placeholder="{{channel.yt.type.name}}">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="ytType in ytTypes| filter: $select.search">
+                    <span ng-bind-html="ytType.name | highlight: $select.search"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        <div class="col-sm-1">
+            <button id="undoPlugin" class="btn btn-danger" ng-click="undoYtType(channel)">Undo</button>
+        </div>
+        <div class="col-sm-1 ch-youtube-path-label">
+            {{ input }}:
+        </div>
+        <div class="col-sm-4 ch-youtube-path-input">
+            <input type="text" name="path" id="youtube-path-input" ng-model="path" ng-click="backupPath(channel);">
+        </div>
+        <div class="col-sm-2 ch-youtube-path-btn text-right">
+            <button id="undoPath" class="btn btn-danger" ng-click="undoPath(channel)">Undo</button>
+            <button id="savePath" class="btn btn-primary" ng-click="savePath(channel, path)">Save</button>
+        </div>
     </div>
-    <div class="col-sm-3 ch-youtube-type-dropdown">
-        <ui-select ng-model="selectedYtType.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false">
-            <ui-select-match placeholder="{{channel.type.yt.type}}">{{$select.selected.type}}</ui-select-match>
-            <ui-select-choices repeat="ytType in ytTypes">
-                <div ng-bind-html="ytType.type" ng-click="changeYtType(channel, ytType)"></div>
-            </ui-select-choices>
-        </ui-select>
-    </div>
-    <div class="col-sm-1 ch-path-label">
-        Input:
-    </div>
-    <div class="col-sm-3 ch-path-input">
-        <input type="text" name="channelPath" ng-model="channel.rules.main[1]" style="width: auto;">
+    <div class="row youtube">
+        <div class="col-sm-1 ch-youtube-sort-label text-right" >
+            Sort:
+        </div>
+        <div class="col-sm-3 ch-youtube-sort-dropdown">
+            <ui-select ng-model="sort.selected" theme="bootstrap" ng-disabled="disabled" on-select="selectOrder(channel, sort.selected)" reset-search-input="'false'">
+                <ui-select-match placeholder="{{channel.yt.sort.order}}">{{$select.selected.order}}</ui-select-match>
+                <ui-select-choices repeat="order in sortOrder | filter: $select.search">
+                    <span ng-bind-html=" order.order| highlight: $select.search"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        <div class="col-sm-1 ch-youtube-limit-label text-right" >
+            Limit:
+        </div>
+        <div class="col-sm-3 ch-youtube-limit-dropdown">
+            <ui-select ng-model="limit.selected" theme="bootstrap" ng-disabled="disabled" on-select="selectLimit(channel, limit.selected)" reset-search-input="'false'">
+                <ui-select-match placeholder="{{channel.yt.limit.limit}}">{{$select.selected.limit}}</ui-select-match>
+                <ui-select-choices repeat="limit in feedLimit | filter: $select.search">
+                    <span ng-bind-html="limit.limit| highlight: $select.search"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        <div class="col-sm-2" ng-hide="saved">
+            <h6 class="text-muted bg-danger">Youtube path may have been changed, without being saved!</h6>
+        </div>
     </div>
 </div>
+

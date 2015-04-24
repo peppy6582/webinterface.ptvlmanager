@@ -10,15 +10,23 @@ define(['./ptvl'], function (ptvlControllers) {
         }
     }
 
-    ptvlControllers.controller('channelDetailsCtrl', ['$scope', 'pluginList', function ($scope, pluginList) {
+    ptvlControllers.controller('channelDetailsCtrl', ['$scope', 'lockFactory', function ($scope, lockFactory) {
 
-        pluginList.async().then(function (d) {
-            $scope.plugins = d;
-        });
+        var channelLocked =
+        {
+            channel: $scope.channel.channel,
+            locked: true
+        };
+
+        lockFactory.addLock(channelLocked);
+
+        $scope.channel.locked = lockFactory.getLocked($scope.channel.channel);
+
+        $scope.channelLocked = 'Unlock';
 
         $scope.type = {};
 
-        $scope.backup = [];
+        $scope.backup = {};
 
         $scope.types = [
             {type: 'Playlist',                  value: 0,   templateUrl: '/app/components/ptvl/templates/channel-types/playlist.html'},
@@ -41,53 +49,16 @@ define(['./ptvl'], function (ptvlControllers) {
             {type: 'Global Settings',           value: 99,  templateUrl: '/app/components/ptvl/templates/channel-types/plugin.html'}
         ];
 
-        console.log($scope.channel);
         $scope.channel.type = chType($scope.channel.type, $scope.types);
-        console.log($scope.channel.type);
 
-        $scope.sortOrder = [
-            {order: 'Default',  value: 0},
-            {order: 'Random',   value: 1},
-            {order: 'Reverse',  value: 2}
-        ];
-
-        $scope.feedLimit = [
-            {limit: '25',   value: 25},
-            {limit: '50',   value: 50},
-            {limit: '100',  value: 100},
-            {limit: '150',  value: 150},
-            {limit: '200',  value: 200},
-            {limit: '250',  value: 250},
-            {limit: '500',  value: 500},
-            {limit: '1000', value: 1000}
-        ];
-
-
-        if (parseInt($scope.channel.type.value) == 10) {
-
-            $scope.ytTypes = [
-                {type: 'Channel/User', value: 1},
-                {type: 'Playlist', value: 2},
-                {type: 'New Subs', value: 3},
-                {type: 'Favorites', value: 4},
-                {type: 'Search (Safe)', value: 5},
-                {type: 'Blank', value: 6},
-                {type: 'Multi Playlist', value: 7},
-                {type: 'Multi Channel', value: 8},
-                {type: 'Raw (Gdata)', value: 9}
-            ];
-
-            $scope.channel.type.yt = $scope.ytTypes[$scope.channel.rules.main[2]];
-            console.log($scope.channel);
-        }
-
-        $scope.onSelect = function (channel, type) {
-            console.log(type);
+        // When a new type is selected, update the channel
+        $scope.selectType = function (channel, type) {
             $scope.backup.type = channel.type;
             console.log('Channel type was backup up as: ',$scope.backup.type);
             channel.type = chType(type.value, $scope.types);
-            console.log(channel.type);
+            console.log('Channel type was changed to: ',channel.type);
         };
+
 
         $scope.undo = function (channel){
             var r = confirm("Are you sure you want to undo changes?");
@@ -99,9 +70,39 @@ define(['./ptvl'], function (ptvlControllers) {
             return channel;
         };
 
+        $scope.commit = function (channel){
+            var r = confirm("Are you sure you want to commit channel:"+ channel.channel + " changes?");
+            if(r == true) {
+                $scope.channel.locked = lockFactory.toggleLock($scope.channel.channel);
+                $scope.channelLocked = 'Unlock';
+                $scope.channel = channel;
+                $scope.channel.changed = "True";
+                console.log($scope.channels);
 
+            }
+            return channel;
+        };
 
-
+        $scope.lock = function (channel)
+        {
+            if($scope.channel.locked)
+            {
+                console.log($scope.channel.locked);
+                var r = confirm("Are you sure you want to "+$scope.channelLocked.toLowerCase()+" channel "+ channel.channel +"?");
+                if(r == true) {
+                    $scope.channelLocked = 'Lock';
+                    $scope.channel.locked = lockFactory.toggleLock($scope.channel.channel);
+                }
+            }
+            else if(!$scope.channel.locked)
+            {
+                var r = confirm("Are you sure you want to "+$scope.channelLocked.toLowerCase()+" channel "+ channel.channel);
+                if(r == true) {
+                    $scope.channelLocked = 'Unlock';
+                    $scope.channel.locked = lockFactory.toggleLock($scope.channel.channel);
+                }
+            }
+        }
 
     }]);
 });

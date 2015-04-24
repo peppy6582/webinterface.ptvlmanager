@@ -1,4 +1,6 @@
 define([
     './channels',
-    './channelDetails'
+    './channelDetails',
+    './channel-types/plugin',
+    './channel-types/youtube'
 ], function () {});

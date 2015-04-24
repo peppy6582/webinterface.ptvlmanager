@@ -1,4 +1,5 @@
 define([
     './settingsXml',
-    './plugins'
+    './plugins',
+    './lock'
 ], function () {});

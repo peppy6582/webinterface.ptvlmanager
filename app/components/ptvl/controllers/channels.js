@@ -5,9 +5,19 @@ define(['./ptvl'], function (ptvlControllers) {
         return this.indexOf(str) != -1;
     };
 
-    Array.max = function ( array ) {
-        return Math.max.apply( Math, array );
-    };
+    function replaceSpecial (file) {
+        var find = '&';
+        var re = new RegExp(find, 'g');
+        file = file.replace(re, '&amp;');
+        return file;
+    }
+
+    function writeToFile(string){
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var fh = fso.OpenTextFile("settings.xml", 8, false, 0);
+        fh.WriteLine(string);
+        fh.Close();
+    }
 
     function cleanArray(actual){
         var newArray = new Array();
@@ -19,40 +29,18 @@ define(['./ptvl'], function (ptvlControllers) {
         return newArray;
     }
 
-    ptvlControllers.controller('channelCtrl', ['$scope', '$http', 'settingsList', 'pluginList', function ($scope, $http, settingsList, pluginList) {
-
-        $scope.sortableOptions = {
-            handle: ' .handle',
-            update: function(e, ui) {
-                if (ui.item.sortable.model == "can't be moved")
-                {
-                    ui.item.sortable.cancel();
-                    alert('You cannot move that one here');
-                }
-                else
-                {
-                    ui.item.sortable.model.channel = ui.item.sortable.dropindex;
-                }
-            }
-            // items: ' .panel:not(.panel-heading)'
-            // axis: 'y'
-        };
+    ptvlControllers.controller('channelCtrl', ['$scope', '$state', '$http', 'settingsList', function ($scope, $state, $http, settingsList) {
 
         $scope.channels = [];
         $scope.loadingChannels = [];
+
+        $scope.oneAtATime = true;
 
         settingsList.async().then(function (d) {
             $scope.settings = d;
         });
 
         $scope.showContent = function ($fileContent) {
-
-            function replaceSpecial (file) {
-                var find = '&';
-                var re = new RegExp(find, 'g');
-                file = file.replace(re, '&amp;');
-                return file;
-            }
 
             $scope.settingsFile = replaceSpecial($fileContent);
             var x2js = new X2JS();
@@ -87,13 +75,15 @@ define(['./ptvl'], function (ptvlControllers) {
 
                     // If the setting ID IS a number, send it to a real channel object
                     else {
-                        $scope.channelNumbers.push(id.split('_')[1]);
+
 
                         var channelNum = parseInt(id.split('_')[1]);
                         var idNo = parseInt(id.split('_')[2]);
 
                         // If the channel doesn't exist, create it
                         if (typeof $scope.channels[channelNum] === 'undefined') {
+
+                            $scope.channelNumbers.push(id.split('_')[1]);
 
                             $scope.channels[channelNum] =
                             {
@@ -193,33 +183,48 @@ define(['./ptvl'], function (ptvlControllers) {
         };
 
 
-        $scope.CreateXMLDoc = function () {
+        $scope.clearChannels = function()
+        {
+            if($scope.channels != 'undefined') {
+                var r = confirm("Are you sure you want to load new channels?");
+                if(r == true) {
+                    $state.reload();
+                }
+            }
+        };
+
+        $scope.saveSettings = function () {
+            var textToWrite = '<settings>';
+
+            var settings = [];
+
+            settings.push(textToWrite);
 
             $scope.newChannels = $scope.channels;
-
             console.log($scope.newChannels);
 
-            if (document.implementation.createDocument &&
-                document.implementation.createDocumentType)
-            {
-                var xmlDoc = document.implementation.createDocument ("", "settings");
+            var i = 0;
 
-                var i = 1;
+            var q = $scope.channelNumbers.length;
 
-                var q = Array.max( $scope.channelNumbers );
+            console.log('This is the channel count: ' + q);
 
-                q = q + 2;
+            while (i <= q) {
+                if (typeof $scope.newChannels[i] != 'undefined') {
 
-                console.log('This is the channel count: ' + q);
+                    // Channel Type
+                    if (typeof $scope.newChannels[i].settings != 'undefined') {
+                        console.log('There will be some global application settings passed into this file');
+                    }
+                    else
+                    {
+                        var type = '<setting id="Channel_'+$scope.newChannels[i].channel+'_type" value="'+$scope.newChannels[i].type.value+'" />';
+                        console.log(type);
+                        console.log($scope.newChannels[i]);
+                        settings.push(type);
+                    }
 
-                while (i <= q) {
-                    if(typeof $scope.newChannels[i] != 'undefined') {
-
-                        // Channel Type
-                        var typeNode = xmlDoc.createElement("setting");
-                        typeNode.setAttribute("id", "Channel_"+$scope.newChannels[i].channel+"_type");
-                        typeNode.setAttribute("value", $scope.newChannels[i].type);
-                        xmlDoc.documentElement.appendChild(typeNode);
+                    if (typeof $scope.newChannels[i].rules != 'undefined') {
 
                         // Main Rules
                         if(typeof $scope.newChannels[i].rules.main != 'undefined') {
@@ -229,27 +234,21 @@ define(['./ptvl'], function (ptvlControllers) {
                             for(mrcst in $scope.newChannels[i].rules.main) {
                                 if ($scope.newChannels[i].rules.main.hasOwnProperty(mrcst))
                                 {
-                                    console.log('This is the main rule I am working on: ', $scope.newChannels[i].rules.main[mrcst]);
-                                    var mainRuleNode = [];
-                                    mainRuleNode[mrcst] = xmlDoc.createElement("setting");
-                                    mainRuleNode[mrcst].setAttribute("id", "Channel_"+$scope.newChannels[i].channel+"_"+mrcst);
-                                    mainRuleNode[mrcst].setAttribute("value", $scope.newChannels[i].rules.main[mrcst]);
-                                    xmlDoc.documentElement.appendChild(mainRuleNode[mrcst]);
+
+                                    var mainRule = '<setting id="Channel_'+$scope.newChannels[i].channel+'_'+mrcst+'" '+ 'value="'+$scope.newChannels[i].rules.main[mrcst]+'" />';
+                                    console.log(mainRule);
+                                    settings.push(mainRule);
                                     ++mrcst;
                                 }
                             }
                         }
-                        else
-                        {
-                            console.log("We didn't find any main rule here: ", $scope.newChannels[i].rules);
-                        }
 
                         // Rule Count
                         if(typeof $scope.newChannels[i].rules.count != 'undefined') {
-                            var ruleCountNode = xmlDoc.createElement("setting");
-                            ruleCountNode.setAttribute("id", "Channel_"+$scope.newChannels[i].channel+"_rulecount");
-                            ruleCountNode.setAttribute("value", $scope.newChannels[i].rules.count);
-                            xmlDoc.documentElement.appendChild(ruleCountNode);
+
+                            var ruleCount = '<setting id="Channel_'+$scope.newChannels[i].channel+'_rulecount" '+ 'value="'+$scope.newChannels[i].rules.count+'" />';
+                            console.log(ruleCount);
+                            settings.push(ruleCount);
                         }
 
                         // Sub Rules
@@ -260,24 +259,20 @@ define(['./ptvl'], function (ptvlControllers) {
                             for (srcst in $scope.newChannels[i].rules.sub) {
                                 if ($scope.newChannels[i].rules.sub.hasOwnProperty(srcst))
                                 {
-                                    console.log('This is the sub rule I am working on: ', $scope.newChannels[i].rules.sub[srcst]);
-                                    var subRuleNode = [];
-                                    subRuleNode[srcst] = xmlDoc.createElement("setting");
-                                    subRuleNode[srcst].setAttribute("id", "Channel_"+$scope.newChannels[i].channel+"_rule_"+ srcst +"_id");
-                                    subRuleNode[srcst].setAttribute("value", $scope.newChannels[i].rules.sub[srcst].id);
-                                    xmlDoc.documentElement.appendChild(subRuleNode[srcst]);
+
+                                    var subRule = '<setting id="Channel_'+$scope.newChannels[i].channel+'_rule_'+ srcst +'_id" '+ 'value="'+$scope.newChannels[i].rules.sub[srcst].id+'" />';
+                                    console.log(subRule);
+                                    settings.push(subRule);
 
                                     // sroptcst = SubRuleOptionsCountStart
                                     var sroptcst = 1;
                                     for (sroptcst in $scope.newChannels[i].rules.sub[srcst].options) {
                                         if ($scope.newChannels[i].rules.sub[srcst].options.hasOwnProperty(sroptcst))
                                         {
+                                            var subRuleOpt = '<setting id="Channel_'+$scope.newChannels[i].channel+'_rule_'+$scope.newChannels[i].rules.sub[srcst].id +'_opt_'+sroptcst+'" value="'+$scope.newChannels[i].rules.sub[srcst].options[sroptcst]+'" />';
+                                            console.log(subRuleOpt);
+                                            settings.push(subRuleOpt);
                                             console.log('This sub rule has options!');
-                                            var subRuleOptNode = [];
-                                            subRuleOptNode[sroptcst] = xmlDoc.createElement("setting");
-                                            subRuleOptNode[sroptcst].setAttribute("id", "Channel_" + $scope.newChannels[i].channel + "_rule_" + $scope.newChannels[i].rules.sub[srcst].id + "_opt_" + sroptcst);
-                                            subRuleOptNode[sroptcst].setAttribute("value", $scope.newChannels[i].rules.sub[srcst].options[sroptcst]);
-                                            xmlDoc.documentElement.appendChild(subRuleOptNode[sroptcst]);
 
                                             ++sroptcst;
                                         }
@@ -294,71 +289,74 @@ define(['./ptvl'], function (ptvlControllers) {
                                 }
                             }
                         }
-
-                        // Channel has been changed
-                        if(typeof $scope.newChannels[i].changed != 'undefined') {
-                            var changedNode = xmlDoc.createElement("setting");
-                            changedNode.setAttribute("id", "Channel_"+$scope.newChannels[i].channel+"_changed");
-                            changedNode.setAttribute("value", $scope.newChannels[i].changed);
-                            xmlDoc.documentElement.appendChild(changedNode);
-                        }
-
-                        // Channel Time
-                        if(typeof $scope.newChannels[i].time != 'undefined') {
-                            var timeNode = xmlDoc.createElement("setting");
-                            timeNode.setAttribute("id", "Channel_"+$scope.newChannels[i].channel+"_time");
-                            timeNode.setAttribute("value", $scope.newChannels[i].time);
-                            xmlDoc.documentElement.appendChild(timeNode);
-                        }
-
                     }
-                    i = i + 1;
-                }
 
-                // Global application settings
-                if(typeof $scope.newChannels[0] !='undefined') {
+
+
+                    // Channel has been changed
+                    if(typeof $scope.newChannels[i].changed != 'undefined') {
+                        var changed = '<setting id="Channel_'+$scope.newChannels[i].channel+'_changed" value="'+$scope.newChannels[i].changed+'" />';
+                        console.log(changed);
+                        settings.push(changed);
+                    }
+
+                    // Channel Time
+                     if(typeof $scope.newChannels[i].time != 'undefined') {
+                         var chTime = '<setting id="Channel_'+$scope.newChannels[i].channel+'_time" value="'+$scope.newChannels[i].time+'" />';
+                         console.log(chTime);
+                         settings.push(chTime);
+                    }
+
+                    // Set Reset Time
+                    if(typeof $scope.newChannels[i].reset != 'undefined') {
+                        var chTime = '<setting id="Channel_'+$scope.newChannels[i].channel+'_SetResetTime" value="'+$scope.newChannels[i].reset+'" />';
+                        console.log(chTime);
+                        settings.push(chTime);
+                    }
+                }
+                i++;
+            }
+
+            // Global application settings
+            if(typeof $scope.newChannels[0] !='undefined') {
+
+                if(typeof $scope.newChannels[0].settings != 'undefined') {
 
                     // Last Exit Time
                     if(typeof $scope.newChannels[0].settings.LastExitTime != 'undefined') {
                         console.log('Last Exit Time was: ' + $scope.newChannels[0].settings.LastExitTime);
-                        var lastExitNode = xmlDoc.createElement("setting");
-                        lastExitNode.setAttribute("id", "LastExitTime");
-                        lastExitNode.setAttribute("value", $scope.newChannels[0].settings.LastExitTime);
-                        xmlDoc.documentElement.appendChild(lastExitNode);
+                        var lastExit = '<setting id="LastExitTime" value="'+$scope.newChannels[0].settings.LastExitTime+'" />';
+                        settings.push(lastExit);
                     }
 
                     // Last Reset Time
                     if(typeof $scope.newChannels[0].settings.LastResetTime != 'undefined') {
-                        console.log('Last Reset Time was: ' + $scope.newChannels[0].settings.LastResetTime);
-                        var lastResetNode = xmlDoc.createElement("setting");
-                        lastResetNode.setAttribute("id", "LastResetTime");
-                        lastResetNode.setAttribute("value", $scope.newChannels[0].settings.LastResetTime);
-                        xmlDoc.documentElement.appendChild(lastResetNode);
+                        console.log('Last Exit Time was: ' + $scope.newChannels[0].settings.LastResetTime);
+                        var lastReset = '<setting id="LastResetTime" value="'+$scope.newChannels[0].settings.LastResetTime+'" />';
+                        settings.push(lastReset);
                     }
 
                     // Force Channel Reset
                     if(typeof $scope.newChannels[0].settings.ForceChannelReset != 'undefined') {
-                        console.log('Force Channel Reset: ' + $scope.newChannels[0].settings.ForceChannelReset);
-                        var channelResetNode = xmlDoc.createElement("setting");
-                        channelResetNode.setAttribute("id", "ForceChannelReset");
-                        channelResetNode.setAttribute("value", $scope.newChannels[0].settings.ForceChannelReset);
-                        xmlDoc.documentElement.appendChild(channelResetNode);
+                        console.log('Last Exit Time was: ' + $scope.newChannels[0].settings.ForceChannelReset);
+                        var forceReset = '<setting id="ForceChannelReset" value="'+$scope.newChannels[0].settings.ForceChannelReset+'" />';
+                        settings.push(forceReset);
                     }
 
                 }
 
-                var serializer = new XMLSerializer();
-                alert (serializer.serializeToString (xmlDoc));
-                console.log(xmlDoc);
-
-                var blob = new Blob([serializer.serializeToString (xmlDoc)], {type: "text/xml"});
-                saveAs(blob, "settings2.xml")
-
             }
-            else {
-                alert ("Your browser does not support this example");
-            }
+
+            var settingsClose = '</settings>';
+
+            settings.push(settingsClose);
+
+            settings = settings.join('');
+
+            var blob = new Blob([settings], {type: "text/plain"});
+
+
+            saveAs(blob, "settings2.xml");
         };
-
     }]);
 });

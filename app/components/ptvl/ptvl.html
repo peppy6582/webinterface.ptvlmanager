@@ -1,11 +1,14 @@
 <div class="ptvl">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-2">
             <label class="custom-file-upload">
                 <input type="file"  on-read-file="showContent($fileContent)" name="files[]" multiple/>
                 <i class="fa fa-cloud-upload btn btn-primary">Select settings2</i>
             </label>
             <output id="list"></output>
+        </div>
+        <div class="col-sm-4">
+            <button id="clear" class="btn btn-danger" ng-click="clearChannels()">Clear</button>
         </div>
         <div class="col-sm-6">
             <div class="input-group input-group-lg search-box">
@@ -18,10 +21,9 @@
     </div>
 
     <div class="row">
-        <ul accordion close-others="oneAtATime" ui-sortable="sortableOptions" ng-model="channels">
-            <li accordion-group ng-repeat="channel in channels track by $index">
+        <accordion close-others="oneAtATime">
+            <accordion-group ng-repeat="channel in channels track by $index">
                 <accordion-heading>
-                    <div class="handle btn btn-primary" ng-click="updateSort(channel.channel)"><i class="glyphicon glyphicon-move"></i></div>
                     <div class="col-sm-6">
                         Channel: {{channel.channel}}
                     </div>
@@ -30,10 +32,11 @@
                     </div>
                 </accordion-heading>
                 <div ng-include="'app/components/ptvl/templates/channel-details/channel-type.html'"></div>
-            </li>
-        </ul>
+                    <div ng-include="channel.type.templateUrl"></div>
+            </accordion-group>
+        </accordion>
         <div ng-show="channelsLoaded">
-            <button ng-click="CreateXMLDoc()" class="btn btn-primary">Save Changes</button>
+            <button ng-click="saveSettings()" class="btn btn-primary">Save Changes</button>
         </div>
     </div>
 </div>
