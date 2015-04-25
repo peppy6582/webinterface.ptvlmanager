@@ -9,58 +9,68 @@ define(['.././ptvl'], function (ptvlControllers) {
         }
     }
 
-    ptvlControllers.controller('youtubeDetailsCtrl', ['$scope', function ($scope) {
+    ptvlControllers.controller('youtubeDetailsCtrl', ['$scope', 'ruleFactory', function ($scope, ruleFactory) {
 
-        $scope.saved = true;
+        $scope.changed =
+        {
+            value: false,
+            input: false,
+            YtType: false,
+            sort: false,
+            limit: false
+        };
 
         $scope.backup = {};
         $scope.backup.yt = {};
         console.log('Channel backed up as youtube type here: ',$scope.backup);
 
+        // Adds a ytType object for attaching the selection
         $scope.ytType = {};
 
-        $scope.ytTypes = [
-            {name: 'Channel/User',      value: 1},
-            {name: 'Playlist',          value: 2},
-            {name: 'New Subs',          value: 3},
-            {name: 'Favorites',         value: 4},
-            {name: 'Search (Safe)',     value: 5},
-            {name: 'Blank',             value: 6},
-            {name: 'Multi Playlist',    value: 7},
-            {name: 'Multi Channel',     value: 8},
-            {name: 'Raw (Gdata)',       value: 9}
-        ];
+        // Returns all the YouTube channel types available at chYtTypes[0] as well as the channel's SPECIFIC type at chYtTypes[1]
+        var chYtTypes = ruleFactory.getYtType($scope.channel.rules.main[2] -1);
 
-        $scope.sortOrder = [
-            {order: 'Default',  value: 0},
-            {order: 'Random',   value: 1},
-            {order: 'Reverse',  value: 2}
-        ];
+        // Adds the YouTube channel types available to the scope, for the ui-select drop down
+        $scope.YtTypes = chYtTypes[0];
+        console.log('This is the YtType I found: ', chYtTypes[1]);
 
-        $scope.feedLimit = [
-            {limit: '25',   value: 25},
-            {limit: '50',   value: 50},
-            {limit: '100',  value: 100},
-            {limit: '150',  value: 150},
-            {limit: '200',  value: 200},
-            {limit: '250',  value: 250},
-            {limit: '500',  value: 500},
-            {limit: '1000', value: 1000}
-        ];
+        // Returns all the options for Sort at chSorts[0] as well as the channel's SPECIFIC sort at chSorts[1]
+        var chSorts = ruleFactory.getSort($scope.channel.rules.main[4]);
 
+        // Adds the Sort options available to the scope, for the ui-select drop down
+        $scope.sorts = chSorts[0];
+
+        // Adds a sort object for attaching the selection
+        $scope.sort = {};
+
+        // Returns all the options for Limit at chLimits[0] as well as the channel's SPECIFIC limit at chLimits[1]
+        var chLimits = ruleFactory.getLimit($scope.channel.rules.main[3]);
+
+        // Adds the Limits options available to the scope, for the ui-select drop down
+        $scope.limits = chLimits[0];
+
+        // Adds a limit object for attaching the selection
+        $scope.limit = {};
+
+        // Adds a temporary object for working in this type scope
         $scope.channel.yt =
         {
-            type: $scope.ytTypes[$scope.channel.rules.main[2] -1],
+            type: chYtTypes[1],
             path: $scope.channel.rules.main[1],
-            sort: $scope.sortOrder[$scope.channel.rules.main[4]],
-            limit: getLimit($scope.channel.rules.main[3], $scope.feedLimit)
+            sort: chSorts[1],
+            limit: chLimits[1]
         };
 
+        // Creates a value for mapping the YouTube type to the input label
         $scope.input = $scope.channel.yt.type.name;
+
+        // Creates a value for mapping the path (Username, Playlist, etc.)
         $scope.path = $scope.channel.yt.path;
+
+        // Backs up the path so it can be retrieved if you like
         $scope.backup.path = $scope.path;
 
-
+        // When a YouTube type is selected, backup the old type, clear the old type, and set it to the selected one
         $scope.selectYtType = function (channel, ytType)
         {
             $scope.backup.yt.type = channel.yt.type;
@@ -69,6 +79,7 @@ define(['.././ptvl'], function (ptvlControllers) {
             channel.yt.type = ytType;
         };
 
+        // Go back to the originally loaded type
         $scope.undoYtType = function (channel)
         {
             var r = confirm("Are you sure you want to undo changing the YouTube Type?");

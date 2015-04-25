@@ -13,9 +13,8 @@ define(['.././ptvl'], function (ptvlControllers) {
             subfolders: false,
             plugin: false,
             sort: false,
-            limit: false,
+            limit: false
         };
-
 
         $scope.backup = {};
         $scope.plugin ={};

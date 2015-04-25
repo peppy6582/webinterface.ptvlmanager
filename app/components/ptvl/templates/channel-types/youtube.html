@@ -1,4 +1,9 @@
 <div ng-controller="youtubeDetailsCtrl">
+    <div class="row youtube" ng-show="changed.input">
+        <div class="col-sm-12 col-md-12">
+            <h6 class="text-muted bg-danger">YouTube path may have been changed, without being saved!</h6>
+        </div>
+    </div>
     <div class="row youtube">
         <div class="col-sm-1 ch-youtube-type-label" >
             YouTube Type:
@@ -6,7 +11,7 @@
         <div class="col-sm-2 ch-youtube-type-dropdown">
             <ui-select ng-model="ytType.selected" theme="bootstrap" ng-disabled="disabled" on-select="selectYtType(channel, ytType.selected)" reset-search-input="false">
                 <ui-select-match placeholder="{{channel.yt.type.name}}">{{$select.selected.name}}</ui-select-match>
-                <ui-select-choices repeat="ytType in ytTypes| filter: $select.search">
+                <ui-select-choices repeat="ytType in YtTypes| filter: $select.search">
                     <span ng-bind-html="ytType.name | highlight: $select.search"></span>
                 </ui-select-choices>
             </ui-select>

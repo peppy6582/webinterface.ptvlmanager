@@ -41,6 +41,18 @@ define(['./ptvl'], function (ptvlServices) {
             {order: 'Reverse',  value: 2}
         ];
 
+        var YtTypes = [
+            {name: 'Channel/User',      value: 1},
+            {name: 'Playlist',          value: 2},
+            {name: 'New Subs',          value: 3},
+            {name: 'Favorites',         value: 4},
+            {name: 'Search (Safe)',     value: 5},
+            {name: 'Blank',             value: 6},
+            {name: 'Multi Playlist',    value: 7},
+            {name: 'Multi Channel',     value: 8},
+            {name: 'Raw (Gdata)',       value: 9}
+        ];
+
         return {
             getType: function (value) {
                 for(var i=0; i<types.length; i++) {
@@ -72,6 +84,18 @@ define(['./ptvl'], function (ptvlServices) {
                         chSorts.push(sorts[i]);
                         console.log(sorts[i]);
                         return chSorts;
+                    }
+                }
+            },
+            getYtType: function (value) {
+                for(var i=0; i<YtTypes.length; i++) {
+                    if(YtTypes[i].value === parseInt(value))
+                    {
+                        var chYtType = [];
+                        chYtType.push(YtTypes);
+                        chYtType.push(YtTypes[i]);
+                        console.log(YtTypes[i]);
+                        return chYtType;
                     }
                 }
             },
