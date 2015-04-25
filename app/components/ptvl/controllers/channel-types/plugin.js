@@ -1,16 +1,7 @@
 define(['.././ptvl'], function (ptvlControllers) {
     'use strict';
 
-    function getLimit(limit, limits) {
-        for(var i=0; i<limit.length; i++) {
-            if(limits[i].value === parseInt(limit))
-            {
-                return limits[i];
-            }
-        }
-    }
-
-    ptvlControllers.controller('pluginDetailsCtrl', ['$scope', 'pluginList', 'lockFactory' , function ($scope, pluginList, lockFactory) {
+    ptvlControllers.controller('pluginDetailsCtrl', ['$scope', 'pluginList', 'ruleFactory', function ($scope, pluginList, ruleFactory) {
 
         pluginList.async().then(function (d) {
             $scope.plugins = d;
@@ -20,27 +11,22 @@ define(['.././ptvl'], function (ptvlControllers) {
         {
             value: false,
             subfolders: false,
-            plugin: false
+            plugin: false,
+            sort: false,
+            limit: false,
         };
 
+
+        $scope.backup = {};
         $scope.plugin ={};
 
-        $scope.sortOrder = [
-            {order: 'Default',  value: 0},
-            {order: 'Random',   value: 1},
-            {order: 'Reverse',  value: 2}
-        ];
+        var chSorts = ruleFactory.getSort($scope.channel.rules.main[4]);
+        $scope.sorts = chSorts[0];
+        $scope.sort = {};
 
-        $scope.feedLimit = [
-            {limit: '25',   value: 25},
-            {limit: '50',   value: 50},
-            {limit: '100',  value: 100},
-            {limit: '150',  value: 150},
-            {limit: '200',  value: 200},
-            {limit: '250',  value: 250},
-            {limit: '500',  value: 500},
-            {limit: '1000', value: 1000}
-        ];
+        var chLimits = ruleFactory.getLimit($scope.channel.rules.main[3]);
+        $scope.limits = chLimits[0];
+        $scope.limit = {};
 
         // Get the length of the plugin path (to see if there are subfolders).  cpsf is "Count plugin sub folder"
         var cpsf = $scope.channel.rules.main[1].split("/").length;
@@ -55,21 +41,23 @@ define(['.././ptvl'], function (ptvlControllers) {
             var pluginPath = "plugin://" + channelplugin + "/" + subfolders.join("/");
             var subPath = subfolders.join("/");
 
+
+
             $scope.channel.plugin =
             {
                 addonid: channelplugin,
                 subfolder: subfolders,
                 subpath: subPath,
                 path: pluginPath,
-                sort: $scope.sortOrder[$scope.channel.rules.main[4]],
-                limit: getLimit($scope.channel.rules.main[3], $scope.feedLimit)
+                sort: chSorts[1],
+                limit: chLimits[1]
             };
             console.log("Plugin has subfolders: ",$scope.channel);
         }
         // If there aren't any SubFolders "plugin://plugin.video.*"
         else
         {
-            var myRegexp = /(plugin.video.*)/g;
+            myRegexp = /(plugin.video.*)/g;
             channelplugin = myRegexp.exec($scope.channel.rules.main[1]);
             channelplugin = channelplugin[1].substring(0, channelplugin[1].length);
             pluginPath = "plugin://" + channelplugin;
@@ -78,23 +66,21 @@ define(['.././ptvl'], function (ptvlControllers) {
             {
                 addonid: channelplugin,
                 path: pluginPath,
-                sort: $scope.sortOrder[$scope.channel.rules.main[4]],
-                limit: getLimit($scope.channel.rules.main[3], $scope.feedLimit)
+                sort: chSorts[1],
+                limit: chLimits[1]
             };
             console.log("Plugin has no subfolders: ",$scope.channel);
         }
 
         $scope.subfolders = $scope.channel.plugin.subpath;
 
-        $scope.backup = jQuery.extend(true, {}, $scope.channel);
-        console.log('Channel backed up as plugin type here: ',$scope.backup);
-
         $scope.selectPlugin = function (channel, plugin)
         {
+
+            $scope.backup.plugin = channel.plugin;
             $scope.changed.value = true;
             $scope.changed.plugin = true;
             console.log(channel, plugin);
-            $scope.backup.plugin = jQuery.extend(true, {}, channel.plugin);
             channel.plugin = {};
             channel.plugin.sort = $scope.backup.plugin.sort;
             channel.plugin.limit = $scope.backup.plugin.limit;
@@ -132,8 +118,6 @@ define(['.././ptvl'], function (ptvlControllers) {
             console.log('Subfolder path was backed up as: ', $scope.backup.subfolders);
         };
 
-
-
         $scope.undoSub = function ()
         {
             var r = confirm("Are you sure you want to undo changing the plugin subfolder path?");
@@ -144,18 +128,49 @@ define(['.././ptvl'], function (ptvlControllers) {
 
         $scope.selectLimit = function (channel, limit)
         {
+            $scope.changed.limit = true;
+            $scope.changed.value = true;
+            $scope.backup.limit = channel.plugin.limit;
             channel.plugin.limit = limit;
-
-            channel.rules.main[3] = limit.limit;
-
-            console.log($scope.backup);
             console.log(channel);
+        };
+
+        $scope.undoLimit = function ()
+        {
+            var r = confirm("Are you sure you want to undo changing the plugin sort?");
+            if(r == true) {
+                $scope.changed.limit = false;
+                $scope.changed.value = false;
+                $scope.limit.selected = $scope.backup.limit;
+            }
+        };
+
+        $scope.selectSort = function (channel, sort)
+        {
+            $scope.changed.sort = true;
+            $scope.changed.value = true;
+            $scope.backup.sort = channel.plugin.sort;
+            channel.plugin.sort = sort;
+            console.log(channel);
+        };
+
+        $scope.undoSort = function ()
+        {
+            var r = confirm("Are you sure you want to undo changing the plugin sort?");
+            if(r == true) {
+                $scope.changed.sort = false;
+                $scope.changed.value = false;
+                $scope.sort.selected = $scope.backup.sort;
+            }
         };
 
         $scope.save = function (channel, subfolders)
         {
+
             channel.plugin.subpath = subfolders;
             channel.rules.main[1] = 'plugin://'+channel.plugin.addonid+'/'+channel.plugin.subpath;
+            channel.rules.main[3] = channel.plugin.limit.value;
+            channel.rules.main[4] = channel.plugin.sort.value;
             console.log(channel);
             for ( var key in $scope.changed ) {
                 $scope.changed[key] = false;

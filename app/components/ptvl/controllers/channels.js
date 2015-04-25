@@ -29,7 +29,7 @@ define(['./ptvl'], function (ptvlControllers) {
         return newArray;
     }
 
-    ptvlControllers.controller('channelCtrl', ['$scope', '$state', '$http', 'settingsList', function ($scope, $state, $http, settingsList) {
+    ptvlControllers.controller('channelCtrl', ['$scope', '$state', '$http', 'settingsList', 'ruleFactory', function ($scope, $state, $http, settingsList, ruleFactory) {
 
         $scope.channels = [];
         $scope.loadingChannels = [];
@@ -46,9 +46,7 @@ define(['./ptvl'], function (ptvlControllers) {
             var x2js = new X2JS();
             $scope.loadingChannels = x2js.xml_str2json($scope.settingsFile);
 
-
             $scope.channelNumbers = [];
-
 
             for(var i = 0; i<$scope.loadingChannels.settings.setting.length; i++) {
                 if (typeof $scope.loadingChannels.settings.setting[i] != 'undefined') {
@@ -181,7 +179,6 @@ define(['./ptvl'], function (ptvlControllers) {
             $scope.channels = cleanArray($scope.channels);
             console.log($scope.channels);
         };
-
 
         $scope.clearChannels = function()
         {

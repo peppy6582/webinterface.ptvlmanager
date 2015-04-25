@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e1d51a2-b20b-4d0d-86d7-dbc5189f8b13" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/movies/services/moviesDetails.js" afterPath="$PROJECT_DIR$/app/components/movies/services/moviesDetails.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/movies/services/moviesList.js" afterPath="$PROJECT_DIR$/app/components/movies/services/moviesList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/ptvl/services/plugins.js" afterPath="$PROJECT_DIR$/app/components/ptvl/services/plugins.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/ptvl/services/settingsXml.js" afterPath="$PROJECT_DIR$/app/components/ptvl/services/settingsXml.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/television/services/showDetails.js" afterPath="$PROJECT_DIR$/app/components/television/services/showDetails.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/television/services/showList.js" afterPath="$PROJECT_DIR$/app/components/television/services/showList.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/ptvl/services/backup.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/ptvl/services/rules.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/css/app.css" afterPath="$PROJECT_DIR$/app/assets/css/app.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/ptvl/templates/channel-details/channel-type.html" afterPath="$PROJECT_DIR$/app/components/ptvl/templates/channel-details/channel-type.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/ptvl/controllers/channelDetails.js" afterPath="$PROJECT_DIR$/app/components/ptvl/controllers/channelDetails.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/ptvl/controllers/channels.js" afterPath="$PROJECT_DIR$/app/components/ptvl/controllers/channels.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/ptvl/services/index.js" afterPath="$PROJECT_DIR$/app/components/ptvl/services/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/ptvl/templates/channel-types/plugin.html" afterPath="$PROJECT_DIR$/app/components/ptvl/templates/channel-types/plugin.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/ptvl/controllers/channel-types/plugin.js" afterPath="$PROJECT_DIR$/app/components/ptvl/controllers/channel-types/plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/ptvl/ptvl.html" afterPath="$PROJECT_DIR$/app/components/ptvl/ptvl.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="webinterface.ptvlmanager.iws" />
@@ -28,38 +32,85 @@
     <favorites_list name="webinterface.ptvlmanager" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="moviesList.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/components/movies/controllers/moviesList.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="showDetails.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/components/television/services/showDetails.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="showList.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/components/television/services/showList.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46258503">
-              <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="ptvl.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/components/ptvl/ptvl.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-7.5">
+                  <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="plugin.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/components/ptvl/templates/channel-types/plugin.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-0.0">
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding>
+                    <element signature="n#style#0;n#button#0;n#div#0;n#div#3;n#div#0;n#!!top" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="rules.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/components/ptvl/services/rules.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="58" column="46" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="46" />
+                  <folding>
+                    <element signature="e#140#1746#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="channel-type.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/components/ptvl/templates/channel-details/channel-type.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-1.9615384">
+                  <caret line="3" column="159" selection-start-line="3" selection-start-column="159" selection-end-line="3" selection-end-column="159" />
+                  <folding>
+                    <element signature="n#style#0;n#button#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#button#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="channelDetails.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/components/ptvl/controllers/channelDetails.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.49317408">
+                  <caret line="59" column="45" selection-start-line="59" selection-start-column="45" selection-end-line="59" selection-end-column="45" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="plugin.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/components/ptvl/controllers/channel-types/plugin.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.9197952">
+                  <caret line="146" column="0" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#3725#3836#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -75,8 +126,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/components/ptvl/templates/youtubeType.html" />
-        <option value="$PROJECT_DIR$/app/components/ptvl/templates/chType/mixedgenreType.html" />
         <option value="$PROJECT_DIR$/app/components/ptvl/templates/chType/tvnetworkType.html" />
         <option value="$PROJECT_DIR$/app/components/ptvl/templates/chType/movieStudioType.html" />
         <option value="$PROJECT_DIR$/app/components/ptvl/templates/chType/tvGenreType.html" />
@@ -109,23 +158,25 @@
         <option value="$PROJECT_DIR$/app/components/ptvl/directives/index.js" />
         <option value="$PROJECT_DIR$/app/components/ptvl/controllers/index.js" />
         <option value="$PROJECT_DIR$/app/components/ptvl/templates/channel-header.html" />
-        <option value="$PROJECT_DIR$/app/components/ptvl/ptvl.html" />
         <option value="$PROJECT_DIR$/app/components/ptvl/controllers/channel-types/youtube.js" />
         <option value="$PROJECT_DIR$/app/components/ptvl/templates/channel-types/youtube.html" />
-        <option value="$PROJECT_DIR$/app/assets/css/app.css" />
-        <option value="$PROJECT_DIR$/app/components/ptvl/services/index.js" />
-        <option value="$PROJECT_DIR$/app/components/ptvl/controllers/channel-types/plugin.js" />
         <option value="$PROJECT_DIR$/app/components/ptvl/services/lock.js" />
-        <option value="$PROJECT_DIR$/app/components/ptvl/templates/channel-types/plugin.html" />
-        <option value="$PROJECT_DIR$/app/components/ptvl/templates/channel-details/channel-type.html" />
-        <option value="$PROJECT_DIR$/app/components/ptvl/controllers/channelDetails.js" />
-        <option value="$PROJECT_DIR$/app/components/ptvl/controllers/channels.js" />
         <option value="$PROJECT_DIR$/app/components/ptvl/services/settingsXml.js" />
         <option value="$PROJECT_DIR$/app/components/ptvl/services/plugins.js" />
         <option value="$PROJECT_DIR$/app/components/movies/services/moviesDetails.js" />
         <option value="$PROJECT_DIR$/app/components/movies/services/moviesList.js" />
         <option value="$PROJECT_DIR$/app/components/television/services/showDetails.js" />
         <option value="$PROJECT_DIR$/app/components/television/services/showList.js" />
+        <option value="$PROJECT_DIR$/app/components/ptvl/controllers/channels.js" />
+        <option value="$PROJECT_DIR$/app/components/ptvl/services/index.js" />
+        <option value="$PROJECT_DIR$/app/components/ptvl/services/backup.js" />
+        <option value="$PROJECT_DIR$/app/components/ptvl/services/rules.js" />
+        <option value="$PROJECT_DIR$/app/assets/css/app.css" />
+        <option value="$PROJECT_DIR$/app/components/ptvl/controllers/channel-types/plugin.js" />
+        <option value="$PROJECT_DIR$/app/components/ptvl/templates/channel-types/plugin.html" />
+        <option value="$PROJECT_DIR$/app/components/ptvl/templates/channel-details/channel-type.html" />
+        <option value="$PROJECT_DIR$/app/components/ptvl/ptvl.html" />
+        <option value="$PROJECT_DIR$/app/components/ptvl/controllers/channelDetails.js" />
       </list>
     </option>
   </component>
@@ -255,7 +306,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="movies" />
+              <option name="myItemId" value="ptvl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -277,7 +332,67 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="movies" />
+              <option name="myItemId" value="ptvl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="channel-types" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webinterface.ptvlmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webinterface.ptvlmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ptvl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="channel-details" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webinterface.ptvlmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webinterface.ptvlmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ptvl" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -303,11 +418,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="movies" />
+              <option name="myItemId" value="ptvl" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webinterface.ptvlmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webinterface.ptvlmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="movies" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -500,15 +637,22 @@
       <option name="project" value="LOCAL" />
       <updated>1429738162228</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="That was easy (made it work on WHATEVER port kodi uses)">
+      <created>1429911421041</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1429911421041</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24981412" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24981412" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33496732" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1921824" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -519,7 +663,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33503184" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -547,11 +690,12 @@
     <MESSAGE value="trying to fix this stupid case dumb github stuff" />
     <MESSAGE value="youTubeType and others should be fixed now" />
     <MESSAGE value="Channel Type directives now work, and you can undo type changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Channel Type directives now work, and you can undo type changes" />
+    <MESSAGE value="That was easy (made it work on WHATEVER port kodi uses)" />
+    <option name="LAST_COMMIT_MESSAGE" value="That was easy (made it work on WHATEVER port kodi uses)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -569,8 +713,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="32" column="14" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
           <folding>
-            <element signature="n#style#0;n#input#0;n#div#4;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#input#0;n#div#4;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#3;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -596,9 +740,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="49" column="39" selection-start-line="49" selection-start-column="39" selection-end-line="49" selection-end-column="39" />
           <folding>
-            <element signature="e#1496#6554#0" expanded="false" />
-            <element signature="e#11968#12235#0" expanded="false" />
-            <element signature="e#12347#12608#0" expanded="false" />
+            <element signature="e#11993#12260#0" expanded="false" />
+            <element signature="e#12372#12633#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -623,7 +766,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#3725#3836#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -781,96 +926,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6063408">
-          <caret line="153" column="1" selection-start-line="153" selection-start-column="1" selection-end-line="153" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/ptvl/controllers/channel-types/youtube.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21400264">
-          <caret line="67" column="39" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/ptvl/services/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/ptvl/ptvl.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="52" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/ptvl/templates/channel-types/plugin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="14" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#div#4;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/ptvl/controllers/channelDetails.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="82" column="27" selection-start-line="82" selection-start-column="27" selection-end-line="82" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/movies/controllers/movies.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/ptvl/templates/channel-details/channel-type.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9615384">
-          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/ptvl/controllers/channel-types/plugin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/ptvl/services/lock.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6819728">
-          <caret line="28" column="17" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/ptvl/controllers/channels.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26020408">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="e#1496#6554#0" expanded="false" />
-            <element signature="e#11968#12235#0" expanded="false" />
-            <element signature="e#12347#12608#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -883,14 +943,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/components/movies/services/moviesDetails.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23129252">
-          <caret line="8" column="62" selection-start-line="8" selection-start-column="62" selection-end-line="8" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/ptvl/services/plugins.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23129252">
           <caret line="8" column="62" selection-start-line="8" selection-start-column="62" selection-end-line="8" selection-end-column="62" />
@@ -924,8 +976,124 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/components/television/services/showList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46258503">
-          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/ptvl/controllers/channels.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="88" column="38" selection-start-line="88" selection-start-column="33" selection-end-line="88" selection-end-column="38" />
+          <folding>
+            <element signature="e#11993#12260#0" expanded="false" />
+            <element signature="e#12372#12633#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/ptvl/services/lock.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="10" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/ptvl/services/plugins.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55119455">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/ptvl/services/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/ptvl/controllers/channel-types/youtube.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="72" column="9" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="171" column="18" selection-start-line="171" selection-start-column="18" selection-end-line="171" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/ptvl/services/backup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.609215">
+          <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/ptvl/controllers/channel-types/plugin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9197952">
+          <caret line="146" column="0" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
+          <folding>
+            <element signature="e#3725#3836#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/ptvl/services/rules.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="58" column="46" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="46" />
+          <folding>
+            <element signature="e#140#1746#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/ptvl/templates/channel-types/plugin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#3;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/ptvl/templates/channel-details/channel-type.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.9615384">
+          <caret line="3" column="159" selection-start-line="3" selection-start-column="159" selection-end-line="3" selection-end-column="159" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/ptvl/ptvl.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.5">
+          <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/ptvl/controllers/channelDetails.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49317408">
+          <caret line="59" column="45" selection-start-line="59" selection-start-column="45" selection-end-line="59" selection-end-column="45" />
           <folding />
         </state>
       </provider>

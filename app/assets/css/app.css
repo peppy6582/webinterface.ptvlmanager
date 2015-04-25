@@ -1,3 +1,7 @@
+body {
+    background-color: #c3c3c3;
+}
+
 .btn-navbar {
     margin-right: 5px;
 }
@@ -97,13 +101,17 @@ input[type="file"] {
 }
 
 /* PsuedoTV Live */
+.ptvl {
+
+}
+
 .panel-default>.panel-heading {
     background-image: linear-gradient(to bottom,#3073AD 0,#286090 100%);
 }
 
 .panel-default>.panel-heading {
     color: #ffffff;
-    height: 34px;
+    height: auto;
 }
 
 .btn-primary {
@@ -119,13 +127,13 @@ input[type="file"] {
     padding-bottom: 18px;
 }
 
+.unlock {
+    padding-bottom: 18px;
+}
+
 .ch-type-label {
-    padding-top: 6px;
-    padding-right: 0;
     padding-left: 10px;
-    padding-bottom: 0;
-    margin: 0 0 0 0;
-    width: 5%;
+    width: 7%;
 }
 
 .ch-type-dropdown {
@@ -133,62 +141,51 @@ input[type="file"] {
     padding-left: 0;
 }
 
+.type-container {
+    background-color: #c3c3c3;
+    border-radius: 10px;
+    border: 2px solid #1772B1;
+    padding: 10px;
+}
+
 /** Plugin Type **/
 
+
+/** Plugin Rows **/
 .plugin {
     padding-bottom: 18px;
 }
 
 .ch-plugin-label {
-    padding-top: 6px;
-    padding-right: 0;
-    padding-left: 10px;
-    padding-bottom: 0;
-    margin: 0 0 0 0;
-    width: 68px;
+    padding-top: 8px;
 }
 
 .ch-plugin-dropdown {
-    padding: 0 0 0 0;
-    margin: 0 0 0 0;
+
 }
 
 .ch-plugin-path-label {
-    margin: 8px 4px 0 0;
-    width: 76px;
+    padding-top: 8px;
 }
 
 .ch-plugin-path-input {
-    padding: 0 0 0 0;
-    margin: 5px 0 0 0;
+    padding-top: 4px;
 }
 
 .ch-plugin-sort-label {
-    padding-top: 6px;
-    padding-right: 0;
-    padding-left: 10px;
-    padding-bottom: 0;
-    margin: 0 0 0 0;
-    width: 68px;
+    padding-top: 8px;
 }
 
 .ch-plugin-sort-dropdown {
-    padding: 0 0 0 0;
-    margin: 0 0 0 0;
+
 }
 
 .ch-plugin-limit-label {
-    padding-top: 6px;
-    padding-right: 0;
-    padding-left: 18px;
-    padding-bottom: 0;
-    margin: 0 0 0 0;
-    width: 74px;
+    padding-top: 8px;
 }
 
 .ch-plugin-limit-dropdown {
-    padding: 0 0 0 0;
-    margin: 0 0 0 0;
+
 }
 
 /** YouTube Type **/
