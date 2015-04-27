@@ -266,7 +266,7 @@ define(['./ptvl'], function (ptvlControllers) {
                                     for (sroptcst in $scope.newChannels[i].rules.sub[srcst].options) {
                                         if ($scope.newChannels[i].rules.sub[srcst].options.hasOwnProperty(sroptcst))
                                         {
-                                            var subRuleOpt = '<setting id="Channel_'+$scope.newChannels[i].channel+'_rule_'+$scope.newChannels[i].rules.sub[srcst].id +'_opt_'+sroptcst+'" value="'+$scope.newChannels[i].rules.sub[srcst].options[sroptcst]+'" />';
+                                            var subRuleOpt = '<setting id="Channel_'+$scope.newChannels[i].channel+'_rule_'+srcst+'_opt_'+sroptcst+'" value="'+$scope.newChannels[i].rules.sub[srcst].options[sroptcst]+'" />';
                                             console.log(subRuleOpt);
                                             settings.push(subRuleOpt);
                                             console.log('This sub rule has options!');

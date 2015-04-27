@@ -105,6 +105,10 @@ input[type="file"] {
 
 }
 
+.panel-group .panel {
+    overflow: visible;
+}
+
 .panel-default>.panel-heading {
     background-image: linear-gradient(to bottom,#3073AD 0,#286090 100%);
 }
@@ -146,6 +150,10 @@ input[type="file"] {
     border-radius: 10px;
     border: 2px solid #1772B1;
     padding: 10px;
+}
+
+.rules-container {
+    padding-bottom: 10px;
 }
 
 /** Plugin Type **/
@@ -238,4 +246,9 @@ input[type="file"] {
 
 .ch-youtube-path-btn {
     width: 15.5%;
+}
+
+/** Interleaving **/
+.interleaving {
+    padding-top: 10px;
 }
