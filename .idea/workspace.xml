@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e1d51a2-b20b-4d0d-86d7-dbc5189f8b13" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/movies/services/genres.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/ptvl/templates/channel-details/sub-rules.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/ptvl/controllers/subRules.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/css/app.css" afterPath="$PROJECT_DIR$/app/assets/css/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/ptvl/controllers/channels.js" afterPath="$PROJECT_DIR$/app/components/ptvl/controllers/channels.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/movies/services/index.js" afterPath="$PROJECT_DIR$/app/components/movies/services/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/ptvl/controllers/index.js" afterPath="$PROJECT_DIR$/app/components/ptvl/controllers/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/ptvl/templates/channel-types/plugin.html" afterPath="$PROJECT_DIR$/app/components/ptvl/templates/channel-types/plugin.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/ptvl/controllers/channel-types/plugin.js" afterPath="$PROJECT_DIR$/app/components/ptvl/controllers/channel-types/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/ptvl/services/rules.js" afterPath="$PROJECT_DIR$/app/components/ptvl/services/rules.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="webinterface.ptvlmanager.iws" />
@@ -35,10 +26,22 @@
     <splitter split-orientation="horizontal" split-proportion="0.8277635">
       <split-first>
         <leaf>
-          <file leaf-file-name="sub-rules.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="plugin.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/components/ptvl/controllers/channel-types/plugin.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.61822987">
+                  <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
+                  <folding>
+                    <element signature="e#333#478#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="sub-rules.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/components/ptvl/templates/channel-details/sub-rules.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.39344263">
+                <state vertical-scroll-proportion="-11.076923">
                   <caret line="44" column="38" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
                   <folding>
                     <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#accordion-group#0;n#accordion#0;n#div#0;n#!!top" expanded="true" />
@@ -132,7 +135,7 @@
           <file leaf-file-name="moviesList.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/components/movies/services/moviesList.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.3364116">
+                <state vertical-scroll-proportion="0.336856">
                   <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
                   <folding />
                 </state>
@@ -197,7 +200,6 @@
         <option value="$PROJECT_DIR$/app/main.js" />
         <option value="$PROJECT_DIR$/app/components/ptvl/templates/channel-types/youtube.html" />
         <option value="$PROJECT_DIR$/app/components/ptvl/controllers/channel-types/youtube.js" />
-        <option value="$PROJECT_DIR$/app/components/ptvl/controllers/channel-types/plugin.js" />
         <option value="$PROJECT_DIR$/app/components/ptvl/templates/sub-rules.html" />
         <option value="$PROJECT_DIR$/app/components/ptvl/templates/channel-types/plugin.html" />
         <option value="$PROJECT_DIR$/app/components/ptvl/controllers/index.js" />
@@ -208,6 +210,7 @@
         <option value="$PROJECT_DIR$/app/components/movies/services/index.js" />
         <option value="$PROJECT_DIR$/app/assets/css/app.css" />
         <option value="$PROJECT_DIR$/app/components/ptvl/templates/channel-details/sub-rules.html" />
+        <option value="$PROJECT_DIR$/app/components/ptvl/controllers/channel-types/plugin.js" />
       </list>
     </option>
   </component>
@@ -294,6 +297,84 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webinterface.ptvlmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webinterface.ptvlmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ptvl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webinterface.ptvlmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webinterface.ptvlmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ptvl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webinterface.ptvlmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webinterface.ptvlmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ptvl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="channel-types" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -551,13 +632,20 @@
       <option name="project" value="LOCAL" />
       <updated>1429933177337</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Most channel &quot;options&quot; working (only for plugin channel)">
+      <created>1430167053464</created>
+      <option name="number" value="00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1430167053464</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33496732" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4386503" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24981412" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -573,7 +661,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1921824" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33496732" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -600,7 +687,8 @@
     <MESSAGE value="Channel Type directives now work, and you can undo type changes" />
     <MESSAGE value="That was easy (made it work on WHATEVER port kodi uses)" />
     <MESSAGE value="Plugin type completely finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="Plugin type completely finished" />
+    <MESSAGE value="Most channel &quot;options&quot; working (only for plugin channel)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Most channel &quot;options&quot; working (only for plugin channel)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -926,16 +1014,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/ptvl/controllers/channel-types/plugin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.8746702">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="e#333#478#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/ptvl/ptvl.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34836066">
@@ -967,7 +1045,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/components/movies/services/moviesList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3364116">
+        <state vertical-scroll-proportion="0.336856">
           <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
           <folding />
         </state>
@@ -999,7 +1077,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/components/ptvl/templates/channel-details/sub-rules.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39344263">
+        <state vertical-scroll-proportion="-11.076923">
           <caret line="44" column="38" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
           <folding>
             <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#accordion-group#0;n#accordion#0;n#div#0;n#!!top" expanded="true" />
@@ -1026,6 +1104,16 @@
             <element signature="n#style#0;n#select#0;n#div#2;n#div#1;n#accordion-group#0;n#accordion#0;n#div#0;n#div#0;n#div#6;n#accordion-group#0;n#accordion#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#1;n#div#6;n#accordion-group#0;n#accordion#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#0;n#div#7;n#accordion-group#0;n#accordion#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/ptvl/controllers/channel-types/plugin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61822987">
+          <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
+          <folding>
+            <element signature="e#333#478#0" expanded="false" />
           </folding>
         </state>
       </provider>

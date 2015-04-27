@@ -133,11 +133,10 @@ define(['.././ptvl'], function (ptvlControllers) {
 
         $scope.save = function (channel, subfolders)
         {
-
             channel.plugin.subpath = subfolders;
             channel.rules.main[1] = 'plugin://'+channel.plugin.addonid+'/'+channel.plugin.subpath;
-            channel.rules.main[3] = channel.plugin.limit.value;
-            channel.rules.main[4] = channel.plugin.sort.value;
+            channel.rules.main[3] = $scope.changes.limit;
+            channel.rules.main[4] = $scope.changes.sort;
             console.log(channel);
             for ( var key in $scope.changed ) {
                 $scope.changed[key] = false;
