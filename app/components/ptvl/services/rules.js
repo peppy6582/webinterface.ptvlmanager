@@ -4,24 +4,24 @@ define(['./ptvl'], function (ptvlServices) {
     ptvlServices.factory('ruleFactory', [function () {
 
         var types = [
-            {type: 'Playlist',                  value: 0,   templateUrl: '/app/components/ptvl/templates/channel-types/playlist.html'},
-            {type: 'TV Network',                value: 1,   templateUrl: '/app/components/ptvl/templates/channel-types/playlist.html'},
-            {type: 'Movie Studio',              value: 2},
-            {type: 'TV Genre',                  value: 3},
-            {type: 'Movie Genre',               value: 4},
-            {type: 'Mixed Genre (TV & Movie)',  value: 5},
-            {type: 'TV Show',                   value: 6},
-            {type: 'Directory',                 value: 7,   templateUrl: '/app/components/ptvl/templates/channel-types/directory.html'},
-            {type: 'LiveTV',                    value: 8},
-            {type: 'InternetTV',                value: 9},
-            {type: 'YoutubeTV',                 value: 10,  templateUrl: '/app/components/ptvl/templates/channel-types/youtube.html'},
-            {type: 'RSS',                       value: 11,  templateUrl: '/app/components/ptvl/templates/channel-types/rss.html'},
-            {type: 'Music',                     value: 12},
-            {type: 'Music Videos',              value: 13},
-            {type: 'Extras',                    value: 14},
-            {type: 'Plugin',                    value: 15,  templateUrl: '/app/components/ptvl/templates/channel-types/plugin.html'},
-            {type: 'Playon',                    value: 16},
-            {type: 'Global Settings',           value: 99,  templateUrl: '/app/components/ptvl/templates/channel-types/plugin.html'}
+            {type: 'Playlist (WIP-4/28)',                     value: 0,   templateUrl: '/app/components/ptvl/templates/channel-types/playlist.html'},
+            {type: 'TV Network (WIP-4/28)',                   value: 1,   templateUrl: '/app/components/ptvl/templates/channel-types/tv-studio.html'},
+            {type: 'Movie Studio (Not Started)',              value: 2},
+            {type: 'TV Genre ((Not Started)',                 value: 3,   templateUrl: '/app/components/ptvl/templates/channel-types/tv-genre.html'},
+            {type: 'Movie Genre (Not Started)',               value: 4},
+            {type: 'Mixed Genre (Not Started)(TV & Movie)',   value: 5},
+            {type: 'TV Show (Not Started)',                   value: 6},
+            {type: 'Directory (Not Started)',                 value: 7,   templateUrl: '/app/components/ptvl/templates/channel-types/directory.html'},
+            {type: 'LiveTV (Not Started)',                    value: 8},
+            {type: 'InternetTV (Not Started)',                value: 9},
+            {type: 'YoutubeTV',                               value: 10,  templateUrl: '/app/components/ptvl/templates/channel-types/youtube.html'},
+            {type: 'RSS (Not Started)',                       value: 11,  templateUrl: '/app/components/ptvl/templates/channel-types/rss.html'},
+            {type: 'Music (Not Started)',                     value: 12},
+            {type: 'Music Videos (Not Started)',              value: 13},
+            {type: 'Extras (Not Started)',                    value: 14},
+            {type: 'Plugin',                                  value: 15,  templateUrl: '/app/components/ptvl/templates/channel-types/plugin.html'},
+            {type: 'Playon (Not Started)',                    value: 16},
+            {type: 'Global Settings (Not Started)',           value: 99,  templateUrl: '/app/components/ptvl/templates/channel-types/plugin.html'}
         ];
 
         var subRules = [
@@ -64,6 +64,7 @@ define(['./ptvl'], function (ptvlServices) {
         ];
 
         var YtTypes = [
+            {name: 'None',              value: 0},
             {name: 'Channel/User',      value: 1},
             {name: 'Playlist',          value: 2},
             {name: 'New Subs',          value: 3},

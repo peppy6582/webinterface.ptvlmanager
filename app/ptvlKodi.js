@@ -15,6 +15,8 @@ define([
     './components/television/services/index',
     './components/movies/controllers/index',
     './components/television/controllers/index',
+    './components/kodi/services/index',
+    './components/kodi/controllers/index',
     './components/ptvl/filters/index',
     './components/ptvl/directives/index',
     './components/ptvl/services/index',

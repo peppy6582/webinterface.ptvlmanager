@@ -53,6 +53,7 @@ define(['./ptvl'], function (ptvlControllers) {
         $scope.commit = function (channel){
             var r = confirm("Are you sure you want to commit channel "+ channel.channel + " changes?");
             if(r == true) {
+                alert("Make sure to actually download your new settings2.xml at the bottom!");
                 $scope.channel.locked = lockFactory.toggleLock($scope.channel.channel);
                 $scope.channelLocked = 'Unlock';
                 $scope.channel = channel;

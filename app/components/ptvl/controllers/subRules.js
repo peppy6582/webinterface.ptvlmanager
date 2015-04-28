@@ -15,12 +15,18 @@ define(['./ptvl'], function (ptvlControllers) {
 
         $scope.subsLocked = true;
 
-        $scope.rules = ruleFactory.getSubRules($scope.channel.rules);
+        if(isNaN($scope.channel.channel)) {
 
-        if(typeof($scope.rules[13].value.options[1]) !== 'undefined') {
-            $scope.rules[13].value.options[1] = parseInt($scope.rules[13].value.options[1]) / 60;
+        }
+        else {
+            $scope.rules = ruleFactory.getSubRules($scope.channel.rules);
+
+            if (typeof($scope.rules[13].value.options[1]) !== 'undefined') {
+                $scope.rules[13].value.options[1] = parseInt($scope.rules[13].value.options[1]) / 60;
+            }
         }
 
+        $scope.wip = true;
 
         $scope.unlockSubs = function () {
             $scope.subsLocked = false;

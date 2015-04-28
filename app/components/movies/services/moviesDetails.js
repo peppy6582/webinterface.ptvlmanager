@@ -1,7 +1,7 @@
 define(['./movies'], function (moviesServices) {
     'use strict';
 
-    moviesServices.factory('moviesDetails', ['$http', '$location', function ($http, $location) {
+    moviesServices.factory('moviesDetails', ['$http', function ($http) {
 
         var protocol = window.location.protocol;
         var host = window.location.host;

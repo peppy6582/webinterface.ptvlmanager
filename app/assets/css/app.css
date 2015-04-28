@@ -156,6 +156,10 @@ input[type="file"] {
     padding-bottom: 10px;
 }
 
+.sort-limit {
+    padding-top: 10px;
+}
+
 /** Plugin Type **/
 
 
@@ -246,6 +250,11 @@ input[type="file"] {
 
 .ch-youtube-path-btn {
     width: 15.5%;
+}
+
+/** Advanced Options **/
+.advanced-options {
+    padding-bottom: 18px;
 }
 
 /** Interleaving **/

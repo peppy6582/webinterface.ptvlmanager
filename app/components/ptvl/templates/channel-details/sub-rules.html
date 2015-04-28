@@ -89,12 +89,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row advanced-options">
                 <div class="col-sm-6">
-                    <button ng-disabled="subsLocked" style="width: 100%;" button-toggle="active"
+                    <button ng-disabled="subsLocked||wip" style="width: 100%;" button-toggle="active"
                             class="btn btn-primary" ng-click="rules[6].status = !rules[6].status">
                         <input ng-disabled="subsLocked" class="pull-right" id="rule6" type="checkbox" ng-model="rules[6].status"/>
-                        Interleaving Enabled
+                        Interleaving Enabled (WIP)
                     </button>
                     <div ng-hide="!rules[6].status">
                         <accordion>
@@ -131,10 +131,10 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <button ng-disabled="subsLocked" style="width: 100%;" button-toggle="active"
+                    <button ng-disabled="subsLocked||wip" style="width: 100%;" button-toggle="active"
                             class="btn btn-primary" ng-click="rules[3].status = !rules[3].status">
                         <input ng-disabled="subsLocked" class="pull-right" id="rule3" type="checkbox" ng-model="rules[3].status"/>
-                        Best Effort Scheduling Enabled
+                        Best Effort Scheduling Enabled (WIP)
                     </button>
                     <div ng-hide="!rules[3].status">
                         <accordion>

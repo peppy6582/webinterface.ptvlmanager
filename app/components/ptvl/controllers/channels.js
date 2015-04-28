@@ -12,13 +12,6 @@ define(['./ptvl'], function (ptvlControllers) {
         return file;
     }
 
-    function writeToFile(string){
-        var fso = new ActiveXObject("Scripting.FileSystemObject");
-        var fh = fso.OpenTextFile("settings.xml", 8, false, 0);
-        fh.WriteLine(string);
-        fh.Close();
-    }
-
     function cleanArray(actual){
         var newArray = new Array();
         for(var i = 0; i<actual.length; i++){
@@ -29,7 +22,7 @@ define(['./ptvl'], function (ptvlControllers) {
         return newArray;
     }
 
-    ptvlControllers.controller('channelCtrl', ['$scope', '$state', '$http', 'settingsList', 'ruleFactory', function ($scope, $state, $http, settingsList, ruleFactory) {
+    ptvlControllers.controller('channelCtrl', ['$scope', '$state', '$http', 'showList', 'settingsList', function ($scope, $state, $http, showList, settingsList) {
 
         $scope.channels = [];
         $scope.loadingChannels = [];
@@ -38,6 +31,10 @@ define(['./ptvl'], function (ptvlControllers) {
 
         settingsList.async().then(function (d) {
             $scope.settings = d;
+        });
+
+        showList.async().then(function (d) {
+            $scope.shows = d;
         });
 
         $scope.showContent = function ($fileContent) {
@@ -287,8 +284,6 @@ define(['./ptvl'], function (ptvlControllers) {
                             }
                         }
                     }
-
-
 
                     // Channel has been changed
                     if(typeof $scope.newChannels[i].changed != 'undefined') {

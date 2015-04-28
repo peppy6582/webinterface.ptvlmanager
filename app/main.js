@@ -54,8 +54,6 @@ require.config({
         'x2js':{
             deps: ['angular']
         }
-
-
     },
 
     deps: [

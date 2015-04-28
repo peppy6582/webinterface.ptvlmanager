@@ -20,19 +20,28 @@ define(['.././ptvl'], function (ptvlControllers) {
 
         $scope.plugin ={};
 
-        var chSorts = ruleFactory.getSort($scope.channel.rules.main[4]);
-        $scope.sorts = chSorts[0];
-        $scope.sort = chSorts[1];
 
-        var chLimits = ruleFactory.getLimit($scope.channel.rules.main[3]);
-        $scope.limits = chLimits[0];
-        $scope.limit = chLimits[1];
+        if(isNaN($scope.channel.channel)) {
 
-        $scope.channel = ruleFactory.getPluginParts($scope.channel);
-        console.log($scope.channel);
+        }
+        else {
+            console.log("This is the channel: ", $scope.channel);
+            console.log("This is channel number length", $scope.channel.channel.length);
+            console.log($scope.channel);
+            var chSorts = ruleFactory.getSort($scope.channel.rules.main[4]);
+            $scope.sorts = chSorts[0];
+            $scope.sort = chSorts[1];
 
-        $scope.plugin.addonid = $scope.channel.plugin.addonid;
-        $scope.subfolders = $scope.channel.plugin.subfolders;
+            var chLimits = ruleFactory.getLimit($scope.channel.rules.main[3]);
+            $scope.limits = chLimits[0];
+            $scope.limit = chLimits[1];
+
+            $scope.channel = ruleFactory.getPluginParts($scope.channel);
+            console.log($scope.channel);
+
+            $scope.plugin.addonid = $scope.channel.plugin.addonid;
+            $scope.subfolders = $scope.channel.plugin.subfolders;
+        }
 
         $scope.selectPlugin = function (plugin)
         {
@@ -50,7 +59,7 @@ define(['.././ptvl'], function (ptvlControllers) {
             }
         };
 
-        $scope.undoPlugin = function (channel)
+        $scope.undoPlugin = function ()
         {
             var r = confirm("Are you sure you want to undo changing the plugin?");
             if(r == true) {
@@ -131,7 +140,7 @@ define(['.././ptvl'], function (ptvlControllers) {
             }
         };
 
-        $scope.save = function (channel, subfolders)
+        $scope.savePlugin = function (channel, subfolders)
         {
             channel.plugin.subpath = subfolders;
             channel.rules.main[1] = 'plugin://'+channel.plugin.addonid+'/'+channel.plugin.subpath;

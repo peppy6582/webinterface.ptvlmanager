@@ -1,125 +1,162 @@
 define(['.././ptvl'], function (ptvlControllers) {
     'use strict';
 
-    function getLimit(limit, limits) {
-        for (var i = 0; i < limit.length; i++) {
-            if (limits[i].value === parseInt(limit)) {
-                return limits[i];
-            }
-        }
-    }
-
     ptvlControllers.controller('youtubeDetailsCtrl', ['$scope', 'ruleFactory', function ($scope, ruleFactory) {
 
         $scope.changed =
         {
             value: false,
-            input: false,
+            path: false,
             YtType: false,
             sort: false,
             limit: false
         };
 
-        $scope.backup = {};
-        $scope.backup.yt = {};
-        console.log('Channel backed up as youtube type here: ',$scope.backup);
+        $scope.changes = {};
 
-        // Adds a ytType object for attaching the selection
-        $scope.ytType = {};
+        // Adds a YtType object for attaching the selection
+        $scope.YtType = {};
 
-        // Returns all the YouTube channel types available at chYtTypes[0] as well as the channel's SPECIFIC type at chYtTypes[1]
-        var chYtTypes = ruleFactory.getYtType($scope.channel.rules.main[2] -1);
+        if($scope.channel.type != 10) {
 
-        // Adds the YouTube channel types available to the scope, for the ui-select drop down
-        $scope.YtTypes = chYtTypes[0];
-        console.log('This is the YtType I found: ', chYtTypes[1]);
+        }
+        else {
 
-        // Returns all the options for Sort at chSorts[0] as well as the channel's SPECIFIC sort at chSorts[1]
-        var chSorts = ruleFactory.getSort($scope.channel.rules.main[4]);
+            // Returns all the YouTube channel types available at chYtTypes[0] as well as the channel's SPECIFIC type at chYtTypes[1]
+            var chYtTypes = ruleFactory.getYtType($scope.channel.rules.main[2]);
 
-        // Adds the Sort options available to the scope, for the ui-select drop down
-        $scope.sorts = chSorts[0];
+            // Adds the YouTube channel types available to the scope, for the ui-select drop down
+            $scope.YtTypes = chYtTypes[0];
+            console.log('This is the YtType I found: ', chYtTypes[1]);
+            console.log('For channel: ', $scope.channel);
 
-        // Adds a sort object for attaching the selection
-        $scope.sort = {};
+            // Binds the specific type the channel uses to the YtType object
+            $scope.YtType = chYtTypes[1];
 
-        // Returns all the options for Limit at chLimits[0] as well as the channel's SPECIFIC limit at chLimits[1]
-        var chLimits = ruleFactory.getLimit($scope.channel.rules.main[3]);
+            // Returns all the options for Sort at chSorts[0] as well as the channel's SPECIFIC sort at chSorts[1]
+            var chSorts = ruleFactory.getSort($scope.channel.rules.main[4]);
 
-        // Adds the Limits options available to the scope, for the ui-select drop down
-        $scope.limits = chLimits[0];
+            // Adds the Sort options available to the scope, for the ui-select drop down
+            $scope.sorts = chSorts[0];
 
-        // Adds a limit object for attaching the selection
-        $scope.limit = {};
+            // Adds a sort object for attaching the selection
+            $scope.sort = chSorts[1];
 
-        // Adds a temporary object for working in this type scope
-        $scope.channel.yt =
-        {
-            type: chYtTypes[1],
-            path: $scope.channel.rules.main[1],
-            sort: chSorts[1],
-            limit: chLimits[1]
-        };
+            // Returns all the options for Limit at chLimits[0] as well as the channel's SPECIFIC limit at chLimits[1]
+            var chLimits = ruleFactory.getLimit($scope.channel.rules.main[3]);
 
-        // Creates a value for mapping the YouTube type to the input label
-        $scope.input = $scope.channel.yt.type.name;
+            // Adds the Limits options available to the scope, for the ui-select drop down
+            $scope.limits = chLimits[0];
 
-        // Creates a value for mapping the path (Username, Playlist, etc.)
-        $scope.path = $scope.channel.yt.path;
+            // Adds a limit object for attaching the selection
+            $scope.limit = chLimits[1];
 
-        // Backs up the path so it can be retrieved if you like
-        $scope.backup.path = $scope.path;
+            // Creates a value for mapping the YouTube type to the input label
+            $scope.input = $scope.YtType.name;
+
+            // Creates a value for mapping the path (Username, Playlist, etc.)
+            $scope.path = $scope.channel.rules.main[1];
+
+        }
 
         // When a YouTube type is selected, backup the old type, clear the old type, and set it to the selected one
-        $scope.selectYtType = function (channel, ytType)
+        $scope.selectYtType = function (YtType)
         {
-            $scope.backup.yt.type = channel.yt.type;
-            channel.yt.type = {};
-            $scope.input = ytType.name;
-            channel.yt.type = ytType;
-        };
-
-        // Go back to the originally loaded type
-        $scope.undoYtType = function (channel)
-        {
-            var r = confirm("Are you sure you want to undo changing the YouTube Type?");
-            if(r == true) {
-                channel.yt.type = {};
-                channel.yt.type = $scope.backup.yt.type;
-                $scope.ytType.selected = channel.yt.type;
-                $scope.input = channel.yt.type.name;
+            if($scope.YtType.name !== YtType.name)
+            {
+                $scope.changed.YtType = true;
+                $scope.changes.YtType = YtType.value;
+                $scope.path = '';
+                console.log('YouTube Type changed to '+YtType.name);
+            }
+            else
+            {
+                alert('We must have missed something!!');
             }
         };
 
-        $scope.backupPath = function (channel)
+        // Go back to the originally loaded type
+        $scope.undoYtType = function ()
         {
-            console.log(channel);
-            $scope.saved = false;
-            $scope.backup.path = channel.yt.path;
-            console.log('Path was backed up as: ', $scope.backup.path);
+            var r = confirm("Are you sure you want to undo changing the YouTube Type?");
+            if(r == true) {
+                $scope.changed.YtType = false;
+                $scope.YtType.selected = $scope.YtType;
+                $scope.path = $scope.channel.rules.main[1];
+                $scope.input = $scope.YtType.name;
+            }
         };
 
-        $scope.savePath = function (channel, path)
+        $scope.selectSort = function (sort)
         {
-            channel.yt.path = path;
-            $scope.saved = true;
-            console.log('New path is: ', channel.yt.path);
+            if(parseInt($scope.channel.rules.main[4]) !== sort.value) {
+                $scope.changed.sort = true;
+                $scope.changed.value = true;
+                $scope.changes.sort = sort.value;
+            }
+            else {
+                $scope.changed.sort = false;
+                $scope.changed.value = false;
+            }
 
         };
 
-        $scope.selectLimit = function (channel, limit)
+        $scope.undoSort = function ()
         {
-            $scope.limit = {};
-            $scope.limit.selected = limit;
-            $scope.backup.yt.limit = channel.yt.limit;
-            console.log('Limit was backed up as: ', $scope.backup.yt.limit);
-            channel.yt.limit = limit;
-            console.log('New limit is: ', channel.yt.limit);
-            channel.rules.main[3] = limit.limit;
-            console.log(channel);
+            var r = confirm("Are you sure you want to undo changing the plugin sort?");
+            if(r == true) {
+                $scope.changed.sort = false;
+                $scope.changed.value = false;
+                $scope.sort.selected = $scope.sort;
+            }
         };
 
-        console.log($scope.channel);
+        $scope.selectLimit = function (limit)
+        {
+            if(parseInt($scope.channel.rules.main[3]) !== limit.value) {
+                $scope.changed.limit = true;
+                $scope.changed.value = true;
+                $scope.changes.limit = limit.value;
+            }
+            else {
+                $scope.changed.limit = false;
+                $scope.changed.value = false;
+            }
+
+        };
+
+        $scope.undoLimit = function ()
+        {
+            var r = confirm("Are you sure you want to undo changing the plugin sort?");
+            if(r == true) {
+                $scope.changed.limit = false;
+                $scope.changed.value = false;
+                $scope.limit.selected = $scope.limit;
+            }
+        };
+
+        $scope.changedPath = function ()
+        {
+            $scope.changed.path = true;
+            $scope.changed.value = true;
+        };
+
+        $scope.saveYouTube = function (channel, path)
+        {
+            channel.rules.main[1] = path;
+
+            if('limit' in $scope.changed) {
+                channel.rules.main[3] = $scope.changes.limit;
+            }
+
+            if('sort' in $scope.changes) {
+                channel.rules.main[4] = $scope.changes.sort;
+            }
+
+            for ( var key in $scope.changed ) {
+                $scope.changed[key] = false;
+            }
+        };
 
     }]);
 });

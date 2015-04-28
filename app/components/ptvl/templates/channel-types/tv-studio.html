@@ -1,0 +1,9 @@
+<div class="type-container" ng-controller="tvStudioCtrl">
+    Studio:
+    <ui-select ng-model="studio.selected" theme="bootstrap" ng-disabled="channel.locked" on-select="selectStudio(studio.selected)" reset-search-input="'false'">
+        <ui-select-match placeholder="{{studio.name}}">{{$select.selected.name}}</ui-select-match>
+        <ui-select-choices repeat="studio in studios | orderBy: 'name' | filter: $select.search">
+            <span ng-bind-html="studio.name| highlight: $select.search"></span>
+        </ui-select-choices>
+    </ui-select>
+</div>
