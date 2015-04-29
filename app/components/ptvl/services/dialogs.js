@@ -5,6 +5,21 @@ define(['./ptvl'], function (ptvlServices) {
 
         var confirmed = true;
 
+        var _progress = 1;
+
+        var _fakeWaitProgress = function(){
+            $timeout(function(){
+                if(_progress < 100){
+                    _progress += 33;
+                    dialogs.wait("Please wait", "Just a few more chickens to count", _progress);
+                    _fakeWaitProgress();
+                }else{
+                    dialogs.wait.complete = true;
+                    _progress = 0;
+                }
+            },1000);
+        };
+
         return {
             confirm: function (params) {
                 var header = params.header;
@@ -15,30 +30,12 @@ define(['./ptvl'], function (ptvlServices) {
                     confirmed = true;
                 },function(btn){
                     confirmed = false;
-                    $state.go(state);
+                    if (state != null) {
+                        $state.go(state);
+                    }
                 });
                 return confirmed;
             }
-/*            wait: function () {
-                var _fakeWaitProgress = function(){
-                    $timeout(function(){
-                        if(_progress < 100){
-                            _progress += 33;
-                            $rootScope.$broadcast('dialogs.wait.progress',{'progress' : _progress});
-                            _fakeWaitProgress();
-                        }else{
-                            $rootScope.$broadcast('dialogs.wait.complete');
-                            _progress = 0;
-                        }
-                    },1000);
-                };
-
-                var dlg = dialogs.wait(undefined,undefined,_progress);
-                _fakeWaitProgress();
-
-            }*/
-
         }
-
     }]);
 });
