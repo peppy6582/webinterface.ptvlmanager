@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e1d51a2-b20b-4d0d-86d7-dbc5189f8b13" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/css/app.css" afterPath="$PROJECT_DIR$/app/assets/css/app.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/ptvl/controllers/channels.js" afterPath="$PROJECT_DIR$/app/components/ptvl/controllers/channels.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/ptvl/services/dialogs.js" afterPath="$PROJECT_DIR$/app/components/ptvl/services/dialogs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/ptvl/controllers/index.js" afterPath="$PROJECT_DIR$/app/components/ptvl/controllers/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="webinterface.ptvlmanager.iws" />
@@ -40,13 +37,13 @@
       <file leaf-file-name="channels.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/components/ptvl/controllers/channels.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.31439894">
-              <caret line="28" column="25" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.7754293">
+              <caret line="39" column="36" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
               <folding>
-                <element signature="e#7857#13379#0" expanded="false" />
-                <element signature="e#8614#12179#0" expanded="false" />
-                <element signature="e#10024#12157#0" expanded="false" />
-                <element signature="e#13483#14941#0" expanded="false" />
+                <element signature="e#7887#13409#0" expanded="false" />
+                <element signature="e#8644#12209#0" expanded="false" />
+                <element signature="e#10054#12187#0" expanded="false" />
+                <element signature="e#13513#14971#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -654,7 +651,13 @@
       <option name="project" value="LOCAL" />
       <updated>1430339270142</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="turned dialog service into true dynamic service">
+      <created>1430339942886</created>
+      <option name="number" value="00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1430339942886</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -707,7 +710,8 @@
     <MESSAGE value="Fixed plugin changes" />
     <MESSAGE value="Working on changing from one TYPE to another" />
     <MESSAGE value="started minifying solid controllers or services" />
-    <option name="LAST_COMMIT_MESSAGE" value="started minifying solid controllers or services" />
+    <MESSAGE value="turned dialog service into true dynamic service" />
+    <option name="LAST_COMMIT_MESSAGE" value="turned dialog service into true dynamic service" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1118,13 +1122,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/components/ptvl/controllers/channels.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31439894">
-          <caret line="28" column="25" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.7754293">
+          <caret line="39" column="36" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
           <folding>
-            <element signature="e#7857#13379#0" expanded="false" />
-            <element signature="e#8614#12179#0" expanded="false" />
-            <element signature="e#10024#12157#0" expanded="false" />
-            <element signature="e#13483#14941#0" expanded="false" />
+            <element signature="e#7887#13409#0" expanded="false" />
+            <element signature="e#8644#12209#0" expanded="false" />
+            <element signature="e#10054#12187#0" expanded="false" />
+            <element signature="e#13513#14971#0" expanded="false" />
           </folding>
         </state>
       </provider>
