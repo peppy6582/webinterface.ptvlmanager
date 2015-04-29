@@ -263,3 +263,7 @@ input[type="file"] {
 }
 
 .dialog-header-confirm { background-color: #333333; }
+
+.modal {
+    top: 200px;
+}

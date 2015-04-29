@@ -6,15 +6,16 @@ define(['./ptvl'], function (ptvlServices) {
         var confirmed = true;
 
         return {
-            confirm: function () {
-                var dlg = dialogs.confirm("Just so you know", "This application is a work in progress.  Any item whose name or title contains (WIP) or (Not Started), should be expected to destroy your settings.  " +
-                "Feel free to play with them if you want, but PLEASE make sure you have backed up your settings.  " +
-                "You have been warned!  Click Yes if you would like to continue.");
+            confirm: function (params) {
+                var header = params.header;
+                var body = params.body;
+                var state = params.state;
+                var dlg = dialogs.confirm(header, body);
                 dlg.result.then(function(btn){
                     confirmed = true;
                 },function(btn){
                     confirmed = false;
-                    $state.go('home');
+                    $state.go(state);
                 });
                 return confirmed;
             }

@@ -26,7 +26,15 @@ define(['./ptvl'], function (ptvlControllers) {
 
         $scope.confirmed = true;
 
-        $scope.confirmed = dialogService.confirm();
+        var warning = {};
+
+        warning.header = "Just so you know";
+        warning.body = "This application is a work in progress.  Any item whose name or title contains (WIP) or (Not Started), should be expected to destroy your settings and or kick/punch your puppy/kitten.  " +
+        "Feel free to play with them if you want, but PLEASE make sure you have backed up your settings.  " +
+        "You have been warned!  Click Yes if you would like to continue.";
+        warning.state = 'home';
+
+        $scope.confirmed = dialogService.confirm(warning);
 
         $scope.channels = [];
         $scope.loadingChannels = [];
