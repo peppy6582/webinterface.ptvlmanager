@@ -1,5 +1,5 @@
 <div class="ptvl">
-    <div class="row">
+    <div class="row" ng-hide="!confirmed">
         <div class="col-sm-2">
             <label class="custom-file-upload">
                 <input type="file"  on-read-file="showContent($fileContent)" name="files[]" multiple/>
@@ -24,7 +24,7 @@
         <accordion close-others="oneAtATime">
             <accordion-group ng-repeat="channel in channelF = ( channels | filter:search )">
                 <accordion-heading>
-                    <div class="row">
+                    <div class="row" ng-click="log(channel)">
                         <div class="col-sm-6 col-md-6">
                             Channel: {{channel.channel}}
                         </div>

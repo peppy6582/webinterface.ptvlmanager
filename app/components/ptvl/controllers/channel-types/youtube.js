@@ -1,6 +1,7 @@
 define(['.././ptvl'], function (ptvlControllers) {
     'use strict';
 
+    
     ptvlControllers.controller('youtubeDetailsCtrl', ['$scope', 'ruleFactory', function ($scope, ruleFactory) {
 
         $scope.changed =
@@ -12,51 +13,42 @@ define(['.././ptvl'], function (ptvlControllers) {
             limit: false
         };
 
+        $scope.YtTypes = ruleFactory.getYtTypes();
+
+        // Adds the Sort options available to the scope, for the ui-select drop down
+        $scope.sorts = ruleFactory.getSorts();
+
+        // Adds the Limits options available to the scope, for the ui-select drop down
+        $scope.limits = ruleFactory.getLimits();
+
         $scope.changes = {};
 
         // Adds a YtType object for attaching the selection
         $scope.YtType = {};
 
-        if($scope.channel.type != 10) {
-
-        }
-        else {
-
-            // Returns all the YouTube channel types available at chYtTypes[0] as well as the channel's SPECIFIC type at chYtTypes[1]
-            var chYtTypes = ruleFactory.getYtType($scope.channel.rules.main[2]);
-
-            // Adds the YouTube channel types available to the scope, for the ui-select drop down
-            $scope.YtTypes = chYtTypes[0];
-            console.log('This is the YtType I found: ', chYtTypes[1]);
-            console.log('For channel: ', $scope.channel);
-
+        console.log($scope.channel.type);
+        if($scope.channel.type.value == 10) {
             // Binds the specific type the channel uses to the YtType object
-            $scope.YtType = chYtTypes[1];
-
-            // Returns all the options for Sort at chSorts[0] as well as the channel's SPECIFIC sort at chSorts[1]
-            var chSorts = ruleFactory.getSort($scope.channel.rules.main[4]);
-
-            // Adds the Sort options available to the scope, for the ui-select drop down
-            $scope.sorts = chSorts[0];
+            $scope.YtType = ruleFactory.getYtType($scope.channel.rules.main[2]);
 
             // Adds a sort object for attaching the selection
-            $scope.sort = chSorts[1];
-
-            // Returns all the options for Limit at chLimits[0] as well as the channel's SPECIFIC limit at chLimits[1]
-            var chLimits = ruleFactory.getLimit($scope.channel.rules.main[3]);
-
-            // Adds the Limits options available to the scope, for the ui-select drop down
-            $scope.limits = chLimits[0];
+            $scope.sort = ruleFactory.getSort($scope.channel.rules.main[4]);
 
             // Adds a limit object for attaching the selection
-            $scope.limit = chLimits[1];
+            $scope.limit = ruleFactory.getLimit($scope.channel.rules.main[3]);
 
             // Creates a value for mapping the YouTube type to the input label
             $scope.input = $scope.YtType.name;
 
             // Creates a value for mapping the path (Username, Playlist, etc.)
             $scope.path = $scope.channel.rules.main[1];
-
+        }
+        else{
+            $scope.YtType = $scope.YtTypes[0];
+            $scope.input = $scope.YtType.name;
+            $scope.sort = $scope.sorts[0];
+            $scope.limit = $scope.limits[0];
+            $scope.path = '';
         }
 
         // When a YouTube type is selected, backup the old type, clear the old type, and set it to the selected one
@@ -68,6 +60,7 @@ define(['.././ptvl'], function (ptvlControllers) {
                 $scope.changes.YtType = YtType.value;
                 $scope.path = '';
                 console.log('YouTube Type changed to '+YtType.name);
+                $scope.input = YtType.name;
             }
             else
             {
@@ -82,7 +75,6 @@ define(['.././ptvl'], function (ptvlControllers) {
             if(r == true) {
                 $scope.changed.YtType = false;
                 $scope.YtType.selected = $scope.YtType;
-                $scope.path = $scope.channel.rules.main[1];
                 $scope.input = $scope.YtType.name;
             }
         };

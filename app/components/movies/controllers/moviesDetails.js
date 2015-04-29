@@ -4,14 +4,14 @@ define(['./movies'], function (moviesControllers) {
 
     String.prototype.contains = function(str) { return this.indexOf(str) != -1; };
 
-    moviesControllers.controller('moviesDetailsCtrl', ['$scope', '$modal', '$state', '$log', 'moviesDetails', function ($scope, $modal, $state, $log, moviesDetails) {
+    moviesControllers.controller('moviesDetailsCtrl', ["$scope", "$modal", "$state", "$log", "moviesDetails", function ($scope, $modal, $state, $log, moviesDetails) {
 
         // Opens Movie Details Modal Window
         this.modalDetails = function (size, selectedMovieid) {
 
             var modalInstance = $modal.open({
                 templateUrl: '/app/components/movies/movies-details.html',
-                controller: function ($scope, $state, $modalInstance, movieid) {
+                controller: ["$scope", "$state", "$modalInstance", "movieid", function ($scope, $state, $modalInstance, movieid) {
 
                     $scope.oneAtATime = true;
                     $scope.members = true;
@@ -68,7 +68,7 @@ define(['./movies'], function (moviesControllers) {
                         $modalInstance.dismiss('cancel');
                     };
 
-                },
+                }],
                 size: size,
                 resolve: {
                     movieid: function () {

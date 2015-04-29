@@ -22,16 +22,16 @@ define(['./ptvl'], function (ptvlControllers) {
         return newArray;
     }
 
-    ptvlControllers.controller('channelCtrl', ['$scope', '$state', '$http', 'showList', 'settingsList', function ($scope, $state, $http, showList, settingsList) {
+    ptvlControllers.controller('channelCtrl', ['$scope', '$state', '$http', 'dialogService', 'showList', 'settingsList', function ($scope, $state, $http, dialogService, showList, settingsList) {
+
+        $scope.confirmed = true;
+
+        $scope.confirmed = dialogService.confirm();
 
         $scope.channels = [];
         $scope.loadingChannels = [];
 
         $scope.oneAtATime = true;
-
-        settingsList.async().then(function (d) {
-            $scope.settings = d;
-        });
 
         showList.async().then(function (d) {
             $scope.shows = d;
@@ -170,11 +170,9 @@ define(['./ptvl'], function (ptvlControllers) {
 
                 }
             }
-
             $scope.channelDetails = { isOpen: true };
             $scope.channelsLoaded = true;
             $scope.channels = cleanArray($scope.channels);
-            console.log($scope.channels);
         };
 
         $scope.clearChannels = function()
@@ -350,5 +348,9 @@ define(['./ptvl'], function (ptvlControllers) {
 
             saveAs(blob, "settings2.xml");
         };
+
+        $scope.log = function (channel) {
+            console.log(channel);
+        }
     }]);
 });

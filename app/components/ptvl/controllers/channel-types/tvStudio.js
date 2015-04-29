@@ -21,11 +21,14 @@ define(['.././ptvl'], function (ptvlControllers) {
         return newArr;
     }
 
-    ptvlControllers.controller('tvStudioCtrl', ['$scope', function ($scope) {
+    ptvlControllers.controller('tvStudioCtrl', ["$scope", 'lockFactory', function ($scope, lockFactory) {
 
         $scope.studios = [];
 
         $scope.studio = {};
+
+        $scope.changed = {};
+        $scope.changes = {};
 
         console.log($scope.shows);
         for(var studio in $scope.shows) {
@@ -37,11 +40,34 @@ define(['.././ptvl'], function (ptvlControllers) {
         }
 
         $scope.studios = uniqueStudios($scope.studios);
-        console.log($scope.studios);
-
-        console.log($scope.channel);
 
         $scope.studio.name = $scope.channel.rules.main[1];
+
+        $scope.selectStudio = function (studio) {
+            if($scope.studio.name !== studio.name) {
+                $scope.changed.studio = true;
+                $scope.changes.studio = studio;
+            }
+            console.log(studio);
+            console.log($scope.channel);
+        };
+
+        $scope.undoStudio = function () {
+            var r = confirm("Are you sure you want to undo changing the studio?");
+            if(r == true) {
+                $scope.changed.studio = false;
+                $scope.studio.selected = $scope.studio;
+            }
+
+        };
+
+        $scope.saveStudio = function () {
+            alert("Don't forget to download your new settings2.xml at the bottom!");
+            $scope.channel.rules.main[1] = $scope.changes.studio.name;
+            $scope.changed.studio = false;
+            console.log($scope.channel);
+            $scope.channel.locked = lockFactory.toggleLock($scope.channel.channel);
+        }
 
 
     }]);

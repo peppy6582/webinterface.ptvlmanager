@@ -16,31 +16,27 @@ define(['.././ptvl'], function (ptvlControllers) {
             limit: false
         };
 
+        // Adds the Sort options available to the scope, for the ui-select drop down
+        $scope.sorts = ruleFactory.getSorts();
+
+        // Adds the Limits options available to the scope, for the ui-select drop down
+        $scope.limits = ruleFactory.getLimits();
+
         $scope.changes = {};
 
         $scope.plugin ={};
 
-
-        if(isNaN($scope.channel.channel)) {
-
-        }
-        else {
-            console.log("This is the channel: ", $scope.channel);
-            console.log("This is channel number length", $scope.channel.channel.length);
-            console.log($scope.channel);
-            var chSorts = ruleFactory.getSort($scope.channel.rules.main[4]);
-            $scope.sorts = chSorts[0];
-            $scope.sort = chSorts[1];
-
-            var chLimits = ruleFactory.getLimit($scope.channel.rules.main[3]);
-            $scope.limits = chLimits[0];
-            $scope.limit = chLimits[1];
-
+        if($scope.channel.type.value == 15) {
+            $scope.sort = ruleFactory.getSort($scope.channel.rules.main[4]);
+            $scope.limit = ruleFactory.getLimit($scope.channel.rules.main[3]);
             $scope.channel = ruleFactory.getPluginParts($scope.channel);
-            console.log($scope.channel);
-
             $scope.plugin.addonid = $scope.channel.plugin.addonid;
             $scope.subfolders = $scope.channel.plugin.subfolders;
+            console.log($scope.channel);
+        }
+
+        else {
+            console.log("This is the channel: ", $scope.channel);
         }
 
         $scope.selectPlugin = function (plugin)
@@ -69,7 +65,6 @@ define(['.././ptvl'], function (ptvlControllers) {
             }
             else
             {
-                $scope.changed.plugin = true;
                 $scope.changed.subfolders = true;
             }
 

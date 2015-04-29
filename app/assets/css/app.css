@@ -261,3 +261,5 @@ input[type="file"] {
 .interleaving {
     padding-top: 10px;
 }
+
+.dialog-header-confirm { background-color: #333333; }

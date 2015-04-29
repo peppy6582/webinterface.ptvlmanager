@@ -4,46 +4,46 @@ define(['./ptvl'], function (ptvlServices) {
     ptvlServices.factory('ruleFactory', [function () {
 
         var types = [
-            {type: 'Playlist (WIP-4/28)',                     value: 0,   templateUrl: '/app/components/ptvl/templates/channel-types/playlist.html'},
-            {type: 'TV Network (WIP-4/28)',                   value: 1,   templateUrl: '/app/components/ptvl/templates/channel-types/tv-studio.html'},
-            {type: 'Movie Studio (Not Started)',              value: 2},
-            {type: 'TV Genre ((Not Started)',                 value: 3,   templateUrl: '/app/components/ptvl/templates/channel-types/tv-genre.html'},
-            {type: 'Movie Genre (Not Started)',               value: 4},
-            {type: 'Mixed Genre (Not Started)(TV & Movie)',   value: 5},
-            {type: 'TV Show (Not Started)',                   value: 6},
-            {type: 'Directory (Not Started)',                 value: 7,   templateUrl: '/app/components/ptvl/templates/channel-types/directory.html'},
-            {type: 'LiveTV (Not Started)',                    value: 8},
-            {type: 'InternetTV (Not Started)',                value: 9},
-            {type: 'YoutubeTV',                               value: 10,  templateUrl: '/app/components/ptvl/templates/channel-types/youtube.html'},
-            {type: 'RSS (Not Started)',                       value: 11,  templateUrl: '/app/components/ptvl/templates/channel-types/rss.html'},
-            {type: 'Music (Not Started)',                     value: 12},
-            {type: 'Music Videos (Not Started)',              value: 13},
-            {type: 'Extras (Not Started)',                    value: 14},
-            {type: 'Plugin',                                  value: 15,  templateUrl: '/app/components/ptvl/templates/channel-types/plugin.html'},
-            {type: 'Playon (Not Started)',                    value: 16},
-            {type: 'Global Settings (Not Started)',           value: 99,  templateUrl: '/app/components/ptvl/templates/channel-types/plugin.html'}
+            {name: 'Playlist (WIP-4/28)',                     value: 0,   templateUrl: '/app/components/ptvl/templates/channel-types/playlist.html'},
+            {name: 'TV Studio (WIP-4/28)',                    value: 1,   templateUrl: '/app/components/ptvl/templates/channel-types/tv-studio.html'},
+            {name: 'Movie Studio (Not Started)',              value: 2},
+            {name: 'TV Genre (Not Started)',                  value: 3,   templateUrl: '/app/components/ptvl/templates/channel-types/tv-genre.html'},
+            {name: 'Movie Genre (Not Started)',               value: 4},
+            {name: 'Mixed Genre (Not Started)(TV & Movie)',   value: 5},
+            {name: 'TV Show (Not Started)',                   value: 6},
+            {name: 'Directory (Not Started)',                 value: 7,   templateUrl: '/app/components/ptvl/templates/channel-types/directory.html'},
+            {name: 'LiveTV (Not Started)',                    value: 8},
+            {name: 'InternetTV (Not Started)',                value: 9},
+            {name: 'YoutubeTV',                               value: 10,  templateUrl: '/app/components/ptvl/templates/channel-types/youtube.html'},
+            {name: 'RSS (Not Started)',                       value: 11,  templateUrl: '/app/components/ptvl/templates/channel-types/rss.html'},
+            {name: 'Music (Not Started)',                     value: 12},
+            {name: 'Music Videos (Not Started)',              value: 13},
+            {name: 'Extras (Not Started)',                    value: 14},
+            {name: 'Plugin',                                  value: 15,  templateUrl: '/app/components/ptvl/templates/channel-types/plugin.html'},
+            {name: 'Playon (Not Started)',                    value: 16},
+            {name: 'Global Settings (Not Started)',           value: 99,  templateUrl: '/app/components/ptvl/templates/channel-types/plugin.html'}
         ];
 
         var subRules = [
-            {type: 'Nothing',                   id: 0,   status: false, value: {options: { 1: '' }}},
-            {type: 'Name',                      id: 1,   status: false, value: {options: { 1: '' }}},
-            {type: 'Shows not to Play',         id: 2,   status: false, value: {options: {}}},
-            {type: 'Best Efforts Scheduling',   id: 3,   status: false, value: {options: {}}},
-            {type: 'Only play watched',         id: 4,   status: false, value: '4'},
-            {type: "Don't show this channel",   id: 5,   status: false, value: '5'},
-            {type: 'Interleaved Shows',         id: 6,   status: false, value: {options: {}}},
-            {type: 'Play Real-Time Mode',       id: 7,   status: false, value: '7'},
-            {type: 'Pause when not watching',   id: 8,   status: false, value: '8'},
-            {type: 'Play Resume Mode',          id: 9,   status: false, value: '9'},
-            {type: 'Play Random',               id: 10,  status: false, value: '10'},
-            {type: 'Play Only Unwatched',       id: 11,  status: false, value: '11'},
-            {type: 'Play Shows in Order',       id: 12,  status: false, value: '12'},
-            {type: 'Reset Every X Hours',       id: 13,  status: false, value: {options: { 1: {} }}},
-            {type: 'Exclude Strms',             id: 14,  status: false, value: {options: { 1: 'No' }}},
-            {type: 'Show Logo',                 id: 15,  status: false, value: {options: { 1: 'Yes' }}},
-            {type: 'Nothing',                   id: 16,  status: false, value: {options: { 1: '' }}},
-            {type: 'Exclude BCT',               id: 17,  status: false, value: {options: { 1: 'No' }}},
-            {type: 'Disable Popup',             id: 18,  status: false, value: {options: { 1: 'No' }}}
+            {name: 'Nothing',                   id: 0,   status: false, value: {options: { 1: '' }}},
+            {name: 'Name',                      id: 1,   status: false, value: {options: { 1: '' }}},
+            {name: 'Shows not to Play',         id: 2,   status: false, value: {options: {}}},
+            {name: 'Best Efforts Scheduling',   id: 3,   status: false, value: {options: {}}},
+            {name: 'Only play watched',         id: 4,   status: false, value: '4'},
+            {name: "Don't show this channel",   id: 5,   status: false, value: '5'},
+            {name: 'Interleaved Shows',         id: 6,   status: false, value: {options: {}}},
+            {name: 'Play Real-Time Mode',       id: 7,   status: false, value: '7'},
+            {name: 'Pause when not watching',   id: 8,   status: false, value: '8'},
+            {name: 'Play Resume Mode',          id: 9,   status: false, value: '9'},
+            {name: 'Play Random',               id: 10,  status: false, value: '10'},
+            {name: 'Play Only Unwatched',       id: 11,  status: false, value: '11'},
+            {name: 'Play Shows in Order',       id: 12,  status: false, value: '12'},
+            {name: 'Reset Every X Hours',       id: 13,  status: false, value: {options: { 1: {} }}},
+            {name: 'Exclude Strms',             id: 14,  status: false, value: {options: { 1: 'No' }}},
+            {name: 'Show Logo',                 id: 15,  status: false, value: {options: { 1: 'Yes' }}},
+            {name: 'Nothing',                   id: 16,  status: false, value: {options: { 1: '' }}},
+            {name: 'Exclude BCT',               id: 17,  status: false, value: {options: { 1: 'No' }}},
+            {name: 'Disable Popup',             id: 18,  status: false, value: {options: { 1: 'No' }}}
         ];
 
         var limits = [
@@ -98,41 +98,39 @@ define(['./ptvl'], function (ptvlServices) {
                         }
                     }
                 }
-                console.log(chSubRules);
                 return chSubRules;
+            },
+            getLimits: function () {
+              return limits;
             },
             getLimit: function (value) {
                 console.log(value);
                 for(var i=0; i<limits.length; i++) {
                     if(limits[i].value === parseInt(value))
                     {
-                        var chLimits = [];
-                        chLimits.push(limits);
-                        chLimits.push(limits[i]);
-                        console.log(limits[i]);
-                        return chLimits;
+                        return limits[i];
                     }
                 }
+            },
+            getSorts: function () {
+                return sorts;
             },
             getSort: function (value) {
                 for(var i=0; i<sorts.length; i++) {
                     if(sorts[i].value === parseInt(value))
                     {
-                        var chSorts = [];
-                        chSorts.push(sorts);
-                        chSorts.push(sorts[i]);
-                        return chSorts;
+                        return sorts[i];
                     }
                 }
+            },
+            getYtTypes: function () {
+              return YtTypes;
             },
             getYtType: function (value) {
                 for(var i=0; i<YtTypes.length; i++) {
                     if(YtTypes[i].value === parseInt(value))
                     {
-                        var chYtType = [];
-                        chYtType.push(YtTypes);
-                        chYtType.push(YtTypes[i]);
-                        return chYtType;
+                        return YtTypes[i];
                     }
                 }
             },

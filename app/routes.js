@@ -1,13 +1,13 @@
 define(['./ptvlKodi'], function(ptvlKodi) {
     'use strict';
-    return ptvlKodi.config(['$provide', '$stateProvider', '$urlRouterProvider','$sceDelegateProvider', function($provide, $stateProvider, $urlRouterProvider, $sceDelegateProvider){
+    return ptvlKodi.config(['$provide', '$stateProvider', '$urlRouterProvider','$sceDelegateProvider',
+        function($provide, $stateProvider, $urlRouterProvider, $sceDelegateProvider){
 
         $provide.decorator('accordionDirective', function($delegate) {
             var directive = $delegate[0];
             directive.replace = true;
             return $delegate;
         });
-
 
         $urlRouterProvider.otherwise('/home');
 
@@ -53,7 +53,7 @@ define(['./ptvlKodi'], function(ptvlKodi) {
             .state('about', {
                 url: '/about',
                 templateUrl: 'app/components/ptvl/aboutPtvl.html',
-                controller: 'ptvlSettingsCtrl'
+                controller: 'ptvlInfoCtrl'
             });
 
 

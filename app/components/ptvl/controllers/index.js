@@ -1,9 +1,7 @@
 define([
-    './channels',
-    './channelDetails',
-    './channel-types/playlist',
-    './channel-types/plugin',
-    './channel-types/tvStudio',
-    './channel-types/youtube',
-    './subRules'
+    './../min/controllers/channels.min',
+    './ptvlInfo',
+    './../min/controllers/type.min',
+    './channel-types/index',
+     './../min/controllers/subRules.min'
 ], function () {});

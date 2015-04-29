@@ -1,3 +1,3 @@
 define([
-    './onReadFile'
+    './../min/directives/onReadFile.min'
 ], function () {});

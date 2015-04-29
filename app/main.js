@@ -13,7 +13,8 @@ require.config({
         "ngSanitize": "../bower_components/angular-sanitize/angular-sanitize.min",
         "ngTouch": "../bower_components/angular-touch/angular-touch.min",
         "blob": "../bower_components/blob/Blob",
-        "x2js": "../bower_components/x2js/xml2json.min"
+        "x2js": "../bower_components/x2js/xml2json.min",
+        "ngDialogs": "../bower_components/angular-dialog-service/dialogs.min"
     },
 
     /**
@@ -53,7 +54,11 @@ require.config({
         },
         'x2js':{
             deps: ['angular']
+        },
+        'ngDialogs':{
+            deps: ['angular']
         }
+
     },
 
     deps: [

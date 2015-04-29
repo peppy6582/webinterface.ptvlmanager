@@ -1,4 +1,4 @@
 define([
     './moviesList',
-    './moviesDetails'
+    './moviesDetails.min'
 ], function () {});
