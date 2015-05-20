@@ -158,7 +158,6 @@ define(['./ptvl'], function (ptvlControllers) {
 
                         // If the setting id has SetResetTime in it, add it to the channel as reset_time
                         else if (id.split('_')[2].length === 12) {
-                            console.log('This channel has a set reset time: ', $scope.channels[channelNum]);
                             $scope.channels[channelNum].reset = value;
                         }
 
@@ -170,8 +169,6 @@ define(['./ptvl'], function (ptvlControllers) {
                                 'id': id,
                                 'value': value
                             };
-
-                            console.log('These are undefined settings: ', settings);
 
                             $scope.channels[channelNum].settings[id] = settings;
                         }
@@ -202,26 +199,20 @@ define(['./ptvl'], function (ptvlControllers) {
             settings.push(textToWrite);
 
             $scope.newChannels = $scope.channels;
-            console.log($scope.newChannels);
 
             var i = 0;
 
             var q = $scope.channelNumbers.length;
 
-            console.log('This is the channel count: ' + q);
-
+            // Settings Loop
             while (i <= q) {
                 if (typeof $scope.newChannels[i] != 'undefined') {
 
                     // Channel Type
-                    if (typeof $scope.newChannels[i].settings != 'undefined') {
-                        console.log('There will be some global application settings passed into this file');
-                    }
+                    if (typeof $scope.newChannels[i].settings != 'undefined') {}
                     else
                     {
                         var type = '<setting id="Channel_'+$scope.newChannels[i].channel+'_type" value="'+$scope.newChannels[i].type.value+'" />';
-                        console.log(type);
-                        console.log($scope.newChannels[i]);
                         settings.push(type);
                     }
 
@@ -237,7 +228,6 @@ define(['./ptvl'], function (ptvlControllers) {
                                 {
 
                                     var mainRule = '<setting id="Channel_'+$scope.newChannels[i].channel+'_'+mrcst+'" '+ 'value="'+$scope.newChannels[i].rules.main[mrcst]+'" />';
-                                    console.log(mainRule);
                                     settings.push(mainRule);
                                     ++mrcst;
                                 }
@@ -248,7 +238,6 @@ define(['./ptvl'], function (ptvlControllers) {
                         if(typeof $scope.newChannels[i].rules.count != 'undefined') {
 
                             var ruleCount = '<setting id="Channel_'+$scope.newChannels[i].channel+'_rulecount" '+ 'value="'+$scope.newChannels[i].rules.count+'" />';
-                            console.log(ruleCount);
                             settings.push(ruleCount);
                         }
 
@@ -262,7 +251,6 @@ define(['./ptvl'], function (ptvlControllers) {
                                 {
 
                                     var subRule = '<setting id="Channel_'+$scope.newChannels[i].channel+'_rule_'+ srcst +'_id" '+ 'value="'+$scope.newChannels[i].rules.sub[srcst].id+'" />';
-                                    console.log(subRule);
                                     settings.push(subRule);
 
                                     // sroptcst = SubRuleOptionsCountStart
@@ -271,23 +259,15 @@ define(['./ptvl'], function (ptvlControllers) {
                                         if ($scope.newChannels[i].rules.sub[srcst].options.hasOwnProperty(sroptcst))
                                         {
                                             var subRuleOpt = '<setting id="Channel_'+$scope.newChannels[i].channel+'_rule_'+srcst+'_opt_'+sroptcst+'" value="'+$scope.newChannels[i].rules.sub[srcst].options[sroptcst]+'" />';
-                                            console.log(subRuleOpt);
                                             settings.push(subRuleOpt);
-                                            console.log('This sub rule has options!');
 
                                             ++sroptcst;
                                         }
-                                        else
-                                        {
-                                            console.log('This sub rule has no options');
-                                        }
+                                        else {}
                                     }
                                     ++srcst;
                                 }
-                                else
-                                {
-                                    console.log('This channel has no sub rules');
-                                }
+                                else {}
                             }
                         }
                     }
@@ -295,21 +275,18 @@ define(['./ptvl'], function (ptvlControllers) {
                     // Channel has been changed
                     if(typeof $scope.newChannels[i].changed != 'undefined') {
                         var changed = '<setting id="Channel_'+$scope.newChannels[i].channel+'_changed" value="'+$scope.newChannels[i].changed+'" />';
-                        console.log(changed);
                         settings.push(changed);
                     }
 
                     // Channel Time
                      if(typeof $scope.newChannels[i].time != 'undefined') {
                          var chTime = '<setting id="Channel_'+$scope.newChannels[i].channel+'_time" value="'+$scope.newChannels[i].time+'" />';
-                         console.log(chTime);
                          settings.push(chTime);
                     }
 
                     // Set Reset Time
                     if(typeof $scope.newChannels[i].reset != 'undefined') {
                         var chTime = '<setting id="Channel_'+$scope.newChannels[i].channel+'_SetResetTime" value="'+$scope.newChannels[i].reset+'" />';
-                        console.log(chTime);
                         settings.push(chTime);
                     }
                 }
@@ -323,21 +300,18 @@ define(['./ptvl'], function (ptvlControllers) {
 
                     // Last Exit Time
                     if(typeof $scope.newChannels[0].settings.LastExitTime != 'undefined') {
-                        console.log('Last Exit Time was: ' + $scope.newChannels[0].settings.LastExitTime);
                         var lastExit = '<setting id="LastExitTime" value="'+$scope.newChannels[0].settings.LastExitTime+'" />';
                         settings.push(lastExit);
                     }
 
                     // Last Reset Time
                     if(typeof $scope.newChannels[0].settings.LastResetTime != 'undefined') {
-                        console.log('Last Exit Time was: ' + $scope.newChannels[0].settings.LastResetTime);
                         var lastReset = '<setting id="LastResetTime" value="'+$scope.newChannels[0].settings.LastResetTime+'" />';
                         settings.push(lastReset);
                     }
 
                     // Force Channel Reset
                     if(typeof $scope.newChannels[0].settings.ForceChannelReset != 'undefined') {
-                        console.log('Last Exit Time was: ' + $scope.newChannels[0].settings.ForceChannelReset);
                         var forceReset = '<setting id="ForceChannelReset" value="'+$scope.newChannels[0].settings.ForceChannelReset+'" />';
                         settings.push(forceReset);
                     }

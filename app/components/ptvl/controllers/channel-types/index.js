@@ -1,6 +1,6 @@
 define([
-    '../../min/controllers/channel-types/plugin.min',
-    '../../min/controllers/channel-types/youtube.min',
+    './plugin',
+    './youtube',
     './playlist',
     './tvStudio'
 ], function () {});

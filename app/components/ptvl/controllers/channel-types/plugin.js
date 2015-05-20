@@ -116,6 +116,7 @@ define(['.././ptvl'], function (ptvlControllers) {
             if(parseInt($scope.channel.rules.main[3]) !== limit.value) {
                 $scope.changed.limit = true;
                 $scope.changed.value = true;
+                console.log(limit.value);
                 $scope.changes.limit = limit.value;
             }
             else {
@@ -139,8 +140,14 @@ define(['.././ptvl'], function (ptvlControllers) {
         {
             channel.plugin.subpath = subfolders;
             channel.rules.main[1] = 'plugin://'+channel.plugin.addonid+'/'+channel.plugin.subpath;
-            channel.rules.main[3] = $scope.changes.limit;
-            channel.rules.main[4] = $scope.changes.sort;
+            if (typeof $scope.changes.limit != 'undefined')
+            {
+                channel.rules.main[3] = $scope.changes.limit;
+            }
+            if (typeof $scope.changes.sort != 'undefined')
+            {
+                channel.rules.main[4] = $scope.changes.sort;
+            }
             console.log(channel);
             for ( var key in $scope.changed ) {
                 $scope.changed[key] = false;
