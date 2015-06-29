@@ -108,6 +108,16 @@ define(['./ptvl'], function (ptvlControllers) {
                         // If the setting id looks like Channel_#_#, assume this is a MAIN rule for the channel
                         else if (idNo === parseInt(idNo, 10)) {
 
+                            if (value === 'Default') {
+                                value = 0;
+                            }
+                            else if (value === 'Random') {
+                                value = 1;
+                            }
+                            else if (value === 'Reverse') {
+                                value = 2;
+                            };
+
                             $scope.channels[channelNum].rules.main[idNo] = value;
 
                         }
