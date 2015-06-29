@@ -1,19 +1,39 @@
 define(['.././ptvl'], function (ptvlControllers) {
     'use strict';
 
-    
-    ptvlControllers.controller('youtubeDetailsCtrl', ['$scope', 'ruleFactory', function ($scope, ruleFactory) {
+    ptvlControllers.controller('rssDetailsCtrl', ['$scope', 'ruleFactory', 'rssFactory', function ($scope, ruleFactory, rssFactory) {
+
+        $scope.isCollapsed = true;
+
+        $scope.rssCommunityFeeds = [];
+
+        rssFactory.async().then(function (d) {
+            console.log(d);
+
+            d = d.split('\n');
+            console.log(d);
+
+            for(var i = 0; i<d.length; i++) {
+                d[i] = d[i].split(',');
+                if(d[i][0].contains('http')) {
+                    $scope.rssCommunityFeeds[i] = {
+                        'name': d[i][1],
+                        'feed': d[i][0]
+                    }
+                }
+            };
+            console.log($scope.rssCommunityFeeds);
+        });
+
+        $scope.rssCommunityFeeds.selected = {};
 
         $scope.changed =
         {
             value: false,
             path: false,
-            YtType: false,
             sort: false,
             limit: false
         };
-
-        $scope.YtTypes = ruleFactory.getYtTypes();
 
         // Adds the Sort options available to the scope, for the ui-select drop down
         $scope.sorts = ruleFactory.getSorts();
@@ -23,14 +43,8 @@ define(['.././ptvl'], function (ptvlControllers) {
 
         $scope.changes = {};
 
-        // Adds a YtType object for attaching the selection
-        $scope.YtType = {};
-
         console.log($scope.channel.type);
-        console.log($scope.channel.rules.main[2]);
-        if($scope.channel.type.value == 10) {
-            // Binds the specific type the channel uses to the YtType object
-            $scope.YtType = ruleFactory.getYtType($scope.channel.rules.main[2]);
+        if($scope.channel.type.value == 11) {
 
             // Adds a sort object for attaching the selection
             $scope.sort = ruleFactory.getSort($scope.channel.rules.main[4]);
@@ -38,14 +52,10 @@ define(['.././ptvl'], function (ptvlControllers) {
             // Adds a limit object for attaching the selection
             $scope.limit = ruleFactory.getLimit($scope.channel.rules.main[3]);
 
-            // Creates a value for mapping the YouTube type to the input label
-            $scope.input = $scope.YtType.name;
-
             // Creates a value for mapping the path (Username, Playlist, etc.)
             $scope.path = $scope.channel.rules.main[1];
         }
         else{
-            $scope.YtType = $scope.YtTypes[0];
             $scope.input = $scope.YtType.name;
             $scope.sort = $scope.sorts[0];
             $scope.limit = $scope.limits[0];
@@ -53,30 +63,24 @@ define(['.././ptvl'], function (ptvlControllers) {
         }
 
         // When a YouTube type is selected, backup the old type, clear the old type, and set it to the selected one
-        $scope.selectYtType = function (YtType)
+        $scope.selectRssFeed = function (rss)
         {
-            if($scope.YtType.name !== YtType.name)
-            {
-                $scope.changed.YtType = true;
-                $scope.changes.YtType = YtType.value;
-                $scope.path = '';
-                console.log('YouTube Type changed to '+YtType.name);
-                $scope.input = YtType.name;
-            }
-            else
-            {
-                alert('We must have missed something!!');
-            }
+            $scope.pathBackup = $scope.path;
+            $scope.changed.value = true;
+            $scope.changed.path = true;
+            $scope.path = rss.feed;
         };
 
         // Go back to the originally loaded type
-        $scope.undoYtType = function ()
+        $scope.undoRssFeed = function ()
         {
             var r = confirm("Are you sure you want to undo changing the YouTube Type?");
             if(r == true) {
-                $scope.changed.YtType = false;
-                $scope.YtType.selected = $scope.YtType;
-                $scope.input = $scope.YtType.name;
+                $scope.changed.value = false;
+                $scope.changed.path = false;
+                $scope.path = $scope.pathBackup;
+                $scope.rssCommunityFeeds.selected.name = 'None';
+
             }
         };
 
@@ -96,7 +100,7 @@ define(['.././ptvl'], function (ptvlControllers) {
 
         $scope.undoSort = function ()
         {
-            var r = confirm("Are you sure you want to undo changing the youtube sort?");
+            var r = confirm("Are you sure you want to undo changing the plugin sort?");
             if(r == true) {
                 $scope.changed.sort = false;
                 $scope.changed.value = false;
@@ -120,7 +124,7 @@ define(['.././ptvl'], function (ptvlControllers) {
 
         $scope.undoLimit = function ()
         {
-            var r = confirm("Are you sure you want to undo changing the youtube limit?");
+            var r = confirm("Are you sure you want to undo changing the rss limit?");
             if(r == true) {
                 $scope.changed.limit = false;
                 $scope.changed.value = false;
@@ -128,14 +132,14 @@ define(['.././ptvl'], function (ptvlControllers) {
             }
         };
 
-        $scope.changedPath = function ()
+        $scope.saveRss = function (channel, path)
         {
-            $scope.changed.path = true;
-            $scope.changed.value = true;
-        };
+            var r = confirm("Would you like to name the channel to the community name?");
+            if(r == true) {
+                channel.rules.sub[1].id = "1";
+                channel.rules.sub[1].options[1] = $scope.rssCommunityFeeds.selected.name;
+            }
 
-        $scope.saveYouTube = function (channel, path)
-        {
             channel.rules.main[1] = path;
             if (typeof $scope.changes.limit != 'undefined')
             {

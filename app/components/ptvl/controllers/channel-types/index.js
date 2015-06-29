@@ -2,5 +2,6 @@ define([
     './plugin',
     './youtube',
     './playlist',
-    './tvStudio'
+    './tvStudio',
+    './rss'
 ], function () {});

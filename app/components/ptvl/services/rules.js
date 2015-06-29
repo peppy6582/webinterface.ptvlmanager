@@ -15,7 +15,7 @@ define(['./ptvl'], function (ptvlServices) {
             {name: 'LiveTV (Not Started)',                    value: 8},
             {name: 'InternetTV (Not Started)',                value: 9},
             {name: 'YoutubeTV',                               value: 10,  templateUrl: '/app/components/ptvl/templates/channel-types/youtube.html'},
-            {name: 'RSS (Not Started)',                       value: 11,  templateUrl: '/app/components/ptvl/templates/channel-types/rss.html'},
+            {name: 'RSS (WIP-6/29)',                          value: 11,  templateUrl: '/app/components/ptvl/templates/channel-types/rss.html'},
             {name: 'Music (Not Started)',                     value: 12},
             {name: 'Music Videos (Not Started)',              value: 13},
             {name: 'Extras (Not Started)',                    value: 14},
@@ -104,7 +104,6 @@ define(['./ptvl'], function (ptvlServices) {
               return limits;
             },
             getLimit: function (value) {
-                console.log(value);
                 for(var i=0; i<limits.length; i++) {
                     if(limits[i].value === parseInt(value))
                     {
@@ -128,7 +127,7 @@ define(['./ptvl'], function (ptvlServices) {
             },
             getYtType: function (value) {
                 for(var i=0; i<YtTypes.length; i++) {
-                    if(YtTypes[i].value === parseInt(value))
+                    if(YtTypes[i].name === value)
                     {
                         return YtTypes[i];
                     }
